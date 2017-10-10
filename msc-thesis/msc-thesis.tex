@@ -1,0 +1,2476 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=3.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[bookmarks=false,colorlinks=true,linkcolor=blue,citecolor=blue,linktocpage=true]{hyperref}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\newtheorem{df}{Definition}
+\newtheorem{exm}{Example}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{rmk}{Remark}
+
+\numberwithin{equation}{section}
+\numberwithin{thm}{section}
+\numberwithin{exm}{section}
+
+\newcommand{\A}{\mathcal A}
+\newcommand{\M}{\mathcal M}
+\newcommand{\U}{{\mathcal U}}
+\newcommand{\V}{{\mathcal V}}
+\newcommand{\cl}{C\ell}
+\newcommand{\spin}{\mathrm{Spin}}
+\newcommand{\p}{\partial}
+\newcommand{\pb}{\bar\partial}
+\newcommand{\ddm}{\partial_-}
+\newcommand{\ddp}{\partial_+}
+\newcommand{\lag}{\mathcal L}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\phic}{\phi^*}
+\newcommand{\tr}{\mathrm{Tr}}
+\newcommand{\str}{\mathrm{Str}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\os}[2]{\overset{#1}{#2}}
+\newcommand{\mo}{^{-1}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\we}{{\wedge}}
+\newcommand{\ads}{{AdS_5\times S^5}}
+\newcommand{\N}{{\nabla}}
+\newcommand{\zb}{{\bar z}}
+\newcommand{\<}{{\langle}}
+\renewcommand{\>}{{\rangle}}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\susy}{{\mf s\mf u\mf s\mf x}}
+\newcommand{\dg}{\dagger}
+\newcommand{\ddg}{\ddagger}
+\newcommand{\ev}{{\bar 0}}
+\newcommand{\od}{{\bar 1}}
+
+\renewcommand{\a}{{\alpha}}
+\newcommand{\ah}{{\widehat\alpha}}
+\renewcommand{\b}{{\beta}}
+\newcommand{\bh}{{\widehat\beta}}
+\renewcommand{\d}{{\delta}}
+\newcommand{\D}{{\Delta}}
+\newcommand{\e}{{\epsilon}}
+\newcommand{\eb}{{\bar\epsilon}}
+\newcommand{\ve}{{\varepsilon}}
+\newcommand{\g}{{\gamma}}
+\newcommand{\G}{{\Gamma}}
+\renewcommand{\i}{{\iota}}
+\renewcommand{\k}{{\kappa}}
+\newcommand{\kb}{{\bar\kappa}}
+\renewcommand{\l}{{\lambda}}
+\renewcommand{\L}{{\Lambda}}
+\newcommand{\m}{{\mu}}
+\newcommand{\mh}{{\widehat\mu}}
+\newcommand{\n}{{\nu}}
+\newcommand{\nh}{{\widehat\nu}}
+\newcommand{\om}{{\omega}}
+\newcommand{\Om}{{\Omega}}
+\renewcommand{\r}{{\rho}}
+\newcommand{\s}{{\sigma}}
+\renewcommand{\S}{{\Sigma}}
+\renewcommand{\t}{{\theta}}
+\newcommand{\tb}{{\bar\theta}}
+\newcommand{\bm}{{\bar\mu}}
+\newcommand{\bn}{{\bar\nu}}
+\newcommand{\br}{{\bar\rho}}
+\newcommand{\mb}{{\bar\mu}}
+\newcommand{\nb}{{\bar\nu}}
+\newcommand{\rb}{{\bar\rho}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\thicklines
+\begin{picture}(370,60)(0,0)
+\setlength{\unitlength}{1pt}
+%
+\put(40,53){\line(2,3){15}}
+\put(40,53){\line(5,6){19}}
+\put(40,53){\line(1,1){27}}
+\put(40,53){\line(6,5){33}}
+\put(40,53){\line(3,2){25}}
+\put(40,53){\line(2,1){19}}
+%
+\put(40,53){\line(5,-6){17}}
+\put(40,53){\line(1,-1){22}}
+\put(40,53){\line(6,-5){30}}
+\put(40,53){\line(3,-2){22}}
+%
+\put(40,53){\line(-2,1){15}}
+\put(40,53){\line(-3,1){23}}
+\put(40,53){\line(-4,1){26}}
+\put(40,53){\line(-6,1){36}}
+\put(40,53){\line(-1,0){40}}
+\put(40,53){\line(-6,-1){32}}
+\put(40,53){\line(-3,-1){20}}
+\put(40,53){\line(-2,-1){10}}
+%
+\put(75,45){\Huge \bf IFT}
+\put(180,56){\small \bf Instituto de Fisica Te\'orica}
+\put(165,42){\small \bf Universidade Estadual Paulista} 
+%\put(0,0){\line(1,0){375}}
+\put(-25,2){\line(1,0){433}}
+\put(-25,-2){\line(1,0){433}}
+\end{picture}  
+
+\vskip .3cm
+\noindent
+{DISSERTA\c C\~AO DE MESTRADO}
+\hfill    IFT--D.008/2016
+
+\vspace{3cm}
+\begin{center}
+{\large \bf Some Geometric Aspects of Non-linear Sigma Models}
+
+\vspace{1.2cm}
+
+Dennis Zavaleta
+\end{center}
+
+\vskip 3cm
+\hfill Advisor
+\vskip 0.4cm
+\hfill {\em Andrei Mikhailov}
+\vskip 4cm
+\vfill
+\begin{center}
+August 2016
+\end{center}
+
+\newpage
+
+\begin{center}
+{\bf\Large Abstract}
+\end{center}
+
+We review some relevant examples for String Theory of non-linear sigma models. These are bosonic strings propagating in curved background, the Wess-Zumino-Witten model and superstrings in flat and AdS superspace. The mathematical tools required for the study of these models (e.g. topological quantization, Cartan geometry, Lie superalgebras and geometry on coset spaces) are also described. Throughout the dissertation we have focused on classical aspects of these models such as the construction of the action and its symmetries where conditions for holomorphic symmetry of the bosonic string case were found.
+
+\vspace{4cm}
+
+\noindent {\bf Keywords:} String Theory, WZW Model, Strings on $\ads$, Coset Superspaces.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Abstract in portuguese
+%
+%\newpage
+%
+%\begin{center}
+%{\bf\Large Resumo}
+%\end{center}
+%
+%Nesta disserta\c{c}\~ao estudamos alguns exemplos de modelos sigma n\~ao lineares em Teoria de cordas. Estes s\~ao a corda bos\'{o}nica se propagando em espa\c{c}os curvos, o modelo Wess-Zumino-Witten e supercordas em superespa\c{c}o plano e AdS. As ferramentas matem\'{a}ticas que se precisam para o estudo destes modelos (e.g. quantiza\c{c}\~ao topol\'{o}gica, geometria de Cartan, super-\'{a}lgebras de Lie e geometria em espa\c{c}os coset) tamb\'{e}m s\~ao descritas. Ao longo desta disserta\c{c}\~ao focamos os aspectos cl\'{a}ssicos destes modelos tais como a constru\c{c}\~ao da a\c{c}\~ao e suas simetrias onde condi\c{c}\~oes para serem estas holomorficas no caso da corda bos\'{o}nica foram achadas.
+%
+%\vspace{4cm}
+%
+%\noindent {\bf Palavras chave:} Teoria de cordas, Modelo WZW, Cordas em $\ads$, Superespa\c{c}os coset.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+
+\begin{center}
+{\bf\Large Acknowledgments}
+\end{center}
+
+I start by acknowledging CAPES for the financial support during the Master's program. Also, I would like to thank Andrei for giving the freedom of working on any level of detail that I preferred. And, finally I give a special recognition to IFT, its staff and professors that contributed enormously to my formation in these two years.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Acknowledgements in portuguese
+%\vspace{6cm}
+%
+%\begin{center}
+%{\bf\Large Agradecimentos}
+%\end{center}
+%
+%Gostaria come\c{c}ar fazendo um reconhecimento \`{a} CAPES pela bolsa de estudos usada no programa de mestrado. Tamb\'{e}m, gostaria de agradecer ao Andrei por sempre ter me dado a liberdade para trabalhar o nivel de detalhe que eu achava melhor. E finalmente, quero agradecer de maneira especial ao IFT, a seu pessoal e professores que contribuiram enormemente na minha forma\c{c}\~ao nesses dois anos.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+Sigma models were first introduced by Gell-Mann and Levy \cite{Gell-Mann1960} in the sixties as a toy model in which one could study theories with chiral symmetries and partially conserved axial currents. Later, sigma models with target spaces like spheres or complex projective spaces were studied extensively \cite{Hull1987}. Even though, these models are not renormalizable in four space-time dimensions, they are useful to describe low energy effective theories such as scalar mesons, and more sophisticated theories such as supergravity.
+
+In two dimensions the theory is renormalizable \cite{Friedan1980} and is used to explore some non-trivial properties that later can be taken to higher dimensional theories. In addition to this, certainly much of the attention that $\s$-models draw comes from the fact that it gives the framework to study the propagation of (super)strings \cite{Green1987}. And, the relations between symmetries beyond their natural target space isometries e.g. conformal symmetry and the constraints that imposes on the background fields. 
+
+There is a great deal of mathematics that enters in the study of $\s$-models. One of these aspects that we explore is the topological one. This feature comes from an extension of a chiral $\s$-model with target space a Lie group \cite{Witten1984}. The extra term in the action called {\it Wess-Zumino term} gives special properties to the model allowing a greater symmetry and requiring more algebraic structures such as {\it Kac-Moody algebras}.
+
+This work has two purposes, the first one is to give a review on the general features of non-linear sigma models. We especially care about the geometric picture and the extra structure that appears in each model e.g. Lie superalgebras, coset spaces, topological properties. And, the second motivation is to take the initial steps in a larger project concerning the $\s$-model action of Pure Spinor formalism \cite{Berkovits2000a} of superstrings.
+
+We will cover the following topics: In chapter 1 we start with general non-linear sigma models and give some common examples. Also, an emphasis is given to the case of bosonic strings in curved background  and the requirements to have symmetries. In chapter 2, we describe the Wess-Zumino-Witten model and go through standard computations for this model e.g. topological quantization, holomorphic symmetries. In chapter 3 go into the tools to study superstrings propagating in coset superspaces and also pay attention to $\k$-symmetry of the Green-Schwarz action.
+
+
+
+
+\section{Non-linear Sigma Models}
+
+\subsection{Definitions}
+The general description of a non-linear sigma model is given by the {\it dynamical field}
+	\begin{equation}
+	\Sigma\os{X}{\longrightarrow}\M
+	\end{equation}
+where $\Sigma$ and $\M$ are pseudo-Riemann manifolds that we call here {\it domain space} and {\it target space}. Plus, the standard {\it kinetic term}
+	\begin{equation}
+	S[X] = \int_\S d\s \sqrt{| \g|}\g^{ij} G_{\m\n}(X) \p_i X^\m \p_j X^\n
+	\end{equation}
+being $\g$ and $G$ the metric tensors in $\S$ and $\M$ respectively. Furthermore, according to extra structure on the manifolds $\S$ and $\M$ and extra terms in the action, the model will receive a different name.
+
+Besides the kinetic term, it can also be added something called a {\it Wess-Zumino term} which it is no more than the integral of the pull-back of a $(dim\S)$-form of the target space. Say $dim(\S) = n$ and $B\in\L^n(\M)$
+	\begin{equation}
+	S_{WZ}[X] = \int_\S X^* B = \int \frac{1}{n!} \e^{a_1\ldots a_n}B_{\m_1\ldots\m_n} \p_{a_1} X^{\m_1}\ldots \p_{a_n} X^{\m_n}
+	\end{equation}
+where we can notice that the Wess-Zumino term does not depend on the worldsheet metric.
+
+We can go further and introduce more types of fields e.g. gauge fields or spinors fields but this requires more geometric structures constructed on top of the target space manifold and/or domain manifold. In what follows we try to describe these structures and in a later section we give some examples of theories that realize them.
+
+The ingredients for a geometric description of a gauge theory are the following. First we need a $G$-bundle (a.k.a. principal bundle) on some manifold $P\overset{\pi}{\rightarrow} {\mathcal M}$ that locally on intersecting charts give transition functions satisfying
+	\begin{equation}
+	g_{\g\a}(x) = g_{\g\b}(x) g_{\b\a}(x)\ ;\quad x\in\U_\a\cap\U_\b\cap\U_\g\subset\M
+	\end{equation}
+Also, we deal with connections of the fiber bundle that are defined as ${\mathfrak g}$-valued $1$-forms $\om\in\L^1(P,\mathfrak g)$ with certain transformation properties. On a chart ${\mathcal U}\subset{\mathcal M}$ we can take a local section ${\mathcal U}\overset{s}{\rightarrow}P$ of the bundle and pullback the connection to the more common
+	\begin{equation}
+	A := s^* \om\quad\text{in coordinates}\quad A(x) = A_{m}^a(x) dx^m T_a
+	\end{equation}
+Notice that these $\mathfrak g$-valued $1$-forms $A\in\L^1(\mathcal U,\mathfrak g)$ are only local i.e. associated to charts of the manifold $\mathcal M$. And lastly, the gauge transformations are seen as automorphims of the $G$-bundle $P\overset{g}{\rightarrow} P$ that acts on the connection $\om$ by pullback i.e. $g^* \om$. Locally a gauge transformation can be expressed as a map $\U\overset{g}{\rightarrow}G$ that transforms the local connection $A$
+	\begin{equation}
+	A\mapsto A^g =  g^{-1} A g + g^{-1} d g
+	\end{equation}
+that in components looks like
+	\begin{equation}
+	A^g(x) = g^{-1}(x) A_m(x) g(x) + g^{-1}(x)\p_m g(x)
+	\end{equation}
+
+With the previous construction we can study theories that only involve gauge fields (e.g. Chern-Simons or pure Yang-Mills theories); however, to include so-called matter fields we need fields that transform in some representation of the gauge group $G$ and also the concept of covariant derivative. We start by taking a representation of the group $G\overset{R}{\rightarrow} GL(V)$
+	\begin{equation}
+		\begin{aligned}
+		R[g]: V & \rightarrow V \\
+		\phi^i & \mapsto (R[g])^i_j\phi^j
+		\end{aligned}
+	\end{equation}
+then, the matter fields will be describe as sections of the associated vector bundle $P\times_G V$
+	\begin{equation}
+	\M\overset{\phi}{\rightarrow}P\times_G V\quad\text{locally}\quad \phi^i(x)
+	\end{equation}
+that under a gauge transformation $g(x)$ (in local form) will vary as $\phi^i(x)\mapsto R[g^{-1}(x)]^i_j\phi^j(x)$. Furthermore, the connection $\om$ on the $G$-bundle induces a proper connection on the associated vector bundle and so we can define a covariant derivative acting on sections
+	\begin{equation}
+	\nabla_X\phi \quad\text{locally}\quad (\nabla_X \phi)^i(x) = X^m(\p_m\phi^i(x) + A^a_m(x)(T_a)^i_j\phi^j(x))
+	\end{equation}
+
+Finally, one way of introducing spinor fields on a (orientable) manifold $\M$ with a metric of signature $(t,s)$ is the construct a $SO(t,s)$-bundle of (oriented) frames $P_{SO(t,s)}\rightarrow\M$. Then in some cases there will exist double coverings of $P_{SO(t,s)}$ that are $Spin(t,s)$-bundles on $\M$
+	\begin{equation}
+	P_{Spin(t,s)}\overset{\varphi}{\rightarrow} P_{SO(t,s)}\quad\text{such that}\quad \varphi(u\cdot g) = \varphi(u) \rho(g)
+	\end{equation}
+where $\rho$ is the map from $Spin(t,s)$ that covers $SO(t,s)$
+	\begin{equation}
+		\begin{aligned}
+		\rho: Spin(t,s)&\rightarrow SO(t,s) \\
+		\exp(\l^{mn}\G_{mn}) & \mapsto \exp(\l^{mn}M_{mn})
+		\end{aligned}
+	\end{equation}
+These $Spin(t,s)$-bundles on $\M$ are called {\it spin structures}. Exactly as before, here the spinor field will be sections of a vector bundle, so if we want to consider a particular type of spinor field we take the corresponding representation
+	\begin{equation}
+		\begin{aligned}
+		R[\L] : S & \rightarrow S \\
+		\psi^\a & \mapsto (R[\L])^\a{}_\b \psi^\b
+		\end{aligned}
+	\quad\text{or infinitesimaly}\quad \d_\L \psi^\a = \l^{mn}(\G_{mn})^\a{}_\b \psi^\b
+	\end{equation}
+and consider sections on the associated vector bundle
+	\begin{equation}
+		\begin{aligned}
+		\psi: \mathcal M & \rightarrow (P_{Spin(t,s)}\times_{Spin(t,s)} S) \\
+		x & \mapsto \psi(x)
+		\end{aligned}
+	\quad\text{or locally}\quad\psi^\a(x)
+	\end{equation}
+Take as a simple example a worldsheet $\S_g$ (a genus $g$ orientable Riemann surface). These manifolds admit $2^{2g}$ spin structures and here {\it Weyl and anti-Weyl spinor fields} are sections of the associated vector bundles ${\mathcal S}^{\pm}$ corresponding to the $S^+$ and $S^-$ representations of $Spin(2)$. That is
+	\begin{equation}
+	\psi_{\pm}: \S_g\rightarrow {\mathcal S}^{\pm}\quad\text{with transformation}\quad\psi_{\pm}(z,\zb)\mapsto e^{\pm\frac{i}{2}\theta(z,\zb)}\psi_{\pm}(z,\zb)
+	\end{equation}
+
+
+\subsection{Symmetries and currents}
+Since we are interested in studying some local symmetries in non-linear sigma models, this section serves as a warm up in computing currents associated to global symmetries and to identify local ones.
+
+The relation between symmetries and conserved quantities is established by Noether's theorem. We next show this result for a general action $S[\phi]$ with any field content denoted by $\phi^i$. The the first variation of the action
+	\begin{equation}
+	S[\phi]=\int_R dx \lag(x,\phi(x),\p\phi(x))
+	\end{equation}
+under any transformation
+	\begin{equation}
+	(\phi:R\rightarrow\mathbb R)\longrightarrow(\phi':R'\rightarrow\mathbb R)
+	\end{equation}
+is given by
+	\begin{equation}\label{result}
+	\delta S=\int_R dx \left\{\p_\mu \left(\frac{\p\lag}{\p(\p_\mu\phi^i)}\delta\phi^i+\lag\delta x^\mu\right)+\frac{\delta S}{\delta \phi^i}\delta\phi^i\right\}
+	\end{equation}
+where $\delta\phi^i(x)=\phi'^i(x)-\phi^i(x)$ and $\delta x^\mu(x)=x'^\mu(x)-x^\mu$. Here $x'^\mu(x)$ is the transformation from the region $R$ to $R'$. As an example consider $\phi'(x'):=\phi(\Lambda^{-1}\cdot x')$, then the transformation from $R$ to $R'$ is $x'^\mu(x)=\Lambda^\mu_\nu x^\nu$.
+
+This is an arbitrary variation in the sense that we did not care if the parameters inside $\d \phi^i$ were local or global or even if these variations obey some Lie algebra relations. From (\ref{result}) we can point out standard results e.g. the conditions for a stationary field configuration is that $\d S = 0$ under arbitrary variations $\d \phi^i$; thus, integrating out the $\p_\m(\ldots)$ we obtain the {\it equations of motion}
+	\begin{equation}
+	\frac{\d S}{\d \phi^i} = \frac{\p \lag}{\p \phi^i} - \p_\m \left( \frac{\p \lag}{\p(\p_\m \phi^i)} \right)
+	\end{equation}
+Likewise, if we have $\d S = 0$ this time because the global variations furnish a symmetry of the action and also put the fields {\it on-shell}, we can identify the conservation of the Noether currents
+	\begin{equation}
+	j^\m := \frac{\p\lag}{\p(\p_\mu\phi^i)}\delta\phi^i+\lag\delta x^\mu
+	\end{equation}
+
+Finally, we should realize that the conserved currents are auxiliary quantities and can be modified without changing the charges. Similarly, we can add up to the action total derivative terms with the effect of modifying currents and also charges. For instance, if we add the total derivative $\p_a\Big(f^a(\phi,\p \phi)\Big)$, then the new currents become%
+\footnote{There is an explicit verification of this in one of the appendices}
+	\begin{equation}
+	j'^a = j^a + \d f^a = j^a + \frac{\p f^a}{\p \phi^i}\d\phi^i + \frac{\p f^a}{\p(\p_b \phi^i)}\p_b(\d\phi^i)
+	\end{equation}
+
+\subsection{Examples}
+
+\begin{exm} Pure Yang-Mills theory \end{exm}
+A pure Yang-Mills theory is described by gauge fields $A_\mu^a(x)$ and action 
+	\begin{equation}
+	S[A]=\int -\frac{1}{4}k(F^{\mu\nu},F_{\mu\nu})=\int -\frac{1}{4}k_{ab}F^{a\mu\nu}F^b_{\mu\nu}
+	\end{equation}
+where $k(\cdot,\cdot)$ is the {\it Killing form} and $k_{ab}=k(T_a,T_b)$, for any basis of the Lie algebra $\{T_a\}_{a=1,\ldots,n}\subset \mathfrak{g}$. Note that the Killing form is invertible if and only if the corresponding Lie algebra is {\it semi-simple}.%That is looking at the gauge fields as the coefficients of a $\mathfrak g$-valued one-form defined on space-time.
+
+To get the explicit expression for the current associated to the symmetry $\delta A^a_\mu=-([A_\mu,\varepsilon])^a$, it is useful to compute the following two quantities%
+\footnote{Lie algebra labels $a,b,c$ are lowered and raised with the $k_{ab}$ and its inverse $k^{ab}$}
+	\begin{align}
+	\frac{\p}{\p A^a_\mu}\left(-\frac{1}{4}F^2\right)=&-k_{bc}f^b_{\ da}A^d_\nu F^{c\nu\mu}=\left([A_\nu,F^{\nu\mu}]\right)_a\\
+	\frac{\p}{\p(\p_\nu A^a_\mu)}\left(-\frac{1}{4}F^2\right)=&-F^{\nu\mu}_a
+	\end{align}
+Thus, the conserved current is
+	\begin{equation}
+	j^\mu_a=f_{abc}A_\nu^b F^{c\nu\mu}=([A_\nu,F^{\nu\mu}])_a
+	\end{equation}
+
+\begin{exm} Gauged non-linear sigma model \end{exm}
+We do the same for a gauged non-linear sigma model which is described here as the usual sigma model $X:\S\rightarrow \M$
+	\begin{equation}
+	S[X] = \frac{1}{2} \int_\S G_{\m\n}(X) \p_a X^\m \p^a X^\n
+	\end{equation}
+with its isometry group $\text{Isom}(\M):=\{ K^\m_i(X)\ \text{Killing fields}\}$ gauged. This corresponds to
+	\begin{equation}
+	S[X,A]=\frac{1}{2}\int_\S (D_a X)\cdot (D^a X)
+	\end{equation}
+where $(D_a X)^\m(\s)=\p_a X^\m(\s)+A^i_a(\s)K^\m_i(X(\s))$, and the label $i=1$ $,\ldots,$ $dim(\text{Isom}(\M))$. Here the gauge transformations are
+	\begin{align}
+	\d X(\s) = & \left[ \exp\left(c^i(\s) K_i(\s)\right)X \right](\s) - X(\s) = c^i(\s) K_i(X(\s)) \\
+	\d A_a^i(\s) = & f^i_{\ jk}A^j_a(\s) c^k(\s)+ \p_a c^i(\s)
+	\end{align}
+Then the current coming from the associated global symmetry is
+	\begin{equation}
+	j^a_i(\sigma)=G_{\mu\nu}(X(\sigma))(D_a X)^\mu K^\nu_i(X(\sigma))
+	\end{equation}
+
+We don't need to gauge the full isometry group, take as an example the gauged sigma model with target space $(\R^N, g)$ where we have only gauged $SO(N)\subset \text{Isom}(\R^N)$. Thus, we have the action
+	\begin{equation}
+	S[\phi, A]=\frac{1}{2}\int (D_\mu \phi)_i (D^\mu\phi)^i
+	\end{equation}
+where the Killing fields $K^i_a(\phi)$ act as matrices
+	\begin{equation}
+	K^i_a(\phi) = (K_a)^i_{\ j}\phi^j =: (T_a)^i_{\ j}\phi^j
+	\end{equation}
+and computing the following relevant quantities
+	\begin{align}
+	\frac{\p}{\p A^a_\mu}\left(\frac{1}{2}(D_\mu\phi)\cdot(D^\mu\phi)\right)=&(D^\mu\phi)\cdot(T_a\phi)\\
+	\frac{\p}{\p\phi^i}\left(\frac{1}{2}(D_\mu\phi)\cdot(D^\mu\phi)\right)=&g_{jk}(A^\mu)^k_{\ i}(D_\mu\phi)^j=-g_{ik}(A^\mu)^k_{\ j}(D_\mu\phi)^j\\
+	\frac{\p}{\p(\p_\mu\phi^i)}\left(\frac{1}{2}(D_\mu\phi)\cdot(D^\mu\phi)\right)=&g_{ij}(D^\mu\phi)^j
+	\end{align}
+we end up with the currents
+	\begin{equation}
+	j^\m_a = (D^\m\phi)_i (T_a)^i_{\ j}\phi^j
+	\end{equation}	 
+
+\begin{exm} $SU(N)$ Gauge theory \end{exm}
+
+An $SU(N)$ gauge theory is described by the action%
+\footnote{In the first line $\left<\cdot,\cdot\right>$ is an hermitian bilinear form while in the second line we already used some basis and defined $\phic_i=\phi^j g_{ji}$}
+	\begin{align}
+	S[\phi,A]=&\int \left<D_\mu\phi,D^\mu\phi\right> + \frac{1}{g^2}\lag_{YM} \nonumber \\
+	=&\int (D_\mu \phic)_i (D^\mu\phi)^i + \frac{1}{g^2}\lag_{YM}
+	\end{align}
+where the covariant derivative acts as $(D_\mu\phi)^i=\p_\mu\phi^i+(A_\mu)^i_{\ j} \phi^j$ which implies $(D_\mu\phic)_i=\p_\mu\phic_i-\phic_j(A_\mu)^j_{\ i}$. To clarify the $\<\cdot,\cdot\>$ notation, the first term in the action is
+	\begin{align}
+	\left<D_\mu \phi,D^\mu \phi\right> & = g_{ij}(D_\mu\phi)^{i*}(D^\mu\phi)^j \nonumber \\
+	& =(\p_\mu\phi^*_i-(A_\mu)^j_{\ i}\phi^*_j)(\p^\mu\phi^i+(A^\mu\phi)^i)
+	\end{align}
+The equations of motion of $\phi$ and $A^a_\m$ are respectively
+	\begin{align}
+	\frac{\delta S}{\delta\phi^i} & = -(D_\mu D^\mu \phi)_i \\
+	\frac{\delta S}{\delta A^a_\mu} & = (D_\nu F^{\nu\mu})_a + (D^\mu\phi)\cdot (T_a\phi)
+	\end{align}
+while the conserved Noether current (global invariance of full theory) is
+	\begin{equation}
+	j^\mu_a=(D^\mu\phi)\cdot(T_a\phi)+([A_\nu,F^{\nu\mu}])_a
+	\end{equation}
+We can play a bit with equation (\ref{result}), and for example vary only $\phi$ i.e. $\delta\phi^i=\omega^a(T_a\phi)$ and $\delta A^a_\mu=0$. Thus, this global symmetry (subsymmetry of the full one) implies the identity
+	\begin{equation}
+	\p_\mu\left((D^\mu\phi)\cdot(T_a\phi)\right)+\frac{\delta S}{	\delta \phi^i}(T_a\phi)^i=0
+	\end{equation}
+which doesn't necessarily gives us new constraints.
+
+
+\subsection{Bosonic strings in background fields}
+Following the philosophy of a NLSM, we can think of the fields $X:\S\rightarrow M$ with $(\S,h)$ and $(M,G)$ pseudo-Riemannian manifolds of dimension $1+1$ and $1+(d-1)$ respectively, as strings moving on a curved background. The corresponding action would be
+	\begin{align}
+	S[X,h] & = - \int_\S \left< *dX,dX \right> \nonumber \\
+	& = - \int_\S d^2\s \sqrt{-h} h^{\a\b} G_{\m\n}(X) \p_\a X^\m \p_\b X^\n
+	\end{align}
+which gives the following equations of motion
+	\begin{equation}
+	G_{\r\m}\p_\a(\sqrt{-h} h^{\a\b}\p_\b X^\m) + \G_{\r\m\n}\sqrt{-h} h^{\a\b} \p_\a X^\m \p_\b X^\n = 0
+	\end{equation}
+and assuming $G_{\m\n}$ is invertible, the EOM can be rewritten as
+	\begin{equation}
+	\N_\a(\sqrt{-h} h^{\a\b}\p_\b X^\m) = 0
+	\end{equation}
+	
+Moreover, we can consider the manifold $M$ as having more structure. For instance, consider a two-form $B\in\L^2(M)$ and the modified action
+	\begin{align}
+	S[X,h] & = - \frac{1}{2}\int_\S \left< *dX,dX \right> + \int_\S X^* B \nonumber \\
+	& = -\frac{1}{2}\int_\S d^2\s \sqrt{-h} h^{\a\b} G_{\m\n}(X) \p_\a X^\m \p_\b X^\n + \frac{1}{2}\int_\S \e^{\a\b} B_{\m\n}(X) \p_\a X^\m \p_\b X^\n
+	\end{align}
+which is the action for a string propagating in a curved background with a $B$-field.
+
+The EOM get modified such as to obtain an extra term in the connection that takes the role of a torsion (an antisymmetric one)
+	\begin{equation}
+	\p_\a(\sqrt{-h} h^{\a\b}\p_\b X^\m) + \left(\sqrt{-h}h^{\a\b}\G^\m_{\ \r\n} - \frac{1}{2} \e^{\a\b}H^\m_{\ \r\n}\right) \p_\a X^\r \p_\b X^\n = 0
+	\end{equation}
+where $H = dB$ or in coordinates $H_{\r\m\n} = \p_\r B_{\m\n} + \p_\m B_{\n\r} + \p_\n B_{\r\m}$
+
+In conformal gauge, the action is
+	\begin{align}
+	S[X]=&-\frac{1}{4\pi\a'} \int d^2\s \left(\eta^{ab} G_{\m\n}(X) - \e^{ab} B_{\m\n}(X)\right) \p_aX^\m \p_bX^\n \nonumber \\
+	=&-\frac{1}{4\pi\a'} \int d\s^+d\s^- \frac{1}{2}\left\{(-2G_{\m\n} + 2B_{\m\n}) \p_+X^\m \p_-X^\n\right. \nonumber \\
+	&\hspace{4cm}\left.+ (-2G_{\m\n} - 2B_{\m\n}) \p_-X^\m \p_+X^\n\right\} \nonumber \\
+	=&\frac{1}{2\pi\a'} \int (G_{\m\n} + B_{\m\n}) \p_-X^\m \p_+X^\n
+	\end{align}
+
+Denoting $A_{\mu\nu}=G_{\mu\nu}+B_{\mu\nu}$, we can compute the variation of the action corresponding to the one-parameter family of space-time diffeomorphisms $X'=\exp(\varepsilon\xi)X$ which in the $\{X^{\mu}\}$-chart is
+	\begin{equation}
+	\delta X^\mu=\varepsilon\xi^\mu(X)
+	\end{equation}
+where $\xi^\mu$ is the generation vector field in the said chart. Thus, the variation is
+	\begin{equation}
+	\delta S=\frac{1}{2\pi\alpha'}\int \varepsilon(\lag_\xi A)_{\mu\nu}\p_-X^\mu\p_+X^\nu
+	\end{equation}
+which implies that symmetries are generated by vector fields $\xi$ with property
+	\begin{equation}
+	(\lag_\xi A)=d\lambda\quad\text{or equivalently}\quad(\lag_\xi G)_{\mu\nu}=0\ \&\ (\lag_\xi B)_{\mu\nu}=\p_{[\mu}\lambda_{\nu]}
+	\end{equation}
+since $\lag_\xi G$ and $\lag_\xi B$ are the symmetric and antisymmetric part of $\lag_\xi A$.
+
+Next, we compute the equations of motion (EOM) and the Noether current associated to the symmetries found previously. We begin by reordering $\delta S$ without integrating out total derivatives
+	\begin{align}
+	0=\delta S=&\int(\ve\xi^\rho)\p_\rho A_{\mu\nu}\p_-X^\mu\p_+X^\nu + A_{\mu\nu}\p_-(\ve\xi^\mu)\p_+ X^\nu + A_{\mu\nu}\p_-X^\mu\p_+(\ve\xi^\nu) \nonumber \\
+	=& \ve\int\xi^\rho(\p_\rho A_{\mu\nu}-\p_\mu A_{\rho\nu}-\p_\nu A_{\mu\rho})\p_-X^\mu\p_+ X^\nu - (A_{\mu\nu}+A_{\nu\mu})\xi^\mu\p_-\p_+ X^\nu \nonumber \\
+	&+\p_-(A_{\mu\nu}\xi^\mu\p_+X^\nu)+\p_+(A_{\mu\nu}\p_-X^\mu\xi^\nu) \nonumber \\
+	=&\ve\int\Big[-2\xi^\rho(\wt\Gamma_{\rho\mu\nu}\ddm X^\mu\ddp X^\nu+G_{\rho\mu}\ddm\ddp X^\mu)+(\ddm j_+ +\ddp j_-)\Big]
+	\end{align}
+where 
+	\begin{align}
+	\wt\Gamma_{\rho\mu\nu}&=\frac{1}{2}(\p_\mu A_{\rho\nu}+\p_\nu A_{\mu\rho}-\p_\rho A_{\mu\nu})=\Gamma_{\rho\mu\nu}-\frac12 H_{\rho\mu\nu}\\
+	j_-&=(\p_- X^\mu) A_{\mu\nu}\xi^\nu\\
+	j_+&=\xi^\mu A_{\mu\nu}(\p_+X^\nu)
+	\end{align}
+Thus, we can easily identify the EOM as
+	\begin{equation}
+	\wt\Gamma_{\rho\mu\nu}\ddm X^\mu\ddp X^\nu+G_{\rho\mu}\ddm\ddp X^\mu=0
+	\end{equation}
+and the conservation of current $j_-=(\p_-X^\mu) A_{\mu\nu}\xi^\nu$ and $j_+=\xi^\mu A_{\mu\nu}(\p_+X^\nu)$
+	\begin{equation}
+	\p_-j_+ + \p_+j_-=0
+	\end{equation}
+
+Furthermore, if we assume that the metric tensor is invertible, then the EOM can be rewritten in terms of covariant derivatives
+	\begin{equation}
+	\nabla_-\p_+X^\rho=\frac{1}{2}H^\rho_{\ \mu\nu}\p_-X^\mu\p_+X^\nu
+	\end{equation}
+where $\nabla$ is the pullback of the Levi-Civita connection of the target space; therefore, it acts as $\nabla_\pm V^\mu=\p_\pm V^\mu+(\Gamma^\mu_{\ \rho\nu}\p_\pm X^\rho)V^\nu$.
+
+We could also make a Wick-rotation, so the action gets modified to
+	\begin{equation}
+	S[X] = \int_\S \d^{ab}G_{\m\n}\p_a X^\m \p_b X^\n + i\int_\S \e^{ab} B_{\m\n} \p_a X^\m \p_b X^\n
+	\end{equation}
+equivalently, in $(z,\bar z)$ coordinates
+	\begin{equation}
+	S[X] = \int_\S (G_{\m\n} + B_{\m\n})\p X^\m \pb X^\n = \int_\S (G_{\m\n} - B_{\m\n})\pb X^\m \p X^\n
+	\end{equation}
+
+
+\subsection{Local and holomorphic symmetries}
+This sections intends to study what are the conditions imposed on the background fields such that the symmetry group of the target space becomes a local one.
+
+The local transformation $\d X^\m(\s)=\ve(\s) \xi^\mu(X(\s))$ varies the action as
+	\begin{align}
+	\d S = &\int \ve\Big((\lag_\xi A)_{\m\n} \p_- X^\m \p_+ X^\n \Big) + (\p_-\ve) j_+ + (\p_+\ve) j_- \\
+	=& \int \ve\Big((\lag_\xi A)_{\mu\nu}\p_-X^\mu\p_+X^\nu-\p_-j_+-\p_+j_- \Big)
+	\end{align}
+Thus, the transformation with an arbitrary $\ve(\s^+,\s^-)$ is a symmetry of the action if and only if the quantity in brackets is zero
+	\begin{align}
+	0=&(\lag_\xi A)_{\mu\nu}\p_-X^\mu\p_+X^\nu-\p_-j_+-\p_+j_- \nonumber \\
+	=&\left[(\lag_\xi A)_{\mu\nu}-\p_\mu(\xi^\rho A_{\rho\nu})-\p_\nu(A_{\mu\rho}\xi^\rho)\right] \p_-X^\mu\p_+X^\nu - \p_-\p_+X^\mu(2\xi_\mu) \nonumber \\
+	=&\left[ \xi^\rho\p_\rho A_{\mu\nu}-\xi^\rho \p_\mu A_{\rho\nu}-\xi^\rho\p_\nu A_{\mu\rho} \right]\p_-X^\mu\p_+X^\nu - \p_-\p_+X^\mu(2\xi_\mu) \nonumber \\
+	=&\left[-2\xi^\rho\Gamma_{\rho\mu\nu} + \xi^\rho H_{\rho\mu\nu}\right]\p_-X^\mu\p_+X^\nu-\p_-\p_+X^\mu[2\xi_\mu]
+	\end{align}
+Then, this equation holds for any field configuration $X^\mu(\s)$ if the terms inside the square brackets are zero. However, up to this point we haven't used that $\lag_\xi A=d\lambda$ (i.e. $\lag_\xi G=0$ and $\lag_\xi B=d\lambda$), and together with identities
+	\begin{align}
+	(\lag_\xi G)_{\mu\nu}&=-2\xi^\rho\Gamma_{\rho\mu\nu}+ \p_\mu \xi_\nu + \p_\nu \xi_\mu \\
+	(\lag_\xi B)&=\iota_\xi H+ d(\iota_\xi B)
+	\end{align}
+the conditions that make $\delta X^\mu(\s)=\ve(\s)\xi^\mu(X(\s))$ into a symmetry of the action become $\xi\in Ker(G)$ and $(\iota_\xi B-\lambda)$ to be a closed 1-form
+	\begin{align}
+	\xi^\mu G_{\mu\nu}=0\\
+	d(\iota_\xi B-\lambda)=0
+	\end{align}
+
+Now, we focus on the requirements to get only holomorphically local symmetries i.e. $\delta X^\mu=\varepsilon(\s^+)\xi^\mu(X)$ or $\delta X^\mu=\varepsilon(\s^-)\xi^\mu(X)$.
+
+To begin, Let's choose $\ve(\s^+)$ and vary the action accordingly
+	\begin{align}
+	\delta S=&\int \varepsilon (\lag_\xi A)_{-+}+(\p_+\varepsilon)j_- +(\p_-\varepsilon)j_+ \nonumber \\
+	=&\int \varepsilon (\lag_\xi A)_{-+}+(\p_+\varepsilon)j_- \nonumber \\
+%	=&\int \ve(\lag_\xi A_{-+}-\p_+ j_-)+\p_+(\ve j_-) \nonumber \\
+%	=&\int \ve(\lag_\xi A_{-+}-\p_+ j_-) \nonumber \\
+%	=&\int \ve\left[(X^*\lag_\xi A)_{-+}-\p_+j_-\right] \nonumber \\
+%	=&\int \ve\left[(X^*d\lambda)_{-+}-\p_+j_-\right] \nonumber \\
+%	=&\int \ve\left[(dX^*\lambda)_{-+}-\p_+j_-\right] \nonumber \\
+	=&\int d\s^+d\s^- \ve(\s^+)\left[\p_-(\lambda_\mu\p_+X^\mu)-\p_+(\lambda_\mu\p_-X^\mu)-\p_+j_-\right] \nonumber \\
+	=&-\int d\s^+d\s^- \ve(\s^+)\left[\p_+(\lambda_\mu\p_-X^\mu)+\p_+j_-\right] \nonumber \\
+	=&\int d\s^+d\s^- \p_+\ve(\s^+)\left[\lambda_\mu\p_-X^\mu+j_-\right] \nonumber \\
+	=&\int d\s^+d\s^- \p_+\ve(\s^+)\left[(\lambda_\mu+A_{\mu\nu}\xi^\nu)\p_-X^\mu\right] \nonumber \\
+	=&\int d\s^+\p_+\ve(\s^+)\left[\int d\s^-(\lambda_\mu+A_{\mu\nu}\xi^\nu)\p_-X^\mu\right]
+	\end{align}
+Then, asking for this transformation to be a symmetry of the action for an arbitrary $\ve(\s^+)$ implies
+	\begin{equation}
+	\int d\s^-(\lambda_\mu+A_{\mu\nu}\xi^\nu)\p_-X^\mu=0
+	\end{equation}
+which holds if we ask the 1-form $(\lambda_\mu+A_{\mu\nu}\xi^\nu)$ to be exact
+	\begin{equation}
+	(\l_\m + A_{\m\n}\xi^\n) = \p_\m \phi \quad\text{equivalently}\quad (\l - \iota_\xi B + \xi)=d\phi
+	\end{equation}
+
+Similarly, if we pick $\ve(\s^-)$ we end up with conditions
+	\begin{equation}
+	(\lambda_\nu-\xi^\mu A_{\mu\nu})=\p_\nu \phi\quad\text{equivalently}\quad (\lambda-\iota_\xi B - \xi)=d\phi
+	\end{equation}
+
+Now we want to check if the currents associated to target space symmetries are holomorphic. If given the case that they are not, new conditions should be imposed. Let's begin by recalling the EOM
+	\begin{equation}
+	G_{\rho\mu}\p_-\p_+X^\mu+\Gamma_{\rho\mu\nu}\p_-X^\mu\p_+X^\nu=\frac{1}{2}H_{\rho\mu\nu}\p_-X^\mu\p_+X^\nu
+	\end{equation}
+and consider $\xi^\mu(X)$ an infinitesimal symmetry of our action i.e. $\lag_\xi A=d\lambda$. Then, we found that the local transformation $\delta X^\mu=\ve(\s^+,\s^-)\xi^\mu$ is a symmetry if $\xi^\mu G_{\mu\nu}=0$ and $d(\lambda-\iota_\xi B)=0$. Thus,
+	\begin{align}
+	\p_+j_-&=\p_+(\p_-X^\mu A_{\mu\nu} \xi^\nu) \nonumber \\
+	&=\p_+(\p_-X^\mu B_{\mu\nu}\xi^\nu) \nonumber \\
+	&=-\p_+\p_-X^\mu(\iota_\xi B)_\mu-\p_\nu(\iota_\xi B)_\mu\p_-X^\mu\p_+X^\nu
+	\end{align}
+analogously for $j_+$
+	\begin{equation}
+	\p_-j_+=(\iota_\xi B)_\nu \p_-\p_+X^\nu+ \p_\mu(\iota_\xi B)_\nu\p_-X^\mu\p_+X^\nu
+	\end{equation}
+Although we're allowed to use the EOM to further simplify the previous expressions, we can verify that this is of no use since the contraction $\xi^\rho (EOM)_\rho$ only yields the condition $(\iota_\xi H)_{\mu\nu}\p_-X^\mu\p_+X^\nu=0$.
+
+In the same fashion we can test if the currents meet the condition $\p_-j_+=\p_+j_-=0$ for the holomorphic local transformation
+	\begin{equation}
+	\delta X^\mu=\ve(\s^+)\xi^\mu\quad(\text{or}\quad\delta X^\mu(\s^-)=\ve(\s^-)\xi^\mu)
+	\end{equation}
+First recall that this is a symmetry if conditions $(\lambda-\iota_\xi B+\xi)=d\phi$ (respectively $(\lambda-\iota_\xi B-\xi)=0$) are imposed. First, consider the case $\ve(\s^+)$; thus,
+	\begin{align}
+	\p_- j_+ & = \p_-(\xi^\m A_{\m\n}\p_+X^\n) \nonumber \\
+	&=\p_-(\l_\n\p_+X^\n) + \p_-(2\xi_\n\p_+X^\n) \nonumber \\
+	&=\p_-(\l_\n\p_+X^\n) + 2\p_\m\xi_\n\p_-X^\m\p_+X^\n + 2\xi_\n\p_-\p_+X^\n \nonumber \\
+	&=\p_-(\l_\n\p_+X^\n) + (2\p_\m\xi_\n - 2\xi^\r \G_{\r\m\n} + \xi^\r H_{\r\m\n})\p_-X^\m\p_+X^\n \nonumber \\
+	&=\p_-(\l_\n\p_+X^\n) + (\lag_\xi G)_{\m\n}\p_-X^\m\p_+X^\n \nonumber \\
+	&=\p_-(\l_\n\p_+X^\n)
+	\end{align}
+and more simply, $\p_+j_-=-\p_+(\l_\m \p_- X^\m)$. In a similar way, if we had chosen $\ve(\s^-)$, we would have gotten
+	\begin{align}
+	\p_-j_+ & =\p_-(\l_\n\p_+X^\n) \\
+	\p_+j_- & =-\p_+(\l_\m\p_-X^\m)
+	\end{align}
+
+Even though we obtained that the currents are not holomorphic i.e. $\p_-j_+\neq\p_+j_-\neq0$, this could still be achieved by realizing first that currents associated to a symmetry are not uniquely defined. They are modified if we add a total derivative term to the action. For instance,
+	\begin{equation}
+	S\quad\lra\quad S + \int \p_a (f^a(X,\p X))
+	\end{equation}
+implies
+	\begin{equation}\label{var_current}
+	j^a\quad\lra\quad j^a + \frac{\p f^a}{\p X^\m}\xi^\m + \frac{\p f^a}{\p(\p_b X^\m)}\p_b(\xi^\m)
+	\end{equation}
+where $\xi^\m$ is the vector field generating the symmetry $\d_\xi S=0$.
+
+A promising attempt is choosing $f_-(X,\p X) = V_\m\p_-X^\m$ and $f_+(X,\p X) = -V_\n\p_+X^\n$, where $V_\m(X)$ is a target space 1-form. Thus, the modified currents become
+	\begin{align}
+	j_-\quad\rightarrow\quad j_-+(\lag_\xi V)_\mu\p_-X^\mu\\
+	j_+\quad\rightarrow\quad j_+-(\lag_\xi V)_\mu\p_+X^\nu
+	\end{align}	
+and solving $\lambda=\lag_\xi V$ for $V_\mu(X)$ i.e. inverting $\lag_\xi$ will give us holomorphic currents $\p_-j_+=\p_+j_-=0$.
+
+
+
+\section{Wess-Zumino-Witten Model}
+Although string theory, as derived from the Polyakov action is completely solvable, due to the fact that it represents a 2D theory of D free bosons, there are many more stringy systems where things are not so easy. In a general background one does not even know how to solve the EOM , due the lack of symmetry of the action. There is however a class of theories, where strings behave more or less as free strings although they are interpreted as strings moving on a curved manifold. These models are the WZW models, and describe the propagation of strings on a group manifold.
+
+The WZW model was introduced by Witten \cite{Witten1984} with the original intention of getting an equivalent bosonic theory for a system of fermions with a non-abelian symmetry. This model went further and many new applications appeared e.g. kappa symmetry in D-branes. Plus, in the same paper it was shown that the theory is conformal at 1-loop level and since the theory locally describes a string moving in curved background, we actually have associated backgrounds holding the 1-loop beta equations.
+
+Finally, Wess-Zumino-Witten models are conformal field theories in which an affine, or Kac-Moody algebra gives the spectrum of the theory. The two-dimensional WZW model studied here is a system whose kinetic term is given by the nonlinear sigma model and the potential is the Wess-Zumino term.
+
+
+\subsection{WZW action}
+We begin this section by stating the WZW action with all of its features, just to later deduce these properties.
+
+Consider as the dynamical fields of the theory smooth mappings $g:\S\rightarrow G$ from the worldsheet $(\S,h)$ to a Lie group $G$ (we ask $G$ to be compact, simple and connected). Then the WZW action is given by
+	\begin{equation}
+	S_{WZW}[g,h] = - \frac{k}{8\pi}\int_{\S}\sqrt{h}h^{\m\n} \k(g\mo\p_\mu g, g\mo\p_\n g) + \frac{k i}{24\pi}\int_{M_3} \wt{g}^* \Om_3
+	\end{equation}
+where
+	\begin{itemize}
+	\item $M_3$ is a 3-manifold with $\S = \p M_3$ e.g. a solid sphere $M_3 = B^3$ and  its boundary $\p M_3 = \S = S^2$ a 2-sphere.
+	\item $\k(\cdot,\cdot)$ the Killing form in ${\mathfrak g} := Lie(G)$. We set it to be $\tr(\cdot\ \cdot)$ in our description.
+	\item $\Om_3$ the Cartan 3-form of $G$, which in some chart is
+		\begin{equation}
+		\Om_3 = \k(g\mo \p_i g,[g\mo \p_j g, g\mo \p_k g]) dq^i\we dq^j \we dq^k
+		\end{equation}
+	\item $\wt g :M_3\rightarrow G$ is any continuation of the map $g$ to $M_3$ (i.e. $\wt g|_{\S} = g$)
+	\item $k$ is an positive integer called the level
+	\end{itemize}
+
+It's important to notice that there are infinite ways of choosing a continuation of the map $g$; however, the integral is a topological term i.e. it won't vary arbitrarily under continuous deformations of $\wt g$ but only for mappings that belong to a different homotopy class. Therefore, there exists an ambiguity in the WZW action that we will show to be proportional to elements of $\pi_3(G) = \Z$. Despite this ambiguity, having a well-defined path-integral quantization will force the level $k$ to be a integer by a procedure called {\it topological quantization}. 
+
+We begin now to deduce in detail the properties already stated. We start by deducing the value of the relative factors between the first and second term in the WZW action. Then, we'll compute the ambiguity that was previously mentioned. And, finally we'll show how the topological quantization of the level $k$ is done.
+
+To make a simplification we consider conformal gauge $h_{\m\n} = \d_{\mu\nu}$ and denote $A_\m := g\mo\p_\m g$. Thus, the WZW action is expressed as%
+\footnote{It should be understood that the field $A_\mb$ in the second term is using the continuation $\wt g$ to the 3-manifold $M_3$ i.e. $A_\mb = \wt g\mo \p_\mb \wt g$.}
+	\begin{align}
+	S_{WZW}[g] & = c_1 \int_\S \tr(A_\m A^\m) + i c_2  \int_{M_3} \e^{\mb\nb\rb}\tr(A_\mb [A_\nb, A_\rb]) \\
+	& =: c_1\ S_{PCM} + i c_2\ S_{WZ}
+	\end{align}
+Having a complex number $i$ in front of $S_{WZ}$ is motivated by the fact that WZW theory can be thought as locally describing a string moving on a curved background plus a $B$-field. As such, the term containing the $B$-field has a complex number $i$ in front after performing a Wick-rotation. This complex number doesn't appear when working with Minkowski metric.
+
+There are more than one way to justify the relative factor $c_2/c_1$. The one presented here is by asking to obtain equations of motion that describe holomorphic currents. It is useful to obtain the following variation
+	\begin{align}
+	\d A_\m & = \d(g\mo \p_\m g) \nonumber \\
+	& = \d(g\mo)\p_\m g + g\mo\p_\m(\d g) \nonumber \\
+	& = -g\mo \d g g\mo \p_\m g + \p_\m (g\mo\d g) - \p_\m (g\mo) \d g \nonumber \\
+	& = \p_\m(g^{-1}\delta g) - (g^{-1}\delta g) g^{-1}\p_\mu g + g\mo\p_\m g (g\mo\d g) \nonumber \\
+	& = \p_\m(g\mo\d g) + [A_\m,(g\mo\d g)]
+	\end{align}
+%likewise for $\wt A_\mu=g\p_\mu g^{-1}$
+%	\begin{equation}
+%	\delta \wt A_\mu=-\left(\p_\mu(\delta g g^{-1})+[\wt A_\mu,(\delta g g^{-1})]\right)
+%	\end{equation}
+Therefore, varying each term we get
+	\begin{align}
+	\d S_{PCM} & = 2\int_\S \tr(\d A_\m A^\m) \nonumber \\
+	&=2\int_\S \tr(\p_\m(g\mo\d g) A^\m + [A_\m, g\mo\d g]A^\m) \nonumber \\
+	&=2\int_\S \tr(\p_\m(g^{-1}\d g) A^\m + [A^\m, A_\m] g^{-1}\d g) \nonumber \\
+	&=2\int_\S \p_\m(\tr(g^{-1}\d g A^\m)) - 2\tr((g^{-1}\d g)\p_\mu A^\m)
+	\end{align}
+and
+	\begin{align}
+	\delta S_{WZ}&=3\int_{M_3} \e^{\mb\nb\rb}\tr(\d A_\mb [A_\nb,A_\rb]) \nonumber \\
+	&=3\int_{M_3} \e^{\mb\nb\rb}\tr(\p_\bm(\bar g^{-1}\d\bar g)[A_\bn,A_\br] + [A_\bm,\bar g^{-1}\d\bar g][A_\bn,A_\br]) \nonumber \\
+	&=3\int_{M_3} \e^{\mb\nb\rb}\tr(\p_\bm(\bar g^{-1}\d\bar g)[A_\bn,A_\br] + [[A_\bn,A_\br],A_\bm]\bar g^{-1}\d\bar g) \nonumber \\
+	&=3\int_{M_3} \e^{\mb\nb\rb}\tr(\p_\bm(\bar g^{-1}\delta\bar g)[A_\bn,A_\br]) \nonumber \\
+%	&=-3\int_{M_3} \e^{\mb\nb\rb}\tr(\p_\bm(\bar g^{-1}\delta\bar g)(\p_\bn A_\br-\p_\br A_\bn)) \nonumber \\
+%	&=-6\int_{M_3} \e^{\mb\nb\rb}\tr(\p_\bm(\bar g^{-1}\delta\bar g)\p_\bn A_\br) \nonumber \\
+%	&=-6\int_{M_3} \e^{\mb\nb\rb}\p_\bm(\tr((\bar g^{-1}\delta\bar g)\p_\bn A_\br)) \nonumber \\
+	& = -6 \int_{M_3} \p_\mb(\tr((\bar g^{-1}\delta\bar g)\p_\bn A_\br)) dy^\mb\we dy^\nb\we dy^\rb \nonumber \\
+	& = -6 \int_{M_3} d(\tr((\bar g^{-1}\d\bar g)\p_\bn A_\br)dy^\nb\we dy^\rb) \nonumber \\
+	& = -6 \int_{M_3} d\Big( \tr((\bar g^{-1}\d\bar g)dA) \Big) \nonumber \\
+	&=-6\int_\S \e^{\m\n}\tr((g^{-1}\delta g) \p_\mu A_\nu)
+	\end{align}
+where in the last line we used Stokes theorem $\int_{M_3} d(...) = \int_{\p M_3} (...)$. Thus, the full variation is
+	\begin{equation}
+	\d S_{WZW} = \int_\S -2c_1\tr((g^{-1}\d g)\p_\mu A^\m) -6ic_2 \tr((g^{-1}\delta g) \e^{\m\n}\p_\mu A_\nu)
+	\end{equation}
+which gives the following EOM
+	\begin{equation}
+	\left(\d^{\m\n} + 3i \frac{c_2}{c_1} \e^{\m\n}\right)\p_\m A_\n = 0
+	\end{equation}
+Thus, considering that $c_1$ must be negative to get a positive kinetic term, we are left with two equivalent choices that will determine the sign of the $S_{WZ}$ term
+	\begin{equation}
+	\frac{c_2}{c_1} = \frac{1}{3}\qquad\text{or}\qquad\frac{c_2}{c_1} = -\frac{1}{3}
+	\end{equation}
+we choose the second option $c_2/c_1 = - 1/3$. Therefore, the EOM corresponding to $S_{WZW} = |c_1|(-S_{PCM} + (i/3)S_{WZ})$ is
+	\begin{equation}
+	\p_\zb A_z = \pb(g\mo \p g) = 0
+	\end{equation}
+which has as a general solution
+	\begin{equation}
+	g(z,\zb) = \wt h(\zb) h(z)\quad;\qquad\text{for arbitrary maps }h, \wt h
+	\end{equation}
+
+Now, we focus in the ambiguity of the WZW action coming from the $S_{WZ}$ term. So, take the difference of $S_{WZ}[g]$ using two different continuations of $g$ to $M_3$
+	\begin{align}
+	\D S_{WZ} & = \int_{M^3} \bar g^*\Om_3 - \int_{M^3} \wt g^*\Om_3 \\
+	& = \int_{M^3 \cup M^{3-}} (\bar g \cup \wt g)^* \Om_3
+	\end{align}
+where the minus sign in $M^{3-}$ indicates that integrations of forms on this 3-manifold should be done with the opposite orientation used for $M^3$. And, $(\bar g \cup \wt g)$ now represents a map defined on $M^3 \cup M^{3-}$.
+
+To proceed in the computation we need a intermezzo explaining some topological properties.
+
+A key feature of compact Riemann surfaces $\S$ of any genus is that when seen in $\R^3$, they enclose solid regions $M_3$ (3-manifolds) called {\it handlebodies} e.g. the Riemann sphere $\S_{(g=0)} = S^2$ encloses a solid ball $B^3$, and a torus $\S_{(g=1)} = T^2$ a solid torus. The importance of handlebodies is that if we glue any two of them (of same genus) by their boundaries, we end up with a 3-sphere $S^3$. This is called a {\it Heegaard splitting} of $S^3$. Consider the simplest example:
+
+\begin{exm} Two solid spheres of radius 1 with opposing orientations $B^{3+}$ and $B^{3-}$ \end{exm}
+Take $B^{3-}$ and apply the inversion map $f(\vec x) = \vec x / |\vec x|^2$ in $\R^3$. Thus, $f(B^{3-})$ is $\R^3\cup\{\infty\}$ minus the open unit ball.
+	\begin{figure}[ht]
+  	\centering
+  	\includegraphics{images/heegaard.pdf}
+  	\caption{Heegaard splitting of $S^3$ using a genus two Riemann surface}
+  	\label{heegaard}
+	\end{figure}
+Furthermore, the inversion map $f$ changes the orientation of the region, so if $B^{3-}$ had the opposite orientation of $\R^3$, after applying the map $f(B^{3-})$ shares the same orientation of $\R^3$ which is the same as $B^3$. Finally, $B^3$ and $f(B^{3-})$ are complementary regions in $\R^3\cup\{\infty\} = S^3$ with compatible orientation. This constitutes a Heegaard splitting of $S^3$ into handlebodies of genus 0: $S^3 = B^3 \cup B^{3-}$. In the same fashion $S^3 = M_3 \cup (M_3)^{-}$ for handlebodies of higher genus.
+
+We can now proceed in the computation of the ambiguity coming from $S_{WZ}$
+	\begin{align}
+	\D S_{WZ} & = \int_{M^3 \cup M^{3-}} (\bar g \cup \wt g)^* \Om_3 \nonumber \\
+	& = \int_{S^3} (\bar g \cup \wt g)^* \Om_3 \nonumber \\
+	& = \int_{S^3} \tr(h\mo \p_i h,[h\mo \p_j h, h\mo \p_k h]) dy^i\we dy^j \we dy^k;\quad h := (\bar g \cup \wt g) \nonumber \\
+	& = 2 \int_{S^3} \tr(h\mo \p_i h h\mo \p_j h h\mo \p_k h) dy^i\we dy^j \we dy^k \nonumber \\
+	& = 48\pi^2 \left[ \frac{1}{24\pi^2} \int_{S^3} \tr\Big( (h\mo d h) \we (h\mo d h) \we (h\mo d h) \Big) \right]
+	\end{align}
+What is inside the square brackets is called {\it winding number}%
+\footnote{In the appendix we describe with more detail the properties of the winding number.}
+or {\it degree} of the map $h:S^3\rightarrow G$, and only take values according to the third homotopy group of $G$
+	\begin{equation}
+	\pi_3(G) = \Z ; \quad\text{for G compact, simple, simply-connected}
+	\end{equation}
+thus, the variation $\D S_{WZ} = 48 \pi^2 n$ for $n\in\Z$.
+
+To finish this section we perform the {\it topological quantization} of the before mentioned level $k$. This is done only by asking to have a well-defined path-integral quantization of the WZW theory i.e. we will only consider the cases when the exponential of the ambiguity of $S_{WZW}$ is always 1
+	\begin{equation}
+	e^{-S_{WZW}} = e^{-S_{WZW}}e^{-\D S_{WZW}}\quad \Leftrightarrow\quad e^{-\D S_{WZW}} = e^{-\frac{|c_1|i}{3}\D S_{WZ}} = 1
+	\end{equation}
+which occurs if and only if $16\pi^2|c_1|n$ is a multiple of $2\pi$ for every $n\in\Z$ or equivalently if
+	\begin{equation}
+	|c_1| = \frac{k}{8\pi};\quad\text{for some }k\in\Z_{>0}
+	\end{equation}
+This fixed positive integer $k$ is called the level and is related to the {\it affine Kac-Moody algebra} associated to $G$.
+%(Heegaard splitting) Can we put WZW in the cylinder? Will it undergo topological quantization?
+
+
+\subsection{Symmetries}
+In the previous part we have described the properties of the WZW action
+	\begin{equation}
+	S_{WZW}[g] = - \frac{k}{8\pi}\int_{\S} \tr(A_\m A^\m) + \frac{k i}{24\pi}\int_{M_3} \e^{\mb\nb\rb}\tr(A_\mb[A_\nb, A_\rb])
+	\end{equation}
+where $A_\m = g\mo \p_\m g$, and EOM
+	\begin{equation}
+	(\d^{\m\n}-i\e^{\m\n})\p_\m A_\n = \pb (g\mo \p g) = 0
+	\end{equation}
+In this description we are using the {\it left-invariant current} which makes explicit the global symmetry $g(z,\zb)\rightarrow h g(z,\zb)$ for $h\in G$. Likewise, we can rewrite the WZW action using the {\it right-invariant current} $\wt A_\m = g \p_\m g\mo$
+	\begin{equation}
+	S_{WZW}[g] = - \frac{k}{8\pi}\int_{\S} \tr(\wt A_\m \wt A^\m) - \frac{k i}{24\pi}\int_{M_3} \e^{\mb\nb\rb}\tr(\wt A_\mb[\wt A_\nb, \wt A_\rb])
+	\end{equation}
+which makes explicit the global symmetry $g(z,\zb)\rightarrow g(z,\zb)h$ for $h\in G$. Furthermore, the variation of the right-invariant current gives
+	\begin{equation}
+	\d \wt A_\m = \p_\m(-\d g g\mo) + [\wt A_\m, (-\d g g\mo)]
+	\end{equation}
+that let us compute the EOM in exactly the same way as for the previous description but with a flipped sign in the second term of the action
+	\begin{equation}
+	(\d^{\m\n} + i \e^{\m\n}) \p_\m \wt A_\n = \p(g\pb g\mo) = 0
+	\end{equation}
+This EOM still has as general solution $g(z,\zb) = \wt h(\zb) h(z)$ as expected since independently of how the action is written, we are dealing with the same theory. Finally, a simple computation connects both of these currents
+	\begin{align}
+	\wt A = g d g\mo = - g g\mo dg g\mo = -g A g\mo
+	\end{align}
+
+The symmetries of the WZW action are not limited to $G\times G$ global symmetry. We now show that the theory posseses local holomorphic symmetries
+	\begin{equation}
+	g(z,\zb)\quad\rightarrow\quad f(\zb) g(z,\zb) h(z)
+	\end{equation}
+To show this symmetry, we proof the {\it Polyakov-Wiegmann formula}
+	\begin{equation}\label{poly-wieg}
+	S_{WZW}[gh] = S_{WZW}[g] + S_{WZW}[h] + \frac{k}{8\pi}\left(2\int_\S \tr(\d^{\m\n}+i\e^{\m\n})A_\m^g \wt A_\n^h \right)
+	\end{equation}
+Computing each term separately $S_{WZW} = (k/8\pi)(-S_{PCM} + (i/3) S_{WZ})$
+	\begin{align}
+	S_{PCM}[gh] & = \int_\S \tr\Big( (gh)\mo \p_\m (gh) (gh)\mo \p^\m (gh) \Big) \\
+	& = \int_\S \tr\Big( (h\mo g\mo\p_\m g h + h\mo \p_\m h)(h\mo g\mo \p^\m g h + h\mo\p^\m h) \Big) \\
+	& = S_{PCM}[g] + S_{PCM}[h] - 2 \int_\S \tr((g\mo\p_\m g) (h\p^\m h\mo)) \\
+	& = S_{PCM}[g] + S_{PCM}[h] - 2 \int_\S \tr(A^g_\m \wt A^h_\n)\d^{\m\n}
+	\end{align}
+with some more effort we get
+	\begin{equation}
+	S_{WZ}[gh] = S_{WZ}[g] + S_{WZ}[h] + 6 \int_\S \tr (A_\m^g \wt A^h_\n) \e^{\m\n} 
+	\end{equation}
+this is done by noticing $A^{gh}_\m = h\mo A^g_\m h + A^h_\m = h\mo(A^g_\m - \wt A^h_\m)h$, and by expressing the crossed terms using $A^g$ and $\wt A^h$, so for example
+	\begin{align}
+	A^{gh}_\r[A^{gh}_\m, A^{gh}_\n] & = h\mo A^g_\r[A^g_\m, A^g_\n] h + A^h_\r[A^h_\m, A^h_\n] \nonumber \\
+	& \qquad - h\mo \wt A^h_\r [A^g_\m, A^g_\n] h +  + h\mo A^g_\r [\wt A^h_\m, \wt A^h_\n] h \nonumber \\
+	& \qquad - h\mo \left\{(A^g_\r - \wt A^h_\r)([A^g_\m, \wt A^h_\n] + [\wt A^h_\m, A^g_\n])\right\} h
+	\end{align}
+then, expanding, taking trace and integrating we get
+	\begin{align}
+	S_{WZ}[gh] & = S_{WZ}[g] + S_{WZ}[h] - 3\int_{M_3} \e^{\r\m\n} \tr(\wt A^h_\r [A^g_\m, A^g_\n]) \nonumber \\
+	& \qquad\qquad + 3\int_{M_3} \e^{\r\m\n} \tr(A^g_\r[\wt A^h_\m, \wt A^h_\n]) \nonumber \\
+	& = S_{WZ}[g] + S_{WZ}[h] + 6\int_{M_3} \e^{\r\m\n}\tr(\wt A^h_\r\p_\m A^g_\n) - 6\int_{M_3} \e^{\r\m\n}\tr(A^g_\r \p_\m\wt A^h_\n) \nonumber \\
+	& = S_{WZ}[g] + S_{WZ}[h] + 6 \int_{M_3} d\Big( \tr(A^g\we \wt A^h) \Big) \nonumber \\
+	& = S_{WZ}[g] + S_{WZ}[h] + 6 \int_\S \tr(A^g\we \wt A^h)
+	\end{align}
+Thus, we have proven the Polyakov-Wiegmann formula (\ref{poly-wieg}) which in $(z,\zb)$ coordinates looks
+	\begin{equation}
+	S_{WZW}[gh] = S_{WZW}[g] + S_{WZW}[h] + \frac{k}{\pi} \int_\S \tr( (g\mo\p g)(h\pb h\mo) )
+	\end{equation}
+where we can observe a holomorphic factorization in the last term.
+
+Now it is trivial to verify the local holomorphic symmetry 
+	\begin{align}
+	g(z,\zb)\lra g(z,\zb)h(z) \\
+	g(z,\zb)\lra \wt h(\zb) g(z,\zb)
+	\end{align}
+because any configuration $h(z)$ or $\wt h(\zb)$ depending only on one parameter holds $S_{WZW}[h] = S_{WZW}[\wt h] = 0$.%
+\footnote{The Cartan 3-form is closed so locally exact $\Om_3 = db$. Thus by taking an appropriate covering of $M_3$, we'll have
+$$ S_{WZ} \sim \sum_{(\a)} \int_{\S_{(\a)}} b_{ij}^{(\a)}\p q^i\pb q^j\ ;\quad q^i(z,\zb) := q^i(h(z,\zb)) $$ for $\S_{(\a)}$ a covering of $\S$. Therefore, holomorphic mappings $q(z)$ and $q(\zb)$ make $S_{WZ}$ vanish.}
+	\begin{align}
+	S_{WZW}[gh] & = S_{WZW}[g] + \frac{k}{\pi} \int_\S \tr( (g\mo\p g)(h(z)\pb h\mo(z) ) = S_{WZW}[g] \\
+	S_{WZW}[\wt h g] & = S_{WZW}[g] + \frac{k}{\pi} \int_\S \tr( (\wt h\mo(\zb)\p \wt h(\zb))(g\pb g\mo ) = S_{WZW}[g]
+	\end{align}
+%Argue that the currents obtained by the Noether procedure don't differ from the holomorphic ones by a total divergence term but by a term coming from the ambiguity in $S_{WZW}$ i.e. a theory without this ambiguity won't have holomorphic currents.
+
+
+\subsection{Local action and constraints}
+In this part we are interested in comparing the WZW action in its local form to a string moving on curved background plus a $B$-field. Also we show explicitly that this local action is invariant under the local holomorphic symmetries, or equivalently, that the vector field generating the variation meets the conditions that we found in the NLSM case
+	\begin{equation}
+	(\l^{\xi,B} - \i_\xi B)\pm \xi = d\phi
+	\end{equation}
+that works for $S = \int (G+B)_{\m\n} \p X^\m \pb X^\n$.
+
+The local action of the WZW model is based on the result that the Cartan 3-form on $G$ is closed. Thus, if we work on the adequate neighborhoods%
+\footnote{The kind of neighborhoods that we need are the contractible ones where closed $\Leftrightarrow$ exact.}
+of $\M_3$ that allow to express closed forms as exact ones, we will be able to write the Wess-Zumino term as a sum of integrals over neighborhoods of $\S$
+	\begin{equation}
+	\int_{M_3} \bar g^* \Om_3 = \sum_{(\a)} \int_{M_3^{(\a)}} \bar g^*\Om_3 = \sum_{(\a)} \int_{M_3^{(\a)}} \bar g^*(db^{(\a)}) = \sum_{i} \int_{\S^{(i)}} g^*b^{(i)}
+	\end{equation}
+where in the last equality we used Stokes' theorem.
+
+Now we proceed with the analysis of this local action by focusing only on one of these contractible neighborhoods. Thus, we set
+	\begin{align}
+	\Om_3 = 3! db
+	\end{align}
+with the $3!$ to directly identify $b$ with the $B$-field in the action of a string. Then, the local action is
+	\begin{align}
+	S_{WZW} & = \frac{k}{8\pi}\left(\int -\tr (A_\m A^\m) + \frac{i}{3} \int g^*(3!b) \right) \nonumber \\
+	& = \frac{k}{8\pi}\left(\int\d^{\m\n}\Big[E_i^a E_j^b (-\tr (T_a T_b))\Big]\p_\m q^i\p_\n q^j + i \int \e^{\m\n}b_{ij}\p_\m q^i\p_\n q^j \right) \nonumber \\
+	& = \frac{k}{8\pi} \left(\int\d^{\m\n} g_{ij}\p_\m q^i\p_\n q^j + i \int \e^{\m\n}b_{ij}\p_\m q^i\p_\n q^j \right) \nonumber \\
+	& = \frac{k}{2\pi} \left(\int (g_{ij} + b_{ij})\p q^i\pb q^j \right)
+	\end{align}
+
+In the second line, we have used coordinates in $G$ denoted by $q^{i=1,\ldots,dim G}$ and also expressed the left-invariant current $A_\m$ using frames (also called {\it vielbein}) 
+	\begin{equation}
+	A = E_i^a(q) T_a dq^i \quad\Rightarrow\quad A_\m = E_i^a(q) \p_\m q^i T_a
+	\end{equation}
+plus, the background fields relate to the frames $E^a_i$ in the following way
+	\begin{align}
+	g_{ij} & = E^a_i E^b_j (-\tr(T_a T_b)) = E^a_i E^b_j g_{ab} = E^a_i E_{aj} \\
+	(db)_{ijk} & = \frac{1}{3!}(\Om_3)_{ijk} = E^a_i E^b_j E^c_k \tr(T_a[T_b,T_c]) = - E^a_i E^b_j E^c_k f_{abc}
+	\end{align}
+where we defined $g_{ab}:=(-\tr(T_a T_b))$ as the flat space metric and used it to raise and lower Lie algebra indices.
+
+The next step is to find the variation $\d q^i$ corresponding to the holomorphic symmetry $g' = g e^{\ve(z)\l^a T_a}$ of $S_{WZW}$
+	\begin{equation}
+	\d g = g \times (\ve(z) \l^a T_a)
+	\end{equation}
+with $\ve(z)$ the infinitesimal parameter. Although the variation $\d q^i$ can be computed exactly\cite{Sazdovic1995} by finding and separating the first and second class constraints, we take the simpler approach of making an educated guess by varying the relation $(E^a_i \p_\m q^i) T_a = g\mo \p_\m g$. Thus,%
+\footnote{We use here the flat current condition $\p_i A_j - \p_j A_i + [A_i, A_j] = 0$ in terms of the frames
+$$\p_i E_j^a - \p_j E_i^a + f^a_{\ bc} E_i^b E_j^c = 0$$}
+	\begin{align}
+	\d(E^a_i \p_\m q^i T_a) & = \p_jE^a_i \d q^j \p_\m^i T_a + E^a_j\p_\m(\d q^j) T_a \nonumber \\
+	& = \p_jE^a_i \d q^j \p_\m q^i T_a - \p_i E^a_j \p_\m q^i \d q^j T_a + \p_\m(E^a_j \d q^j T_a) \nonumber \\
+	& = f^a_{\ bc} E^b_i E^c_j \d q^j \p_\m q^i + \p_\m(E^a_j \d q^j T_a) \nonumber \\
+	& = [(E^b_i\p_\m q^i T_b), (E^c_j\d q^jT_c)] + \p_\m(E^a_j \d q^j T_a) \nonumber \\
+	& = [A_\m, (E^a_j\d q^jT_a)] + \p_\m(E^a_j \d q^j T_a)
+	\end{align}
+that equals to the variation $\d (g\mo \p_\m g) = \p_\m(g\mo\d g) + [A_\m, (g\mo\d g)]$, and allow us to guess
+	\begin{equation}
+	(E^a_j \d q^j T_a) = g\mo \d g \quad\text{or equivalently}\quad \d q^i = \ve(z) \l^a E_a^i
+	\end{equation}
+where $E^i_a$ is the inverse frame with properties $E^i_a E_i^b = \d^b_a$ and $E^i_a E^a_j = \d^i_j$.
+
+Before proving that our educated guess $\d q^i = \ve(z) \l^a E_a^i$ is indeed the holomorphic symmetry of the WZW action, some useful computations are in order. First of all the Lie derivative of the metric $g_{ij}$ respect to $\xi^i := \l^a E^i_a(q)$
+	\begin{align}
+	(\lag_\xi g)_{ij} & = (\lag_\xi E^a)_i E_{aj} + E_{ai}(\lag_\xi E^a)_j \nonumber \\
+	& = (\i_\xi dE^a)_i E_{aj} + E_{ai} (\i_\xi dE^a)_j \nonumber \\
+	& = - \xi^k (f^a_{\ bc} E_k^b E_i^c) E_{aj} - E_{ai} \xi^k (f^a_{\ bc} E_k^b E_j^c) \nonumber \\
+	& = - (f^a_{\ bc} \l^b E_i^c) E_{aj} - E_{ai} (f^a_{\ bc} \l^b E_j^c) \nonumber \\
+	& = - (f_{abc} + f_{cba}) \l^b E_i^c E_j^a \nonumber \\
+	& = 0
+	\end{align}
+and lastly for the $b$-field
+	\begin{align}
+	(\lag_\xi b)_{ij} & = (\i_\xi db)_{ij} + (d\i_\xi b)_{ij} \nonumber \\
+	& = - \xi^k f_{abc}E^a_k E^b_i E^c_j + (d\i_\xi b)_{ij} \nonumber \\
+	& = - f_{abc} \l^a E^b_i E^c_j + (d\i_\xi b)_{ij} \nonumber \\
+	& = \l_a (dE^a)_{ij} + (d\i_\xi b)_{ij} \nonumber \\
+	& = d(\l_a E^a + \i_\xi b)_{ij} \nonumber \\
+	& = d(\xi + \i_\xi b)_{ij}
+	\end{align}
+the last equality comes from $\xi_i = g_{ij}\xi^j = (E^a_i E_{aj})\l^b E^j_b = \l_a E^a_i$.
+
+Finally, the variation of $S_{WZW}$ with respect to $\d q^i = \ve(z)\l^a E^i_a(q) =: \ve(z)\xi^i$
+	\begin{align}
+	\d S_{WZW} & = \int \ve(z)(\lag_\xi g + \lag_\xi b)_{ij}\p q^i\pb q^j + (\p\ve(z)) j_\zb + (\pb\ve(z)) j_z \nonumber \\
+	& = \int \ve d(\xi + \i_\xi b)_{ij}\p q^i\pb q^j + (\p\ve) j_\zb \nonumber \\
+	& = \int \ve \p((\xi + \i_\xi b)_i \pb q^i) - \ve\pb((\xi + \i_\xi b)_i \p q^i) + (\p\ve) j_\zb \nonumber \\
+	& = \int \ve \p j_\zb - \ve\pb((\xi + \i_\xi b)_i \p q^i) + (\p\ve) j_\zb \nonumber \\
+	& = \int -\ve(z) \pb((\xi + \i_\xi b)_i \p q^i) + \p (\ve j_\zb) \nonumber \\
+	& = 0
+	\end{align}
+This could also be understood if we notice that the background fields $g$ and $b$ together with the vector field generating the symmetry $\xi^i = \l^a E^i_a$ hold the condition we found to get holomorphic local symmetry in the NLSM (of which WZW is a special case)
+	\begin{equation}
+	\lag_\xi b - d(\xi + \i_\xi b) = d(\l^{\xi,b} - \i_\xi b - \xi) = 0 \quad\Leftrightarrow\quad (\l^{\xi,b} - \i_\xi b - \xi) = d\phi
+	\end{equation}
+where the if-and-only-if relation happens because we are working on contractible neighborhoods of $\S$ where closed $\Leftrightarrow$ exact.
+
+In the same fashion we can find the variation $\d q^i$ corresponding to the antiholomorphic symmetry. We follow the same procedure and get $\d q^i = \ve(\zb)\l^b\wt{E}^i_b$. This time we should express $S_{WZW}$ using the right-invariant currents to get the associated local WZW action
+	\begin{align}
+	S_{WZW} & = \frac{k}{8\pi}\left( -\int_\S \tr(\wt A_\m \wt A^\m) - \frac{i}{3} \int_{M_3} \e^{\m\n\r}\tr(\wt A_\m[\wt A_\n, \wt A_\r]) \right) \nonumber \\
+	& = \frac{k}{8\pi}\left(\int\d^{\m\n}\Big[\wt E_i^a \wt E_j^b (-\tr (T_a T_b))\Big]\p_\m q^i\p_\n q^j + i \int \e^{\m\n}\wt b_{ij}\p_\m q^i\p_\n q^j \right) \nonumber \\
+	& = \frac{k}{2\pi}\left(\int (\wt g_{ij} + \wt b_{ij})\p q^i\pb q^j \right)
+	\end{align}
+and, as in the previous case, the background fields depend on the frames $\wt E^a_i$ as
+	\begin{align}
+	\wt g_{ij} & = \wt E^a_i \wt E^b_j (-\tr(T_a T_b)) = \wt E^a_i \wt E^b_j g_{ab} = \wt E^a_i \wt E_{aj} \\
+	(d\wt b)_{ijk} & = - \frac{1}{3!}(\Om_3)_{ijk} = - \wt E^a_i \wt E^b_j \wt E^c_k \tr(T_a[T_b,T_c]) = \wt E^a_i \wt E^b_j \wt E^c_k f_{abc}
+	\end{align}
+Furthermore, their Lie derivatives are
+	\begin{align}
+	(\lag_\xi \wt g) & = 0 \\
+	(\lag_\xi \wt b) & = d(-\xi + \i_\xi \wt b)
+	\end{align}
+
+With all these it becomes easy to show explicitly the symmetry
+	\begin{align}
+	\d S_{WZW} & = \int \ve(\zb)(\lag_\xi \wt g + \lag_\xi \wt b)_{ij}\p q^i\pb q^j + (\p\ve(\zb)) j_\zb + (\pb\ve(\zb)) j_z \nonumber \\
+	& = \int \ve d(- \xi + \i_\xi \wt b)_{ij}\p q^i\pb q^j + (\pb\ve) j_z \nonumber \\
+	& = \int \ve \p((-\xi + \i_\xi\wt b)_i \pb q^i) - \ve\pb((\xi + \i_\xi\wt b)_i \p q^i) + (\pb\ve) j_z \nonumber \\
+	& = \int \ve \p((-\xi + \i_\xi\wt b)_i \pb q^i) + \ve \pb j_z + (\pb\ve) j_z \nonumber \\
+	& = \int \ve(\zb) \p((-\xi + \i_\xi b)_i \pb q^i) + \pb (\ve j_z) \nonumber \\
+	& = 0
+	\end{align}
+which can be also understood in terms of the conditions for holomorphic symmetry
+	\begin{equation}
+	\lag_\xi\wt b - d(-\xi + \i_\xi\wt b) = d(\l^{\xi,\wt b} - \i_\xi\wt b + \xi) = 0 \quad\Leftrightarrow\quad (\l^{\xi,\wt b} - \i_\xi\wt b + \xi) = d\phi
+	\end{equation}
+
+To finish this section, it could be useful to relate the backgrounds $g_{ij}$ and $\wt g_{ij}$, and the 2-forms $b_{ij}$ $\wt b_{ij}$. For this consider the relation between the left- and right-invariant forms $\wt{A_i}=-g A_i g^{-1}$ and express one of the frame fields $\wt{E}^a_i$ in terms of the other $E^a_i$
+	\begin{equation}
+	\wt{A}_i = -g A_i g^{-1} = - Ad_g(A_i) = - E^b_i Ad_g(T_b) = - E^b_i [Ad_g]^a_b T_a
+	\end{equation}
+therefore,
+	\begin{equation}
+	\wt{E}^a_i = -[Ad_g]^a_b E^b_i
+	\end{equation}
+where the matrix $[Ad_g]= \exp(y^c(q)[ad_{T_c}])$ for $g(q) = \exp(y^c(q) T_c)\in G$ (assuming $G$ is connected). Then is simple to get
+	\begin{equation}
+	\wt g_{ij} = ([Ad_g]^a_c g_{ab} [Ad_g]^b_d) E^c_i E^d_j
+	\end{equation}
+while the $b_{ij}$ and $\wt b_{ij}$ since are define only up to an exact form, are better related by their derivatives
+	\begin{equation}
+	\frac{1}{3!} \Om_3 = db = -d\wt b
+	\end{equation}
+
+\subsection{WZW for non-semi-simple groups}
+Up to now we have been using the Killing form (or trace form) to construct invariants for the WZW action
+	\begin{equation}
+	\k(X, Y) = \tr ( \ad_X \ad_Y )\text{ or in coordinates } \k_{ab} = f^d_{\ ac}f^c_{\ bd}
+	\end{equation}
+but this is of no use when we deal with non-semi-simple%
+\footnote{A semi-simple Lie algebra is a direct sum of simple Lie algebras and abelian Lie algebras}
+Lie algebras because of the Cartan's criterion. This criterion establishes that a Lie algebra is semisimple if and only if its Killing form is non-degenerate (invertible tensor $\k_{ab}$). Furthermore, for semisimple Lie algebras the space of invariant symmetric bilinear forms is one dimensional i.e. all of them are proportional to the Killing form.
+
+One way of constructing invariant tensors for the WZW action with non-semi-simple groups is described by Nappi and Witten \cite{Nappi1993}. They use the fact that for this case the Killing form doesn't have the role of generating all invariant symmetric bilinear forms and so we only need a bilinear form with those properties: $\k(\cdot,\cdot)$ non-degenerate, $\k(X,Y) = \k(Y,X)$ symmetric and $\k(\ad_X(Y), Z) + \k(Y, \ad_X(Z)) = 0$ ad-invariant. For a particular basis
+	\begin{align}
+	\k^{ca}\k_{ab} = \d^c_b &\qquad (\text{invertibility}) \\
+	\k_{ab} = \k_{ba} &\qquad (\text{symmetric}) \\
+	f^d_{\ ca}\k_{db} + \k_{ad} f^d_{\ cb} = 0 & \qquad (\ad\text{-invariance})
+	\end{align}
+The property of $\ad$-invariance is the "infinitesimal" version of Ad-invariance. To show that the first implies the latter, we compute (assuming $G$ is connected $g = \exp(Z)$)
+	\begin{align}
+	\k(Ad_g(X),Y) & = \k(\sum_n \frac{1}{n!}\ad^n_Z(X),Y) \nonumber \\
+	& = \sum_n\frac{1}{n!} \k(\ad^n_Z(X),Y) \nonumber \\
+	& = \sum_n\frac{1}{n!} \k(X, \ad^n_{-Z}(Y)) \nonumber \\
+	& = \k(X, Ad_{g\mo}(Y))
+	\end{align}
+
+The existence of such metric form $\k(\cdot,\cdot)$ let us define the WZW action for these non-semi-simple groups
+	\begin{align}
+	S & = \frac{k}{8\pi}\left(-\int_\S \eta^{\m\n}\k(A_\m, A_\n) + \frac{i}{3}\int_{M_3} \e^{\mb\nb\rb}\k(A_\mb,[A_\nb, A_\rb])\right) \nonumber \\
+	& = \frac{k}{8\pi}\left( -\int_\S \eta^{\m\n}\k_{ab} E^a_\m E^b_\n + \frac{i}{3}\int_{M_3} \e^{\mb\nb\rb}\k_{ad} f^d_{\ bc} E^a_\mb E^b_\nb E^c_\rb \right)
+	\end{align}
+Since we have taken out the condition of simplicity, we may have that the third homotopy group of $G$ is trivial so the level $k$ would not need to be quantized anymore. Furthermore, we can also admit non-compact groups which will force the metric $\k(\cdot,\cdot)$ to be of indefinite signature\cite{Maldacena2001}.
+
+The symmetries for this action are exactly the same as for the case of WZW with simple groups. It has global $G\times G$ symmetry and local holomorphic $G(\zb)\times G_(z)$ symmetry.
+
+It is needed bi-invariance and invertibility of the metric to guarantee the chiral invariance. By imposing chiral invariance on the action
+	\begin{equation}
+	S = \int_\S \eta_{ab} E^a_\m E^{b\m} + \int_{M_3} C_{abc}E^a\we E^b\we E^c
+	\end{equation}
+we found that
+	\begin{align}
+	\eta_{dc}f^d_{\ ab} + \eta_{bd} f^d_{\ ac} & = 0 \\
+	f^d_{\ ab}\eta_{dc} & = C_{abc}
+	\end{align}
+plus $\det(\eta)\neq 0$.
+
+
+
+\section{Kappa Symmetry and WZW-like Actions}
+In the GS formalism for the superstring, invariance under $\k$-transformations is crucial for determining the physical spectrum. For example, classical $\k$-symmetry is preserved in a curved background when the background satisfies the low-energy supergravity equations of motion. It is our intention in this chapter to see this symmetry fixing the WZ-term of certain string models, and also see its appearance in a geometric way as a right action for coset models.
+%so onshell massless vertex operators must be κ -symmetric at least at the classical level. Although quantum κ-transformations and massive GS vertex operators are not yet understood, it is reasonable to expect that all physical GS states should be κ-symmetric. This would imply that the conserved charges for physical symmetries should also be κ-symmetric.
+%In the pure spinor formalism for the superstring, the role of κ-symmetry is replaced by BRST invariance.  In this case, quantization and massive vertex operators are well-understood, and the physical spectrum is described by states in the BRST cohomology. So physical symmetries in the pure spinor formalism must be BRST-invariant(Nathan 0409159)
+
+
+\subsection{Type II Green-Schwarz superstring in flat space}
+In this part we follow \cite{Green1987} on the construction of a local supersymmetric and $\k$-symmetric action for superstrings in flat space.
+	\begin{equation}
+	S_{bos} = -\frac{1}{2\pi} \int d^2\s \sqrt{h} h^{\a\b}\p_\a X \cdot \p_\b X
+	\end{equation}
+Natural supersymmetric generalization
+	\begin{equation}
+	S_1 = -\frac{1}{2\pi} \int d^2\s \sqrt{h} h^{\a\b} \pi_\a \cdot \pi_\b
+	\end{equation}
+where $\Pi^\m_\a = \p_\a X^\m - i \tb^A\G^\m\p_\a\t^A$
+
+The required term to get supersymmetry $N=1,2$
+	\begin{equation}
+	S_2  = \frac{1}{\pi} \int d^2\s -i\e^{\a\b}\p_\a X^\m(\tb^1\G_\m\p_\b\t^1 - \tb^2 \G_\m \p_\b\t^2) + \e^{\a\b} \tb^1 \G^\m \p_\a\t^1\tb^2\G_\m\p_\b\t^2
+	\end{equation}
+
+	\begin{equation}
+	A = \e^{\a\b} \eb^1 \G^\m \dot\t\tb \G_\m \t' - \eb \G^\m \t'\tb\G_\m\dot\t = A_1 + A_2
+	\end{equation}
+where
+	\begin{equation}
+	A_1 = \frac{2}{3} [\eb\g^\m\dot\t\tb\G_\m\t' - \eb\G^\m\t + \eb\G_\m\dot\t]
+	\end{equation}
+	\begin{align}
+	A_2 & = \frac{1}{3} [\eb\g^\m\dot\t\tb\G_\m\t' - \eb\G^\m\t - 2 \eb\G_\m\dot\t] \nonumber \\
+	& = \frac{1}{3} \frac{\p}{\p\tau}[\eb\G^\m\t\tb\G_\m\t'] - \frac{1}{3} \frac{\p}{\p\s} [\eb\G^\m \t\tb\G_\m\dot\t]
+	\end{align}
+we can also rewrite $A_1$ as
+	\begin{equation}
+	A_1 = 2\eb\G_\m\psi_{[1}\bar\psi_2\G^\m \psi_{3]}
+	\end{equation}
+where the brackets imply the spinors $(\psi_1,\psi_2,\psi_3) = (\t,\t',\dot\t)$ are antisymmetrized.
+
+Now we are concerned with getting a $k$-symmetric action
+	\begin{equation}
+	P^{\a\b}_\pm = \frac{1}{2} (h^{\a\b} \pm \e^{\a\b}/\sqrt{h})
+	\end{equation}
+which satisfy the properties of a projection
+	\begin{equation}
+	P^{\a\b}_\pm h_{\b\g} P^{\g\d}_\pm = P^{\a\d}_\pm
+	\end{equation}
+	\begin{equation}
+	P^{\a\b}_\pm h_{\b\g} P^{\g\d}_\mp = 0
+	\end{equation}
+The $\k^A$ parameters are restricted to be anti-self-dual for $A = 1$ and self-dual for $A = 2$ describes right-moving modes and symmetries where $A = 2$ describes left-moving modes and symmetries.
+
+Let us now suppose, in analogy with the superparticle case, that
+	\begin{align}
+	\d \t^A & = 2i\G\cdot\Pi_\a \k^{A\a} \\
+	\d X^\m & = i\tb^A\G^\m\d\t^A
+	\end{align}
+with $\d h_{\a\b}$ still need to be found. Then
+	\begin{equation}
+	\d L_1 = -\sqrt{h} h^{\a\b} \Pi_\a\cdot\d\Pi_\b - \frac{1}{2}\d(\sqrt{h} h^{\a\b})\Pi_\a\cdot\Pi_\b
+	\end{equation}
+where
+	\begin{equation}
+	\d \Pi^\m_\a = 2i\p_\a\tb^A\G^\m\d\t^A
+	\end{equation}
+The lagrangian $L_2$ can be rewritten in the form
+	\begin{equation}
+	L_2 = -i \e^{\a\b} \Pi^\m_\a(\tb^1\G_\m\p_\b\t^1 - \tb^2\G_\m\p_\b\t^2) + \t^4\text{ terms}
+	\end{equation}
+
+Varying the explicit $\t$'s in the $\Pi\t^2$ piece of $L_2$ and combining with the first term in the variation of $L_1$ gives a term that can be precisely canceled by the second term in $\d L_1$ for the choice
+	\begin{equation}
+	\d_\k (\sqrt h h^{\a\b}) = -16 \sqrt h (P^{\a\g}_-\kb^{1\b}\p_\g\t^1 + P^{\a\g}_+\kb^{2\b}\p_\g\t^2)
+	\end{equation}
+
+Since $\sqrt h h^{\a\b}$ is unimodular and symmetric, it is important that the right-hand side of the last equation be symmetric and traceless. The self-duality properties of $\k^1$ and $\k^2$ as well as identities such as
+	\begin{equation}
+	P^{\a\g}_+ P^{\b\d}_+ = P^{\b\g}_+ P^{\a\d}_+
+	\end{equation}
+ensure that this is the case. This construction requires that $L_1$ and $L_2$ have exactly the relative coefficient given. (One can change the sign of $L_2$, since this corresponds to the interchanging of $\t^1$ and $\t^2$.)
+
+To complete the proof of the local $\k$-symmetry it is still necessary to consider the variation of $\Pi^\m_\a$ and the $\t^4$ terms in a previous equation. Doing this one finds that many terms cancel leaving
+	\begin{equation}
+	2\tb^1\G_\m\t^1{}'\dot\tb^1\G^\m\d\t^1 - 2\tb^1\G_\m\dot\t^1\tb^1{}' \G^\m\d\t^1 - 2\tb^1\G_\m\d\t^1\dot\tb^1\G^\m\t^1{}'  + \t^2\text{ terms}
+	\end{equation}
+This is exactly the combination that cancels for the four special types of spinors listed above. Thus 
+	\begin{align}
+	\d\t^1 & = \sqrt h P^{\a\b}_-\p_\b\t^1\l_\a \\
+	\d\t^2 & = \sqrt h P^{\a\b}_+\p_\b\t^2\l_\a \\
+	\d X^\m & = i\t^A\G^\m\d\t^A \\
+	\d(\sqrt h h^{\a\b}) & = 0
+	\end{align}
+The proof that $S_1 + S_2$ is invariant under these transformations requires manipulations similar to those used to verify the local $\k$-symmetry.
+
+The equations of motion for the supersymmetric string action are
+	\begin{equation}
+	\Pi_\a\cdot\Pi_\b = \frac{1}{2}h_{\a\b} h^{\g\d} \Pi_\g\cdot\Pi_\d
+	\end{equation}
+	\begin{align}
+	\G\cdot\Pi_\a P^{\a\b}_-\p_\b\t^1 & = 0 \\
+	\G\cdot\Pi_\a P^{\a\b}_+\p_\b\t^2 & = 0
+	\end{align}
+	\begin{equation}
+	\p_\a[\sqrt h(h^{\a\b}\p_\b X^\m - 2iP^{\a\b}_-\tb^1\G^\m\p_\b\t^1 - 2i P^{\a\b}_+\tb^2\G^\m\p_\b\t^2)] = 0
+	\end{equation}
+The first of these correspond to $T_{\a\b} = 0$. These are complicated nonlinear equations, but they collapse to simple free theory equations in the light-cone gauge.
+
+
+\subsection{Review of coset construction}
+We start by reviewing the general construction to describe superstrings propagating in spaces that can be described as cosets $G/H$, and use WZW-like actions. As main examples we have
+	\begin{align}
+	\text{Flat space} &\qquad \frac{(\mc N=2) SUSY}{SO(9,1)} \\
+	\text{super-}\ads &\qquad \frac{PSU(2,2|4)}{SO(4,1)\times SO(5)}
+	\end{align}
+
+The description of manifolds in terms of cosets is based on a fiber bundle construction. Say we have some (super)manifold $X$ that admits a transitive action by a (super)group $G$, then if we denote by $H = G_x$ the stabilizer subgroup with respect to any%
+\footnote{A transitive action on $X$ implies $G_x$ and $G_y$ are isomorphic subgroups for every $x,y\in G$. They both belong to the same conjugacy class of subgroups i.e. because there exists $g\in G$ s.t. $y = g\cdot x$, we have that for $h\in G_x$, $(ghg\mo) \cdot y = y$. Thus $G_x = g(G_y)g\mo$.}
+$x\in X$, we will have that the left-coset space $G/H$ is diffeomorphic to $X$. In other words, $G$ is a $H$-bundle with base space $X$ and canonical projection
+	\begin{equation}
+	\pi: G\lra X\cong (G/H)\quad;\qquad \pi(g) := [g] = gH
+	\end{equation}
+
+The one-to-one correspondence $X\cong (G/H)$ is proven as follows, be $H = G_x$ and define the map $G/H \rightarrow X$ where $[g]\mapsto g\cdot x$. We claim that this map is a bijection. Firstly we show that it is well-defined i.e. the assignment does not depend on the representative of the coset. If we take another representative $g'\in [g]$ then $g'\cdot x = (gh)\cdot x = g\cdot x$. Next, to prove injectivity assume $[g]\cdot x = [g']\cdot x$. Therefore, $g\cdot x = g'\cdot x$ and then $(g'g\mo)\in H$ which means that $[g]=[g']$. Finally, surjectivity  is shown by taking some $y\in X$ and finding a coset $[g]\cdot x = y$. It is not hard to guess that coset, by transitivity there exists some $g_y\in G$ s.t. $g_y\cdot x = y$. Thus, $[g_y]\cdot x = y$.
+
+\begin{exm} The $n$-sphere as a coset space \end{exm}
+Take $G=SO(n+1)$ and $X=S^n$ the $n$-sphere. To prove the known result
+	\begin{equation}
+	S^n = SO(n+1)/SO(n)
+	\end{equation}
+we have to show first that $SO(n+1)$ acts transitively in the $n$-sphere and that the isotropy group of a point (equivalently, any point) of $S^n$ is $H= SO(n)$. So, we proceed by taking the $n$-sphere embedded in $\R^{n+1}$
+	\begin{equation}
+	S^n = \{x\in\R^{n+1}|\ x^t x = 1\}
+	\end{equation}
+Thus, $SO(n+1)$ acts on $S^n$ by matrix multiplication since $x^t R^t R x = x^t x = 1$ for $R\in SO(n+1)$. Showing that this action is transitive is more involved. As an intermediate computation, we claim that the canonical vector $e_1 = (1,0,\ldots,0)^t$ can be transformed into any $x\in S^n$. Then, we need to construct the orthogonal matrix $R_x$ such that $x = R_x e_1$. Therefore, we expand $x$ to an arbitrary basis of $\R^{n+1}$, say $x,x_2,\ldots,x_{n+1}$. Now the key property is that we can perform the {\it Gram-Schmidt process} to get an orthonormal basis $u_1,\ldots, u_{n+1}$ where $u_1 = x$. It is easy to see now that the matrix
+	\begin{equation}
+	R_x := \left[
+		\begin{array}{cccc}
+		x & u_2 & \ldots & u_{n+1}
+		\end{array}
+	\right]
+	\end{equation}
+is orthogonal and obeys $x = R_x e_1$. Transitivity of $SO(n+1)$ on $S^n$ is now almost obvious. For any $x,y\in S^n$ the orthogonal matrix that connects them is $R_{yx} = R_y R_x\mo$. Finally, we are only missing the computation of the isotropy group of any point in $S^n$. Take again $e_1$, and its equation $R e_1 = e_1$. This is solved by matrices of the form $R = [e_1|R_2|\ldots|R_{n+1}]$ which implies
+	\begin{equation}
+	R = \left(
+		\begin{array}{cc}
+		1 & 0^t \\
+		0 & r_{n\times n}
+		\end{array}
+	\right)\quad \text{with}\quad r_{n\times n}\in SO(n)
+	\end{equation}
+since $R$ belongs to $SO(n+1)$. This concludes the proof $S^n = SO(n+1)/SO(n)$.
+
+\begin{exm}$AdS_n$ space as a coset \end{exm}
+Showing that $AdS_n = SO(n-1,2)/SO(n-1,1)$ follows the same argument, first we embed $AdS_n$ in $\R^{(n-1) + 2}$ as
+	\begin{equation}
+	AdS_n = \{ x\in \R^{n+1} |\ x^t\eta x = -(x^{-1})^2 - (x^0)^2 + (x^1)^2 + \ldots + (x^n)^2 = -1\}
+	\end{equation}
+and then we prove transitivity of $SO(n-1,2)$ and compute its isotropy subgroup. So, we choose the canonical basis element $e_{-1}\in AdS_n$ and now we have to construct a matrix  $R\in SO(n-1,2)$ such that $Re_{-1} = x$ for any $x\in AdS_n$. We cannot use the Gram-Schmidt method this time because of the signature; however, there's a more general method of orthogonalization to treat this situations \cite{Gohberg2005}. The method takes a set of vectors $\{v_{-1},v_{0},v_1,\ldots,v_n\}$ with a Gram matrix $G(v_{-1},\ldots,v_n)$ having all {\it leading principal minors} non-zero, and it gives a new orthogonal set of non-null vectors $\{u^{-1}, u^0, u^1,\ldots, u^n\}$. Our choice of starting vectors are
+	\begin{equation}
+	v_{-1} = \left(
+		\begin{array}{c}
+		x^{-1} \\
+		x^0 \\
+		\vec{x}
+		\end{array}
+	\right)\ ,\quad v_0 = \left(
+		\begin{array}{c}
+		-x^0 \\
+		x^{-1} \\
+		\vec x^\perp		
+		\end{array}
+	\right)\ ,\quad v_i = e_i\qquad i=1,\ldots, n
+	\end{equation}
+and the corresponding Gram matrix (we set $\vec y = \vec x^\perp$ to avoid cumbersome notation)
+	\begin{equation}
+	G(x, x^{\perp}, e_1, \ldots, e_n) = \left(
+		\begin{array}{ccc}
+		-1 & 0 & \vec{x}^t \\
+		0 & -1 & \vec{y}^t \\
+		\vec{x} & \vec{y} & I_{n\times n}
+		\end{array}
+	\right)
+	\end{equation}
+while the $k$-th leading principal minor is
+	\begin{align}
+	\det(G(x,x^\perp,e_1,\ldots,e_k)) & = \det\left(
+		\begin{array}{ccc}
+		-1 & 0 & \vec{x_k}^t \\
+		0 & -1 & \vec{y_k}^t \\
+		\vec{x_k} & \vec{y_k} & I_{k\times k}
+		\end{array}
+	\right) \nonumber \\
+	& = \det(I_{k\times k}) \det\left[ -I_{2\times 2} - \left(
+		\begin{array}{c}
+		\vec{x_k}^t \\
+		\vec{y_k}^t
+		\end{array}
+	\right) I_{k\times k} \left(
+		\begin{array}{cc}
+		\vec{x_k} & \vec{y_k}
+		\end{array}
+	\right)\right] \nonumber \\
+	& = \det \left(
+		\begin{array}{cc}
+		1 + \vec{x_k}^2 & \vec{x_k}\cdot \vec{y_k} \\
+		\vec{y_k} \cdot \vec{x_k} & 1 + \vec{y_k}^2
+		\end{array}
+	\right) \nonumber \\
+	& = 1 + \vec{x_k}^2 + \vec{y_k}^2 + \vec{x_k}^2 \vec{y_k}^2 - (\vec{x_k}\cdot\vec{y_k})^2 > 0
+	\end{align}
+where the last inequality comes from the Cauchy-Schwarz inequality applied to vectors $\vec{x_k}$ and $\vec{y_k}$, thus guarateeing they are all non-zero. Next we define and prove that the new set has the before mentioned properties. The new set of vectors are
+	\begin{align}
+	u^i := \sum_{j = -1}^i (G^{-1}_{(i)})^{ij}v_j = (G^{-1}_{(i)})^{i(-1)}v_{-1} + (G^{-1}_{(i)})^{i0}v_0 + \ldots + (G^{-1}_{(i)})^{ii}v_i
+	\end{align}
+where $G^{-1}_{(k)}$ is the inverse matrix of the $k$-th order leading principal matrix $G(v_{-1},\ldots,v_k)$. For example, $u^{(-1)} = G^{-1}_{(-1)} x = -x$. Furthermore, for $i\leq j$
+	\begin{equation}
+	v_i \cdot u^j = (G^{-1}_{(j)})^{jk} v_i\cdot v_k = (G^{-1}_{(j)})^{jk} (G_{(j)})_{ik} = \d^j_i
+	\end{equation}
+and finally for $i\leq j$
+	\begin{align}
+	u^i \cdot u^j & = (G^{-1}_{(i)})^{ik} v_k\cdot u^j \nonumber \\
+	& = (G^{-1}_{(i)})^{i(-1)} \d^j_{-1} + (G^{-1}_{(i)})^{i0} \d^j_{0} + \ldots + (G^{-1}_{(i)})^{ii} \d^j_i \nonumber \\
+	& = (G^{-1}_{(i)})^{ii} \d^j_i
+	\end{align}
+which proves orthogonality%
+\footnote{Of course, it remains to show that $(G^{-1}_{(i)})^{ii}$ is different from zero. This is shown only using the expression $$ \d^k_j = (G_{(k)})_{ji}(G^{-1}_{(k)})^{ik} $$}
+and even more, this set is linearly independent which implies is a basis for $\R^{(n-1) + 2}$ where $u^{-1}\cdot u^{-1} = u^0\cdot u^0 = -1$ and%
+\footnote{Any orthonormal basis has the same number of vectors with norm $-1$ and $+1$}
+$u^i\cdot u^i > 0$ for $i=1,\ldots,n$. We can normalize these last vectors such that $\wt u^i\cdot \wt u^i = 1$, and the matrix we need then would be
+	\begin{equation}
+	R_x = \left[x | x^\perp | \wt u^1 | \cdots | \wt u^n \right] \in SO(n-1, 2)
+	\end{equation}
+%if the determinant is not +1, then just take (-x^\perp) which changes the sign of the determinant
+that realizes $x = R_x e_{-1}$. Computing the isotropy group just imitates what we did for the $n$-sphere and gives $SO(n-1,1)$. This concludes the proof $AdS_n = SO(n-1,2)/SO(n-1,1)$.
+
+Now we are interested to take this further and consider supergroups. Say $G$ is a supergroup with Lie superalgebra $\mf g = Lie(G)$ and $H$ some subgroup with Lie (super)algebra $\mf h = Lie(H)$. Denote the generators of $\mf h$ as $T_I$ with $I = 1,\ldots,dim{\mathfrak h}$ and the rest of them to complete the span of ${\mathfrak g}$ as $T_A$.
+	\begin{align}
+	\mf g = Lie(G) & \lra \{T_A, T_I\} \\
+	\mf h = Lie(H) & \lra \{T_I\} \\
+	\mf m & \lra \{T_A\}
+	\end{align}
+
+With the notation already set, take the left supercoset space $G/H$, 
+	\begin{equation}
+	G/H = \{[g]\ |\ g\in G\}
+	\end{equation}
+and a particular section (lift) around the identity element in $G$ parametrized by coordinates $\{Z^M\}$ where
+	\begin{equation}
+	g(Z) = e^{Z^M \d^A_M T_A}
+	\end{equation}
+	\begin{figure}[ht]
+  	\centering
+  	\includegraphics{images/bundle.pdf}
+  	\caption{Lie group $G$ as a $H$-bundle}
+  	\label{bundle}
+	\end{figure}
+In other words, we have parametrized representatives $Z^M \mapsto [g(Z)] \in G/H$ around the element $[Id] = H \in G/H$. Furthermore, as was shown previously, there is a canonical way of making $G$ act on $(G/H)$, $g\cdot [g'] = [g g']$. For the section that we parametrized we have that
+	\begin{equation}\label{left}
+	g g(Z) = g(Z') h\ ;\quad h\in H
+	\end{equation}
+since the product $g g(Z)$ belongs to the $H$-orbit of some other element $g(Z')$ in the section we chose; plus, note that the compensating $h\in H$ depends on $h = h(Z, g)$, and that the change of coordinates $Z'(Z)$ induced by the action of $G$ is generally non-linear.
+
+This supercoset construction aims to be used in describing strings moving in superspaces $X = G/H$ where the canonical left-action of $G$ describes the symmetry of the theory. As was already shown in a previous section for WZW models with group $G$, the fundamental objects to construct the action functionals are the Maurer-Cartan forms. This is still the case for supercosets $G/H$.
+
+Let's start our discussion on differential forms over $G/H$ by remembering the standard constructions on $G$. Define the left-invariant Maurer-Cartan superform as
+	\begin{equation}
+	A = g\mo d g \in \L^1(G, \mf g)
+	\end{equation}
+this is $\mf g$-valued differential form, so we can separate it using $\mf g = \mf h \oplus \mf m$
+	\begin{equation}
+	A = E^A T_A + E^I T_I
+	\end{equation}
+where the $1$-forms $E^A$ and $E^I$ are the components of $A$ in our chosen basis $\{T_A, T_I\}$. Even more, we can compute how this components change under the left action of $G$, using (\ref{left})
+	\begin{align}
+	g\mo d g(Z') & = h g\mo d (g h\mo) \nonumber \\
+	& = E^A (h T_A h\mo) + E^I (h T_I h\mo) + h dh\mo \nonumber\\
+	& = E^A(Z) Ad_{h}(T_A) + E^I(Z) Ad_{h} (T_I) + h dh\mo \label{infi}
+	\end{align}
+%and because it is $\mf g$-valued, we can always take its projection onto subspaces $\mf h$ and $\mf m$. If we complete our chart $\{Z^M\}$ to a full chart of $G$ around the identity, the projection of $A$ on $\mf m$ will be
+%	\begin{equation}
+%	A|_{\mf m} = dZ^M g\mo(Z) \frac{\p}{\p Z^M} g(Z)
+%	\end{equation}
+%the rest of the coordinates become unimportant. This projection is a well-defined superform on $G/H$.%
+To write more explicit formulae, we make one more assumption in asking for $G/H$ to be {\it reductive} i.e.
+	\begin{align}
+	[\mf h, \mf h] & \subset \mf h \\
+	[\mf h, \mf m] & \subset \mf m
+	\end{align}
+which implies $Ad_H(\mf h) \subset \mf h$ and $Ad_H(\mf m) \subset \mf m$. Therefore, equating (\ref{infi}) and $g\mo dg(Z') = E^A(Z') T_A + E^I(Z')T_I$, we obtain
+	\begin{align}
+	E^A(Z') & = E^B(Z) (Ad_h)^A_{\ B} \\
+	E^I(Z') & = E^J(Z) (Ad_h)^I_{\ J} + (hdh\mo)^I
+	\end{align}
+and becomes evident that while the $E^A(Z)$ transforms as frames in $G/H$, the $E^I(Z)$ transform as gauge fields (connection) in a $H$-bundle.
+
+Now, we want to give a description of differential forms on coset spaces. The description that results useful for our case is to be able to induce forms on $G/H$ from forms in $G$. So given $w\in \L^1(G)$, we will say that it induces a $1$-form in $G/H$ i.e. belongs to $\L^1(G/H)$ if
+	\begin{equation}\label{ortho}
+	ker(w_g) \supset T_g(gH) \cong \mf h\ ,\quad\forall g\in (gH)
+	\end{equation}
+explicitly, the form that $w\in\L^1(G)$ induces in $G/H$ is
+	\begin{equation}
+	\bar w (\bar v):= w(v)
+	\end{equation}
+where $\bar v_{[g]}\in T_{[g]}(G/H)\cong \mf m$. Remember that to this point%
+\footnote{If we had used the Killing form in $\mf g$, the exists a unique orthogonal subspace to $\mf h$ that we could have taken i.e. $\mf m = \mf h^\perp$}%
+, we could have chosen some other equivalent complementary space $\mf m'$ to $\mf h$ in $\mf g$. Thus, $\bar v$ would only be defined up to a $\overline v = \overline{v+u}$ for $u\in \mf h$. The condition (\ref{ortho}) gets rid of the ambiguity in choosing a representative of $\bar v \in (\mf g/\mf h)$.
+
+The building blocks when constructing actions that describe strings or branes propagating in (super)coset spaces $G/H$ are differential (super)forms, particularly $G$-invariant differential (super)forms. In the standard setting of these actions, differential forms on $G$ are used, and so we are interested in knowing when these forms on $G$ rightly induce differential forms on $G/H$. We use some results from differential geometry (see e.g. \cite{Berkovits2000}) to accomplish this. There won't be presented a full proof but we show the easy direction in the following "if-and-only-if" theorem \cite{Kobayashi1963}
+\begin{thm}
+All $\ad_G$-invariant tensors are of the form
+	\begin{equation}
+	T = X_{B_1}\otimes\ldots X_{B_p}\otimes E^{A_1}\otimes \ldots \otimes E^{A_q} T_{A_1\ldots A_q}^{B_1\ldots B_p}
+	\end{equation}
+where $T_{A_1\ldots A_q}^{B_1\ldots B_p}$ are constants satisfying
+	\begin{equation}
+		\begin{array}{l}
+		f^C_{\ I A_1} T_{C\ldots A_q}^{B_1\ldots B_p}+ f^C_{\ I A_2} T_{A_1 C\ldots A_q}^{B_1\ldots B_p}+ \ldots + f^C_{\ I A_q} T_{A_1\ldots C}^{B_1\ldots B_p} \\
+		\qquad - f^{B_1}_{\ I C}T_{A_1\ldots A_q}^{C\ldots B_p} - f^{B_2}_{\ I C}T_{A_1\ldots A_q}^{B_1 C\ldots B_p} -\ldots - f^{B_p}_{\ IC}T_{A_1\ldots A_n}^{B_1\ldots C} = 0
+		\end{array}
+	\end{equation}
+\end{thm}
+Notice that the labels $A_i,B_j,C$ are summing over generators of $\mf m$ while the indices $I,J$ name generators of the subalgebra $\mf h$. As a simple example, take a symmetric bilinear form $ G = G_{AB} E^A \otimes E^B $, then it will be a $G$-invariant tensor if
+	\begin{equation}\label{met}
+	f^C_{\ IA} G_{CB} + f^C_{\ IB} G_{AC} = 0 \quad\text{for}\quad
+		\begin{array}{l}
+		I = 1,\ldots, dim\mf h \\
+		A,B = 1,\ldots, dim(\mf g/ \mf h = \mf m)
+		\end{array}
+	\end{equation}
+Thus, getting all possible $G$-invariant bilinear structures on $G/H$ would reduce to solve equation (\ref{met}). There is one expected solution for this equation which is the restriction of the Killing form to $G/H$ $G_{AB} = f^M_{\ AN} f^N_{\ BM}$ where $M,N$ sum over $A$ and $I$ labels; however, for some algebras this restriction Killing form is degenerate hence non-invertible, as is the case of the super Poincare algebra. This issue can be bypassed if we find some other $G$-invariant invertible tensor. Although there exists methods \cite{Figueroa-OFarrill1994a} like the double extension method to compute the space of $G$-invariant tensors, they are beyond the scope of this work. We could be happy that there exists an explicit bilinear form in the super Poincare algebra which is, of course, the metric in flat superspace.
+
+We will finish this section with a description of $\k$-transformations as local right actions \cite{McArthur2000} of particular form $g\rightarrow g g'$. To do this, we first realize that in the same way we found the associated variation of $\d q^i(\s)$ corresponding to a local right multiplication of the field $g(q(\s)) \rightarrow g(q(\s))\exp(\ve\l^a(\s) T_a)$, we can compute the variation in $\d Z^M(\s)$ corresponding to the local right transformation
+	\begin{equation}
+	g(Z(\s)) \lra g(Z(\s))\exp\left(v^A(\s) T_A + v^I(\s) T_I\right)
+	\end{equation}
+The difference in this case is that we are dealing with a coset space, and a particular "slice" (section of the bundle) has been chosen. Thus, besides the local right action we have to add a compensating local $H$-transformation on each fiber to get an actual coordinate transformation $Z \rightarrow Z'(Z)$ on the parametrized section
+	\begin{equation}
+	g(Z(\s)) \exp\left(v^A(\s) T_A + v^I(\s) T_I\right) = g(Z'(Z(\s)) \exp\left(\phi^I(v(\s),Z(\s)) T_I\right)
+	\end{equation}
+Making implicit the $\s$-dependence, let's compute
+	\begin{align}
+	g(Z'(Z)) & = g(Z) e^{v^A T_A + v^I T_I} e^{-\phi^I(v,Z) T_I} \nonumber \\
+	& = g(Z) (1 + v^A T_A + v^I T_I + O(v^2) ) (1 - \phi^I T_I + O(v^2) ) \nonumber \\
+	& = g - g\phi^I T_I + g(v^A T_A + v^I T_I) \\
+	& \nonumber \\
+	\Rightarrow & g\mo \d g = (-\phi^I + v^I) T_I + v^A T_A\label{eq1}
+	\end{align} 
+it was used that the function $\phi(v,Z)$ is of first order in the $v^A, v^I$ parameters since $\phi(0,Z) = 0$. And, exploting the relation $g\mo d g = dZ^M E^A_M T_A + dZ^M E^I_M T_I$, it can be guessed
+	\begin{equation}\label{eq2}
+	g\mo \d g = \d Z^M E^A_M T_A + \d Z^M E^I_M T_I
+	\end{equation}
+Therefore, equating (\ref{eq1}) and (\ref{eq2}) we have the associated transformations $\d Z^M$ for the local right action
+	\begin{equation}
+	\d Z^M E^A_M = v^A\ ,\qquad \d Z^M E^I_M = (v^I - \phi^I)
+	\end{equation}
+With these relations at hand, we can focus on transformations $v^a(Z)= 0$ and arbitrary $v^\a(Z)$ where $A=(a,\a)$ represent bosonic and fermionic labels respectively. This setting corresponds to
+	\begin{equation}
+	\d Z^M E^a_M = 0
+	\end{equation}
+which is one of the criteria that characterizes $\k$-transformations $\d_\k Z^M$ on the worldsheet \cite{Witten1986,Grisaru1985a}.
+
+
+\subsection{A survey on Lie superalgebras}
+To get a better understanding of common elements in the context of Lie superalgebras and supergroups such as supermatrices, supertranspose or superdeterminant, it is useful to begin with a description of some {\it algebraic superstructures}. This structures do not differ much from their non-super counterparts. The ingredient that makes them {\it super} is in all cases a $\Z_2$-grading and the implementation of a sign rule every time two objects interchange positions under some product operation.
+
+The simplest example is that of a {\it super vector space} $V$, defined as a usual $\mathbb{K}$-vector space with a $\Z_2$-grading i.e. we can write $V = V_{\bar 0} \oplus V_{\bar 1}$ where the subspaces $V_{\bar 0}$ and $V_{\bar 1}$ are called even and odd subspaces respectively, and elements belonging to these subspaces are called {\it homogeneous}. The case of a finite-dimensional super vector space is of interest since we can choose a {\it homogeneous basis} $\{e_1, \ldots, e_p, e_{p+1}, \ldots, e_{p+q}\}$
+	\begin{equation}
+	e_i \in V_{\bar 0}\quad\text{for}\quad i=1,\ldots,p\qquad\text{and}\qquad e_{p+j} \in V_{\bar 1}\quad\text{for}\quad j=1,\ldots,q
+	\end{equation}
+We say that the super vector space is of dimension $p|q$.
+
+A similar definition is given for a {\it super algebra} $A$. This is defined as a $\Z_2$-graded algebra $A = A_{\bar 0} \oplus A_{\bar 1}$ i.e. the operations respect the grading. For instance, for arbitrary elements $a_0, b_0 \in A_{\bar 0}$ and $a_1, b_1 \in A_{\bar 1}$ the product holds
+	\begin{equation}
+	(a_0 \cdot b_0),\ (a_1\cdot b_1) \in A_{\bar 0},\qquad (a_0\cdot b_1),\ (a_1\cdot b_0) \in A_{\bar 1}
+	\end{equation}
+A typical example of a superalgebra is a Grassmann algebra $\L^*(\C^{n})$ with generators denoted by $\t^1,\ldots, \t^n$ and
+	\begin{align}
+	\L^*(\C^n)_{\bar 0} & = \bigoplus_{k=0}^{\lfloor\frac{n}{2}\rfloor}\L^{2k}(\C^n) = \L^0(\C^n)\oplus\L^2(\C^n)\oplus\ldots \\
+	\L^*(\C^n)_{\bar 1} & = \bigoplus_{k=0}^{\lfloor\frac{n}{2}\rfloor}\L^{2k+1}(\C^n) = \L^1(\C^n)\oplus\L^3(\C^n)\oplus\ldots
+	\end{align}
+Furthermore, this superalgebra has the property of supercommutativity i.e. for $a\we b = (-1)^{\bar a \bar b} b\we a$.
+
+To finish this parade of algebraic structures, let's define left and right supermodules. These again are defined as $\Z_2$-graded modules $M = M_{\bar 0}\oplus M_{\bar 1}$ over a superalgebra%
+\footnote{It is costume to define them over superrings but to keep it simple we stay with superalgebras since they are particular cases of superrings}
+$A = A_{\bar 0} \oplus A_{\bar 1}$ where for the left-supermodule case
+	\begin{align}
+	A_{\bar 0}\cdot M_{\bar 0} \subset M_{\bar 0},&\quad A_{\bar 1}\cdot M_{\bar 1}\subset M_{\bar 0} \nonumber \\
+	A_{\bar 1}\cdot M_{\bar 0} \subset M_{\bar 1},&\quad A_{\bar 0}\cdot M_{\bar 1}\subset M_{\bar 1}
+	\end{align}
+likewise for the right-supermodule case
+	\begin{align}
+	M_{\bar 0}\cdot A_{\bar 0} \subset M_{\bar 0},&\quad M_{\bar 1}\cdot A_{\bar 1}\subset M_{\bar 0} \nonumber \\
+	M_{\bar 0}\cdot A_{\bar 1} \subset M_{\bar 1},&\quad M_{\bar 1}\cdot A_{\bar 0}\subset M_{\bar 1}
+	\end{align}
+As a main example we can take any $\C$-super vector space $V$ of dimension $p|q$ and construct the left-supermodule $M = (\L^*(\C^n)\otimes_{\C} V)$ over $A = \L^*(\C^n)$ where the $\Z_2$-grading is given by
+	\begin{align}
+	M_{\bar 0} &= (\L^*(\C^n)_{\bar 0}\otimes V_{\bar 0}) \oplus (\L^*(\C^n)_{\bar 1} \otimes V_{\bar 1}) \\
+	M_{\bar 1} &= (\L^*(\C^n)_{\bar 1}\otimes V_{\bar 0}) \oplus (\L^*(\C^n)_{\bar 0} \otimes V_{\bar 1})
+	\end{align}
+We can construct an associated right-supermodule on the same space with product
+	\begin{equation}
+	v\cdot a := (-1)^{\bar v\bar a}a\cdot v\ ,\quad\text{for homogeneous } a\in\L^*(\C^n),\ v\in M
+	\end{equation}
+Furthermore, because $\L^*(\C^n)$ is supercommutative the left and right multiplication are compatible i.e. $a\cdot(v\cdot b) = (a\cdot v)\cdot b$. Finally, we will simply call $M^{p|q} = (\L^*(\C^n)\otimes_\C V)$ a $p|q$-dimensional $\L^*(\C^n)$-module. If we take a homogeneous basis ${e_1,\ldots,e_p,e_{p+1},\ldots,e_{p+q}}$ in $V$, any element $v\in M^{p|q}$ can be expressed as a linear combination
+	\begin{equation}
+	v = e_i v^i = e_{\hat i}v^{\hat i} + e_{\hat j}v^{\hat j}\ ,\quad v^{i=1,\ldots,p+q}\in \L^*(\C^n)
+	\end{equation}
+where $\hat i = 1,\ldots, p$ and $\hat j = p + 1,\ldots p+q$. Moreover, the even-odd decomposition of $v = v_0 + v_1$ in $M^{p|q} = M^{p|q}_{\bar 0} \oplus M^{p|q}_{\bar 1}$ is
+	\begin{align}
+	v & = v_0 + v_1 \\
+	& = (e_{\hat i} v^{\hat i}_0 + e_{\hat j} v^{\hat j}_1) + (e_{\hat i} v^{\hat i}_1 + e_{\hat j} v^{\hat j}_0)
+	\end{align}
+where $v^i_0 \in \L^*(\C^n)_{\bar 0}$ and $v^i_1 \in \L^*(\C^n)_{\bar 1}$ for every $i=1,\ldots,p+q$.
+
+Now we have the tools to proceed with supermatrices and their operations. So in the same way matrices are representations of linear operators on vector spaces, supermatrices are representations of linear operators on finite dimensional supermodules. Then consider the space of homomorphisms
+	\begin{equation}
+	{\bf Hom}\left(M^{r|s},M^{p|q}\right)=\left\{F:M^{r|s}\rightarrow M^{p|q}\middle| F(w + v\cdot a) = F(w) + F(v)\cdot a\right\}
+	\end{equation}
+This mappings will be represented with supermatrices. Say we pick homogeneous basis in $M^{r|s}$ and $M^{p|q}$, $f_{a=1,\ldots,r+s}$ and $e_{i=1,\ldots,p+q}$ respectively. Then,
+	\begin{equation}
+	F(f_a) = e_i F^i_{\ a}
+	\end{equation}
+where the coefficients $F^i_{\ a}\in\L^*(\C^n)$. This leads to a supermatrix representation
+	\begin{equation}
+	[F^i_{\ a}] = \left(
+		\begin{array}{cc}
+		F^{\hat i}_{\ \hat a}  & F^{\hat i}_{\ \hat b} \\
+		F^{\hat j}_{\ \hat a}  & F^{\hat j}_{\ \hat b}
+		\end{array}
+	\right)
+	\end{equation}
+likewise, elements $v\in M^{r|s}$ are represented as column supermatrix
+	\begin{equation}
+	[v^a] = \left(
+		\begin{array}{c}
+		v^{\hat a} \\
+		v^{\hat b}
+		\end{array}
+	\right)
+	\end{equation}
+We denote the collection of these $(p|q)\times(r|s)$ supermatrices as ${\bf Mat}(p|q,r|s)$.
+
+Both spaces ${\bf Hom}(M^{r|s}, M^{p|q})$ and ${\bf Mat}(p|q,r|s)$ have a natural structure of supermodules over $\L^*(\C^n)$ where the $\Z_2$-grading separates parity-preserving operators (supermatrices) from parity-reversing ones. It is easy to realize that the homogeneous even and odd supermatrices are respectively of the form
+	\begin{equation}
+	\left(
+		\begin{array}{cc}
+		\text{even} & \text{odd} \\
+		\text{odd} & \text{even}
+		\end{array}
+	\right)\qquad\text{and}\qquad \left(
+		\begin{array}{cc}
+		\text{odd} & \text{even} \\
+		\text{even} & \text{odd}
+		\end{array}
+	\right)
+	\end{equation}	 
+where "even" and "odd" represent the parity of the entries in $\L^*(\C^n)$.
+
+Lie superalgebras are defined following the same philosophy of any super structure i.e. they are $\Z_2$-graded Lie algebras. Explicitly, a $\Z_2$-graded vector space $L = L_\ev \oplus L_\od$ typically over $\mathbb{K}=\C$ or $\R$ is a Lie superalgebra if it has a {\it super-Lie bracket} $[\cdot,\cdot]:L\times L\rightarrow L$ with the following properties
+	\begin{itemize}
+	\item[(L.1)] The super-Lie brackets $[\cdot,\cdot]$ are bilinear
+	\item[(L.2)] The super-Lie brackets preserve the $\Z_2$-grading i.e.
+		\begin{equation}
+		[L_\ev,L_\ev]\subset L_\ev,\quad [L_\ev,L_\od]\subset L_\od,\quad [L_\od,L_\ev]\subset L_\od,\quad [L_\od,L_\od]\subset L_\ev
+		\end{equation}
+	\item[(L.3)] For $a,b\in L$ homogeneous
+		\begin{equation}
+		[b,a] =  -(-1)^{\bar a\bar b} [a,b]
+		\end{equation}
+	\item[(L.4)] Generalized Jacobi identity
+		\begin{equation}
+		(-1)^{\bar a\bar c}[a,[b,c]] + (-1)^{\bar b\bar a}[b,[c,a]] + (-1)^{\bar c\bar b} [c,[a,b]] = 0
+		\end{equation}
+	\end{itemize}
+The generalized Jacobi identity can also be written as
+	\begin{equation}
+	\ad_a([b,c]) = [\ad_a(b),c] + (-1)^{\bar a\bar b}[b,\ad_a(c)]
+	\end{equation}
+
+There are four different cases that we have for the generalized Jacobi identity. The first one is when $a,b,c$ are even elements, and it only states the usual Jacobi identity. The second option is having two even and one odd element. This guarantees that $\mf g_\od$ is the carrier space of a representation of $\mf g_\ev$. The third one considers one even element and two odd elements, and states that the Lie bracket on $\mf g_\od\times \mf g_\od\rightarrow \mf g_\ev$ is an $\ad$-invariant symmetric map.
+	\begin{equation}
+	\ad_a(\{b,c\}) = \{\ad_a(b),c\} + \{b,\ad_a(c)\}
+	\end{equation}
+Finally, the case where all are odd elements is equivalent to
+	\begin{equation}
+	[a,\{a, a\}] = 0 \quad\forall a\in \mf g_\od
+	\end{equation}
+Thus, a Lie superalgebra contains the following data
+	\begin{itemize}
+	\item a Lie algebra $\mf g_\ev$
+	\item a space $\mf g_\od$ carrying a representation of $\mf g_\ev$
+	\item an $\ad$-invariant symmetric map $\{,\}:\mf g_\od\times\mf g_\od \rightarrow \mf g_\ev$
+	\item $[a,\{a,a\}] = 0$ $\forall a\in \mf g_\od$
+	\end{itemize}
+
+As an example we can take the supervector space of $(p|q)\times(p|q)$ supermatrices over $\C$, ${\bf Mat}_{\C}(p|q)$, and define the super Lie bracket on homogeneous elements as
+	\begin{equation}
+	[M,N] := MN - (-1)^{\bar M\bar N}NM
+	\end{equation}
+This bracket is extended linearly to non-homogenous matrices in ${\bf Mat}_\C(p|q)$. Thus, the fact of $({\bf Mat}_\C(p|q), [\cdot,\cdot])$ being a Lie superalgebra is readily verified.
+
+Some terminology is in order before we get to our main examples of Lie superalgebras.
+	\begin{itemize}
+	\item {\bf Graded subalgebra}. Given a Lie superalgebra $L = L_\ev\oplus L_\od$, the adequate notion of a substructure is that of a compatible $\Z_2$-graded subalgebra i.e. $[L',L']\subset L'$ with $L'_\ev \subset L_\ev$ and $L'_\od\subset L_\od$.
+	\item {\bf Graded ideal}. Similarly to the theory of Lie algebras, a graded ideal is the right substructure to be studied to get into classification of Lie superalgebras. Graded ideals $I\subset L$ of a Lie superalgebra $(L,[\cdot,\cdot])$ are defined as graded subalgebras with the property $[I,L] \subset I$.
+	\item {\bf Simple Lie superalgebra}. A simple Lie superalgebra is a Lie superalgebra without proper graded ideals. A Cartan classification of classical%
+\footnote{By classical we mean that the representation of the even part $L_\ev$ on the odd part $L_\od$ is either irreducible or completely reducible.}
+finite dimensional complex Lie superalgebras was attained by V. Kac\cite{Kac1977a}. This classification is given by the families
+	\begin{equation}
+	A(m|n),\ B(m|n),\ D(m|n),\ C(n),\ P(n),\ Q(n)
+	\end{equation}
+	and exceptional
+	\begin{equation}
+	F(4),\ G(3),\ D(2|1,\a)\text{ for }\a\in\C\backslash\{0,\pm 1\}
+	\end{equation}
+	\item {\bf Killing form}. The Killing form is a particular $\ad$-invariant bilinear form in any Lie superalgebra. It uses the adjoint representation of $L$ and is defined as
+		\begin{equation}
+			\begin{array}{rcl}
+			\<\cdot,\cdot\>: L\times L & \rightarrow & \C \\
+			(M,N) & \mapsto & \str(\ad_M \ad_N)
+			\end{array}
+		\end{equation}
+	\item {\bf Automorphism}. Any bijective linear mapping $\psi:L \rightarrow L$ preserving the $\Z_2$-grading ($\psi(L_{\bar k})\subset L_{\bar k})$ and the super Lie bracket ($\psi([a,b])=[\psi(a),\psi(b)]$) is called an automorphism.
+	\end{itemize}
+
+We intend to give an explicit matrix realization of the Lie superalgebra $\mf{su}(2,2|4)$. This realization is given by $(4|4)\times(4|4)$ supermatrices. However, without much effort we can first describe the Lie superalgebra $\mf{su}(m,n|p,q)$. This Lie superalgebra is a real form of the bigger one $\mf{sl}(m+n|p+q)$ which is defined as supermatrices with vanishing supertrace
+	\begin{equation}
+	M = \left(
+		\begin{array}{cc}
+		A & X \\
+		Y & B
+		\end{array}
+	\right) \in \mf{sl}(m+n|p+q) \Leftrightarrow \str(M) = \tr(A) - \tr(B) = 0
+	\end{equation}
+with the usual $\Z_2$ partition $\mf{sl}(m+n|p+q) = \mf{sl}(m+n|p+q)_{\bar 0} \oplus \mf{sl}(m+n|p+q)_{\bar 1}$ where
+	\begin{align}
+	\mf{sl}(m+n|p+q)_{\bar 0} & := \left\{ \left(
+		\begin{array}{cc}
+		A & 0 \\
+		0 & B
+		\end{array}
+	\right)\middle| \tr(A) = \tr(B)\right\} \\
+	\mf{sl}(m+n|p+q)_{\bar 1} & := \left\{ \left(
+		\begin{array}{cc}
+		0 & X \\
+		Y & 0
+		\end{array}
+	\right)\right\}
+	\end{align}
+And, to obtain the real subalgebra $\mf{su}(m,n|p,q)\subset \mf{sl}(m+n|p+q)$ we have to impose the condition
+	\begin{equation}\label{sucond}
+	M^\dg \left(
+		\begin{array}{cc}
+		\S_{m,n} & 0 \\
+		0 & \S_{p,q}
+		\end{array}
+	\right) + i^{|M|} \left(
+		\begin{array}{cc}
+		\S_{m,n} & 0 \\
+		0 & \S_{p,q}
+		\end{array}
+	\right) M = 0
+	\end{equation}
+where $\S_{m,n}$ and $\S_{p,q}$ are the canonical invariant metrics of signature $(m,n)$ and $(p,q)$ respectively. Explicitly they are $\S_{a,b} = \text{diag}(I_a, -I_b)$. This imposes the following conditions on the even and odd subspaces
+	\begin{align}
+	\S_{m,n}A^\dg \S_{m,n} = -A, &\qquad \S_{p,q}B^\dg \S_{p,q} = - B, \\
+	-i\S_{m,n} Y^\dg \S_{p,q} = -X, &\qquad -i\S_{p,q} X^\dg \S_{m,n} = -Y
+	\end{align}
+or equivalently, we can define an involution $M^\star$ and rewrite the defining condition (\ref{sucond}) as a reality condition $M^\star = -M$
+	\begin{equation}
+	M^\star := \left(
+		\begin{array}{cc}
+		\S_{m,n}A^\dg \S_{m,n} & -i\S_{m,n} Y^\dg \S_{p,q} \\
+		-i\S_{p,q} X^\dg \S_{m,n} & \S_{p,q}B^\dg \S_{p,q}
+		\end{array}
+	\right) = - \left(
+		\begin{array}{cc}
+		A & X \\
+		Y & B
+		\end{array}
+	\right)
+	\end{equation}
+Thus the even part of $\mf{su}(m,n|p,q)$ is generated by
+	\begin{equation}
+	\left(
+		\begin{array}{cc}
+		A & 0 \\
+		0 & 0
+		\end{array}
+	\right) \in\mf{u}(m,n),\quad \left(
+		\begin{array}{cc}
+		0 & 0 \\
+		0 & B
+		\end{array}
+	\right) \in\mf{u}(p,q)\text{ and mixed block diag.}
+	\end{equation}
+subject to the vanishing supertrace condition.
+
+Now we specialize in the Lie superalgebras $\mf{su}(n,n|2n):= \mf{su}(n,n|2n,0)$. This simplifies some of our expressions since $\S_{2n,0} = I_{2n}$ and denoting $\S := \S_{n,n}$
+	\begin{equation}
+	M^\star := \left(
+		\begin{array}{cc}
+		\S A^\dg \S & -i\S Y^\dg \\
+		-i X^\dg \S & B^\dg
+		\end{array}
+	\right) = - \left(
+		\begin{array}{cc}
+		A & X \\
+		Y & B
+		\end{array}
+	\right)
+	\end{equation}
+thus the even part is
+	\begin{equation}
+	\mf{su}(n,n|2n)_{\bar 0} = \left\{ \left(
+		\begin{array}{cc}
+		A & 0 \\
+		0 & B
+		\end{array}
+	\right) \middle| A\in\mf{u}(n,n), B \in\mf{u}(2n), \tr(A) = \tr(B) \right\}
+	\end{equation}
+and can be decomposed as
+	\begin{equation}
+	\mf{su}(n,n|2n)_{\bar 0} = \mf{su}(n,n) \oplus \mf{su}(2n) \oplus \mf{u}(1)
+	\end{equation}
+where the $\mf{u}(1)$ subalgebra is generated by the supertraceless supermatrix $i I_8$. Likewise, the odd part is given simply by
+	\begin{equation}
+	\mf{su}(n,n|2n)_{\bar 1} = \left\{ \left(
+		\begin{array}{cc}
+		0 & X \\
+		iX^\dg \S & 0
+		\end{array}
+	\right) \middle| X\in {\bf Mat}_\C (2n) \right\}
+	\end{equation}
+
+Since we are working in $\mf{su}(n,n|2n)$, there exists a transformation
+	\begin{equation}
+	\Om(M) = \left(
+		\begin{array}{cc}
+		J A^t J & - J Y^t J \\
+		J X^t J & J B^t J
+		\end{array}
+	\right)\ ;\qquad J = \left(
+		\begin{array}{cc}
+		0 & - I_n \\
+		I_n & 0
+		\end{array}
+	\right)
+	\end{equation}
+This transformation is a $\Z_4$-automorphism of $\mf{su}(n,n|2n)$. Using the property of $J\S = -\S J$ and $(JA^tJ)^\dg = JA^*J$ it can be proven that $\Om(M) \in \mf{su}(n,n|2n)$. Furthermore, it respects the $\Z_2$-grading of the Lie superalgebra. And, the fact of being $\Z_4$ happens because we can rewrite it in terms of a supertranspose which is already 4th-order idempotent
+	\begin{equation}
+	\Om(M) = \left(
+		\begin{array}{cc}
+		J & 0 \\
+		0 & J
+		\end{array}
+	\right) M^{st} \left(
+		\begin{array}{cc}
+		J & 0 \\
+		0 & J
+		\end{array}
+	\right)
+	\end{equation}
+This automorphism has more value on the complexified
+	\begin{equation}
+	\mf{su}(n,n|2n)_\C = \mf{sl}(2n|2n)
+	\end{equation}
+since there it admits a decomposition in eigenspaces $\Om(M) = i^k M$ for $k = 0,1,2,3$ (only on $\C$ the minimal polynomial $p(\Om) = (\Om^4-I) = (\Om - I)(\Om -iI)(\Om +iI)(\Om+I)$ can be fully factorized). Thus,
+	\begin{equation}
+	\mf{su}(n,n|2n)_\C = \mf g_{\bar 0}\oplus \mf g_{\bar 1}\oplus \mf g_{\bar 2}\oplus \mf g_{\bar 3}
+	\end{equation}
+We can also compute the invariant subspace $\Om(M) = M$ in $\mf{su}(n,n|2n)$
+	\begin{equation}\label{symplec}
+	\left(
+		\begin{array}{cc}
+		JA^tJ & - JY^tJ \\
+		JX^tJ & JB^tJ
+		\end{array}
+	\right) = \left(
+		\begin{array}{cc}
+		A & X \\
+		Y & B
+		\end{array}
+	\right) \Rightarrow
+		\begin{array}{c}
+		X = Y = 0, \\
+		A^t J + J A = 0 \\
+		B^t J + J B = 0
+		\end{array}
+	\end{equation}
+which means that the invariant locus \cite{Berkovits2000} of $\Om$ in the real superalgebra is
+	\begin{equation}
+	\mf{usp}(n,n)\oplus\mf{usp}(2n) \varsubsetneq \mf{g}_{\bar 0}
+	\end{equation}
+where $\mf{usp}(m,n) := \mf{u}(m,n)\cap\mf{sp}(m+n,\C)$ (note that the symplectic condition (\ref{symplec}) already forces $\tr(A) =\tr(B) = 0$). A similar computation of the invariant subspace can be done in the complexified superalgebra obtaining $\mf{g}_{\bar 0} = \mf{sp}(2n,\C)\oplus \mf{sp}(2n,\C)$.
+
+The important feature of this $\Z_4$-automorphism is that the Lie brackets are compatible
+	\begin{equation}
+	[\mf g_{\bar i}, \mf g_{\bar j}] \subset \mf g_{\bar i + \bar j}
+	\end{equation}
+and even more, the supertrace operation has the property
+	\begin{equation}
+	\str (M^{(i)} N^{(j)}) = 0 \quad\text{if}\quad (i+j)\neq 0 \text{ mod } 4
+	\end{equation}
+where $M^{(i)}\in \mf g_{\bar i}$ and $N^{(j)}\in \mf g_{\bar j}$.
+
+From a result in linear algebra%
+\footnote{Spectral theorem for finite dimensional complex vector spaces.}%
+, idempotent linear operators $\Om^m = I$ have projectors given by
+	\begin{equation}
+	P_j = \prod_{i\neq j} \frac{\Om - \l_i I}{\l_j - \l_i}
+	\end{equation}
+where the $\l_i$'s are the eigenvalues of $\Om$. Thus, in our case $\Om^4 = I$ ($\l_0 = 1, \l_1 = i, \l_2 = -1, \l_3 = -i$), the four projectors are
+	\begin{align}
+	P_0 & = \frac{1}{4} (\Om^3 + \Om^2 + \Om + I) \\
+	P_1 & = \frac{1}{4} (i\Om^3 - \Om^2 -i \Om + I) \\
+	P_2 & = \frac{1}{4} (-\Om^3 + \Om^2 - \Om + I) \\
+	P_3 & = \frac{1}{4} (-i \Om^3 - \Om^2 + i\Om + I)
+	\end{align}
+Now we can compute explicitly the decomposition of elements of $\mf{sl}(2n|2n)$
+	\begin{equation}
+	M = \left(
+		\begin{array}{cc}
+		A & X \\
+		Y & B
+		\end{array}
+	\right) = M^{(0)} + M^{(1)} + M^{(2)} + M^{(3)}
+	\end{equation}
+where each $M^{(k)}$ is given by
+	\begin{align}
+	M^{(0)} & = \frac{1}{2} \left(
+		\begin{array}{cc}
+		A + J A^t J & 0 \\
+		0 & B + J B^t J
+		\end{array}
+	\right) \\
+	M^{(1)} & = \frac{1}{2} \left(
+		\begin{array}{cc}
+		0 & X + i  J Y^t J \\
+		Y - i J X^t J & 0
+		\end{array}
+	\right) \\
+	M^{(2)} & = \frac{1}{2} \left(
+		\begin{array}{cc}
+		A - J A^t J & 0 \\
+		0 & B - J B^t J
+		\end{array}
+	\right) \\
+	M^{(3)} & = \frac{1}{2} \left(
+		\begin{array}{cc}
+		0 & X - i J Y^t J \\
+		Y + i J X^t J & 0
+		\end{array}
+	\right)
+	\end{align}
+
+
+\subsection{Superstring in flat spacetime (again)}
+It was shown first by Henneaux and Mezincescu \cite{Henneaux1985} that the type II superstring can be written as a WZW-like action using the coset space. One of the terms is invariant under the $N=2$ susy only up to a total derivative which is actually a WZ term associated with a non-linear realization of supersymmetry in two spacetime dimensions.
+%The same verification can be done for any of the cases mentioned by Green and Schwarz [ref original paper Phys. Lett. q36 B 1984].
+
+We can see the fields $X^\m(z,\zb)$ and $\t^{I\a}(z,\zb)$ as a mapping from the worldsheet to the supergroup $SUSY(\mc N = 2)$
+	\begin{equation}
+	\frac{G}{H} = \frac{(\mc N=2)SUSY}{SO(9,1)}
+	\end{equation}
+It is not hard to give a parametrization of the coset space which describes a section in the total space $SUSY(\mc N=2)$ i.e. a map that picks a representative on each coset%
+\footnote{Usually we expect that the local coordinates carry "curved indices", so we should have $$ g(Z) = \exp( Z^M\d_M^A T_A) $$}
+	\begin{equation}
+	g = e^{Z^A T_A} = e^{X^\m P_\m + \t^{I\a}Q_{I\a}}
+	\end{equation}
+With this parametrization and considering the relatively simple relations for the Lie superalgebra ${\rm\bf susy}(\mc N=2)$
+	\begin{align}
+	[M_{\m\n}, M_{\r\s}] & = \eta_{\m[\r}M_{\s]\n} - \eta_{\n[\r} M_{\s]\m} \\
+	[P_\m, P_\n] & = 0 \\
+	\{Q_{I\a}, Q_{J\b}\} & = - 2 i \d_{IJ}(C \G^\m)_{\a\b} P_\m \\
+	[P_\m, Q_{I\a}] & = 0
+	\end{align}
+we can solve the form of the left-invariant current by use of the formula for the derivative of an exponential matrix
+	\begin{equation}
+	e^{-Z}d e^Z = \left[ \sum_{k = 0}^\infty \frac{(-1)^k}{(k+1)!} (ad_Z)^k \right](dZ) = dZ + \frac{1}{2!} ad_Z(dZ) + \ldots
+	\end{equation}
+thus, by first computing
+	\begin{align}
+	[X^\m P_\m + \t^{I\a} Q_{I\a}, dX^\n P_\n + d\t^{J\b} Q_{J\b}] & = \t^{I\a} d\t^{J\b} \{Q_{I\a}, Q_{J\b}\} \nonumber \\
+	& = \t^{I\a} d\t^{J\b} (-2i)\d_{IJ}(C \G^\m)_{\a\b} P_\m \nonumber \\
+	& = -2i\d_{IJ} (\t^I C\G^\m d\t^J) P_\m
+	\end{align}
+and noting that the result is a central element i.e. commutes with the rest of generators, the series finishes at the second term
+	\begin{align}
+	e^{-Z}d e^Z & = (dX^\m P_\m + d\t^{I\a} Q_{I\a}) + \frac{1}{2!} (-2i)(\t_{I}C \G^\m d\t^{I}) P_\m \nonumber \\
+	& = (dX^\m - i \t_I C \G^\m d\t^I) P_\m + d\t^{I\a} Q_{I\a}
+	\end{align}
+%
+%WZW action and gauged WZW action. Gauge fixed WZW action is the WZW-like action.
+%
+It was found that the right constants with the property of $\ad_H$-invariance, for this case Lorentz invariance, that could be contracted with the frames $E^\m\we E^{I\a}\we E^{J\b}$ to form a WZ-term was that of $s_{IJ}(C\G_\m)_{\a\b}$ with $s_{IJ}$ a traceless symmetric matrix. This three-form is closed and so it can be integrated using Stokes' theorem, giving the usual WZ-term of flat superstring
+	\begin{equation}
+	\ve^{ij} s_{IJ} (\tb^{I}\G^\m\p_j\t^J)(\p_i X^\mu - \frac{1}{2}i\tb_K\G^\m \p_i\t^K)
+	\end{equation}
+
+
+\subsection{Type IIB Green-Schwarz superstring in $\ads$}
+The description of a superstring moving on super-$\ads$ can be formulated using a WZW-like action with target space the coset
+	\begin{equation}
+	\frac{G}{H} = \frac{PSU(2,2|4)}{SO(4,1)\times SO(5)}
+	\end{equation}
+where the bosonic part of this superspace is
+	\begin{equation}
+	AdS_5 = \frac{SO(4,2)}{SO(4,1)}\ ,\quad S^5 = \frac{SO(6)}{SO(5)}
+	\end{equation}
+and the groups in the numerator denote the isometry group of each space.
+
+It is important to have in mind some subtleties concerning the groups used to construct the supercoset spaces. It is because we want to work with fermions that we use the description %[ref Beisert]
+	\begin{equation}
+	AdS_5 \cong \frac{Spin(4,2)}{Spin(4,1)}\ ,\quad S^5 \cong \frac{Spin(6)}{Spin(5)}
+	\end{equation}
+and using the following accidental isomorphisms that occur for low dimensional spin groups
+	\begin{align}
+	Spin(6) = SU(4)\ ,\quad Spin(4,2) = SU(2,2) \\
+	Spin(4,1) = USp(2,2)\ ,\quad Spin (4) = USp(4)
+	\end{align}
+we end up working with
+	\begin{align}
+	\text{super-}\ads & \cong \frac{SU(2,2)}{USp(2,2)} \times \frac{SU(4)}{USp(4)}\times \C^{0|16} \\
+	& \cong \frac{PSU(2,2|4)}{USp(2,2)\times USp(4)}
+	\end{align}
+Furthermore, if we had needed to work with the boundary of of the $AdS$ part, it would have useful to use the {\it universal covering group} of $SO(4,2)$. Despite these different possibilities, all of them have the same Lie algebra.
+
+Let's use these accidental isomorphisms to give an explicit description of the generators and commutations relations in $\mf{su}(2,2|4)_\C$. This is done by using a consistent index structure of the supermatrices, as follows
+	\begin{equation}
+	\left(
+		\begin{array}{cc}
+		(A)^R_{\ S} & (X)^R_{\ J} \\
+		(Y)^I_{\ S} & (B)^I_{\ J}
+		\end{array}
+	\right)\text{ where }
+		\begin{array}{c}
+		R,S=1,2,3,4\text{ for } \mf{su}(2,2)\text{ matrices} \\
+		I,J=1,2,3,4\text{ for } \mf{su}(4)\text{ matrices}
+		\end{array}
+	\end{equation}
+Now, we define the basis, for bosonic generators
+	\begin{align}
+	A\in\mf{su}(2,2)&\longrightarrow T_{\m} = \left(
+		\begin{array}{cc}
+		(\tau_\m) & 0 \\
+		0 & 0
+		\end{array}
+	\right)\ ,\quad\m=1,\ldots,15 \\
+	B\in\mf{su}(4)&\longrightarrow T_{\bar\m} = \left(
+		\begin{array}{cc}
+		0 & 0 \\
+		0 & (\tau_{\bar\m})
+		\end{array}
+	\right)\ ,\quad\bar\m = 1,\ldots,15
+	\end{align}
+and the fermionic ones
+	\begin{align}
+	q^R_{\ I} = \left(
+		\begin{array}{cc}
+		0 & 0 \\
+		-(E^R_{\ I}) & 0
+		\end{array}
+	\right)\ ,& \quad \bar q^I_{\ R} = \left(
+		\begin{array}{cc}
+		0 & (E^I_{\ R}) \\
+		0 & 0
+		\end{array}
+	\right)
+	\end{align}
+where $(E^R_{\ I})^J_{\ S} = \d^R_{\ S} \d^J_{\ I}$ and $(E^I_{\ R})^S_{\ J} = \d^I_{\ J} \d^S_{\ R}$.
+
+These generators produce simple commutation relations. On the bosonic side, they are those of $\mf{su}(2,2)\oplus \mf{su}(4)$
+	\begin{align}
+	[T_\m, T_\n] & = f^\r_{\ \m\n} T_\r \\
+	[T_{\bar\m}, T_{\bar\n}] & = f^{\bar\r}_{\ \bar\m\bar\n} T_{\bar\r} \\
+	[T_\m, T_{\bar\m}] & = 0
+	\end{align}
+the mixed commutation relations are
+	\begin{equation}
+	\begin{aligned}
+	.[T_\m, q^R_{\ I}] = -(\tau_\m)^R_{\ S} q^S_{\ I}\ , & \quad [T_{\bar\m}, q^R_{\ I}] = (\tau_{\bar\m})^J_{\ I} q^R_{\ J}\ , \\
+	[T_\m,\bar q^I_{\ R}] = (\tau_\m)^S_{\ R} \bar q^I_{\ S}\ , & \quad [T_{\bar\m}, \bar q^I_{\ R}] = -(\tau_{\bar\m})^I_{\ J} \bar q^J_{\ R}
+	\end{aligned}
+	\end{equation}
+as well for the fermionic generators
+	\begin{align}
+	\{q^R_{\ I}, \bar q^J_{\ S}\} & = \d^J_{\ I} (\tau^\m)^R_{\ S} T_\m - \d^R_{\ S} (\tau^{\bar\m})^J_{\ I}T_{\bar\m} + \frac{i}{4} \d^R_{\ S} \d^J_{\ I} (iI_{8\times 8}) \\
+	\{q^R_{\ I}, q^S_{\ J}\} & = \{\bar q^I_{\ R}, \bar q^J_{\ S}\} = 0 
+	\end{align}
+
+%	\begin{align}
+%	J_{AB} = \left(
+%		\begin{array}{cc}
+%		\frac{1}{2}(\G_{AB})^\b_\a & 0 \\
+%		0 & 0
+%		\end{array}
+%	\right)\ ,&\quad T_\m = \left(
+%		\begin{array}{cc}
+%		0 & 0 \\
+%		0 & (\tau)^s_r
+%		\end{array}
+%	\right) \\
+%	q^\a_r = \left(
+%		\begin{array}{cc}
+%		0 & 0 \\
+%		-(E^\a_r) & 0
+%		\end{array}
+%	\right)\ ,& \quad \bar q^r_\a = \left(
+%		\begin{array}{cc}
+%		0 & E^r_\a \\
+%		0 & 0
+%		\end{array}
+%	\right)
+%	\end{align}
+%where the bosonic part has relations
+%	\begin{align}
+%	[J_{AB}, J_{CD}] & = \eta_{AD} J_{BC} - \eta_{BD} J_{AC} - \eta_{AC} J_{BD} + \eta_{BC} J_{AD} \\
+%	[T_\m, T_\n] & = f^\r_{\ \m\n} T_\r \\
+%	[J_{AB}, T_\m] & = 0
+%	\end{align}
+%the mixed commutation relations are
+%	\begin{align}
+%	[J_{AB},q^\a_r] = -\frac{1}{2}(\G_{AB})^\a_\b q^\b_r\ , & \quad [T_\m, q^\a_r] = (\tau_\m)^s_r q^\a_s\ , \\
+%	[J_{AB},\bar q^r_\a] = \frac{1}{2}(\G)^\b_a \bar q^r_\b\ , & \quad [T_\m, \bar q^r_\a] = -(\tau_\m)^r_s \bar q^s_\a
+%	\end{align}
+%as well for the fermionic generators
+%	\begin{align}
+%	\{q^\a_r, \bar q^s_\b\} & = \frac{1}{4} \d^s_r (\G^{AB}) J_{AB} - \d^\a_\b (\tau^\m)T_\m + \frac{i}{4} \d^\a_\b \d^s_r (iI_{8\times 8}) \\
+%	\{q^\a_r, q^\b_s\} & = \{\bar q^r_\a, \bar q^s_\b\} = 0 
+%	\end{align}
+
+Even though we have gotten a simple commutation relations in terms of a basis that uses the $\mf{su}(2,2)$ $\mf{su}(6)$ Lie algebras, they are not well-suited to give a coordinate description of the $AdS$ superspace. Thus, we use the before mentioned isomorphisms at the Lie algebra level
+	\begin{equation}
+		\begin{array}{c}
+		\mf{su}(2,2) \cong \mf{so}(4,2) \cong {\bf spin}(4,2) \\
+		\mf{su}(4) \cong \mf{so}(6) \cong {\bf spin}(6)
+		\end{array}
+	\end{equation}
+to reexpress the $4\times 4$ matrices $(\tau_\m)$ and $(\tau_{\bar\m})$ as Lorentz generators of $\mf{so}(4,2)$ and $\mf{so}(6)$
+	\begin{equation}
+		\begin{array}{c}
+		\tau_{\m=1,\ldots,15}\lra T_{ab}, T_a\ ,\quad a,b=0,1,2,3,4 \\
+		\tau_{\bar\m=1,\ldots, 15}\lra T_{a'b'},T_{a'}\ ,\quad a',b'=5,6,7,8,9
+		\end{array}
+	\end{equation}
+%Independently of the signature we can define as basis for $o(p,q)$
+%	\begin{equation}
+%	(M_{\m\n})^\a_{\ \b} := \d^\a_\m \eta_{\n\b} - \d^\a_\n \eta_{\m\b}
+%	\end{equation}
+%which give the following commutation relations
+%	\begin{equation}
+%	[M_{\m\n}, M_{\r\s}] = \eta_{\m[\r}M_{\s]\n} - \eta_{\n[\r} M_{\s]\m}
+%	\end{equation}
+%
+%If we define $P_\m := M_{\m0}$, the commutation relations become
+%	\begin{align}
+%	[M_{\m\n}, M_{\r\s}] & = \eta_{\m[\r}M_{\s]\n} - \eta_{\n[\r} M_{\s]\m} \\
+%	[P_\m, M_{\n\r}] & = \eta_{\m\n} P_\r - \eta_{\m\r} P_\n \\
+%	[P_\m, P_\n] & = -\eta_{00} M_{\m\n}
+%	\end{align}
+likewise, it proves useful to reorder the fermionic generators accordingly \cite{Mazzucato2012}
+	\begin{equation}
+		\begin{array}{c}
+		\bar q^I_{\ R} =: T_\a + i T_\ah \\
+		q^R_{\ I} =: T_\a - i T_\ah
+		\end{array}\quad\text{where}\quad \a,\ah=1,\ldots,16
+	\end{equation}
+This redefinition was done with the aid of the projections into the eigenspaces of the $\Z_4$-automorphism, such that
+	\begin{equation}
+		\begin{array}{lll}
+		\mf g_{\bar 0} & \lra\quad T_{ab},T_{a'b'} & 20\text{ generators}\\
+		\mf g_{\bar 2} & \lra\quad T_a, T_{a'} & 10\text{ generators} \\
+		\mf g_{\bar 1} & \lra\quad T_\a & 16\text{ generators}\\
+		\mf g_{\bar 3} & \lra\quad T_\ah & 16\text{ generators}
+		\end{array}
+	\end{equation}
+
+Finally we are in position to describe a string moving in super-$\ads$. The setting imitates a WZW model in the sense that it is a non-linear sigma model with domain $\S$ a compact Riemann surface and target space the $$ PSU(2,2|4)/USp(2,2)\times USp(4)$$ supercoset. This sets the dynamical fields of the theory as maps
+	\begin{equation}
+	g:\S \rightarrow \frac{PSU(2,2|4)}{USp(2,2)\times USp(4)}
+	\end{equation}
+So we can identify some objects in accordance with the subsection on coset constructions
+	\begin{equation}
+		\begin{array}{l}
+		\mf{h} = \mf{g}_{\bar 0} = \mf{usp}(2,2)\oplus \mf{usp}(4) \cong \mf{so}(4,1)\oplus \mf{so}(5)\\
+		\mf{m} = \mf g_{\bar 2}\oplus \mf g_{\bar 1} \oplus \mf g_{\bar 3} = \text{span}\{T_a, T_{a'}, T_\a, T_\ah\}
+		\end{array}
+	\end{equation}
+and keep the notation on the indices
+	\begin{equation}
+		\begin{array}{l}
+		A = (a, a', \a, \ah)\quad\text{for flat indices} \\
+		M = (m, \m, \mh)\quad\text{for curved indices}
+		\end{array}
+	\end{equation}
+One convenient section(lift) on the supercoset space we could take is
+	\begin{equation}
+	g(Z^M) = \exp(Z^M \d^A_M T_A) = \exp(X^a T_a + X^{a'} T_{a'} + \t^\a T_\a + \t^\ah T_\ah)
+	\end{equation}
+
+%We now use the $\Z_4$ isomorphism as an aid to get to a
+%	\begin{align}
+%	\Om_3 = \str(J\we [J\we J]) = E^A\we E^B \we E^C \str(T_A[T_B,T_C])
+%	\end{align}
+
+The construction of the action uses extensively the Maurer-Cartan form and its $\Z_4$-decomposition
+	\begin{equation}
+	J = g\mo dg = E^I T_I + E^A T_A = J^{(0)} + (J^{(1)} + J^{(2)} + J^{(3)})
+	\end{equation}
+together with their identities
+	\begin{equation}
+	d J + J\we J = 0
+	\end{equation}
+One approach for this construction is to take the gauge theory point of view where we gauge the subgroup $H = USp(2,2) \times USp(4) \sim SO(4,1) \times SO(5)$ in $G = PSU(2,2|4)$
+	\begin{equation}
+	g(z,\zb)\ \lra\ g(z,\zb) h(z,\zb)
+	\end{equation}
+so to have an action that would explicitly depend on the coset $[g(z,\zb)]\in G/H$. We choose instead to rely on the theorem that describes all $G= PSU(2,2|4)$-tensors on $G/H$ including symmetric two-tensors and 3-forms (i.e. kinetic term and WZ-term).
+
+The second part of the action is what corresponds to a Wess-Zumino term in a WZW model. As was stated in a previous section, the 3-form should be $\Om_3 = E^A \we E^B \we E^C T_{ABC}$ with $T_{ABC}$ constants satisfying the $\ad_H$-invariant condition. An equivalent way of getting to this term is by using the properties of the $\Z_4$-grading in terms of the supertrace and the Lie superbracket. Thus, only terms with zero total $\Z_4$-grading and without $J^{(0)}$ terms are non-zero, this leaves only the options $J^{(1)}\we J^{(1)}\we J^{(2)}$ and $J^{(3)}\we J^{(3)}\we J^{(2)}$. And, while naively we could have expected the WZ-term to be
+	\begin{equation}
+	\str[(J^{(1)}+J^{(2)}+J^{(3)})\we (J^{(1)}+J^{(2)}+J^{(3)})\we (J^{(1)}+J^{(2)}+J^{(3)})]
+	\end{equation}
+this is not even a closed form, however
+	\begin{equation}
+	\Om_3 = \str[J^{(1)}\we J^{(1)}\we J^{(2)} - J^{(3)}\we J^{(3)}\we J^{(2)}]
+	\end{equation}
+meets this condition, $\Om_3 = d\Om_2$, with
+	\begin{equation}
+	\Om_2 = \str J^{(1)}\we J^{(3)}
+	\end{equation}
+and correctly describes the WZ-term found by Metsaev and Tseytlin \cite{Metsaev1998}. Finally, the Green-Schwarz action for the superstring in $\ads$ is
+	\begin{align}
+	S_{GS} & = \int \str(\sqrt{g} g^{ij} J^{(2)}_i J^{(2)}_j + c \e^{ij} J^{(1)}_i J^{(3)}_j) \nonumber \\
+	& = \int \sqrt{g} g^{ij} \left(E^a_i E^b_j \str (T_a T_b) + E^{a'}_i E^{b'}_j \str(T_{a'}T_{b'})\right) \nonumber \\
+	& \qquad\qquad\qquad\qquad + i c \e^{ij} E^\a_i E^\ah_j \str(T_\a T_\ah) \nonumber \\
+	& = \int \sqrt{g} g^{ij} \left(E^a_i E^b_j \eta_{ab} + E^{a'}_i E^{b'}_j \d_{a'b'}\right) + i c \e^{ij} E^\a_i E^\ah_j \d_{\a\ah}
+	\end{align}
+where the constant $c$ will be determined by $\k$-symmetry of the action.
+
+\newpage
+
+
+
+\section{Conclusions}
+This dissertation has been primarily devoted to study with some degree of detail the most relevant examples of non-linear sigma models in String Theory. For instance, we have gone through bosonic strings propagating in background fields, the Wess-Zumino-Witten model and superstrings in flat and $\ads$ superspace.
+
+We were interested mostly in the classical aspects of these models e.g. the construction of their actions and the symmetries they posses. Also, special attention was given to the case of bosonic strings, and the necessary conditions to have local holomorphic symmetries in presence of an arbitrary metric $G_{\m\n}$ and two-form $B_{\m\n}$ were found.
+
+The case of the WZW model took a whole separate chapter because of the technicalities in the construction of its action. Namely, the construction on any compact Riemann surface and the topological quantization of its level. Furthermore, we verified that the local action meets the previously mentioned conditions for holomorphic symmetry as was expected.
+
+We studied most of the mathematical tools required to describe superstrings i.e. Lie superalgebras and supercoset spaces. Although we only fully apply this for the $\ads$ case, other models for superstrings propagating in supercosets follow the same logic in the construction of the action and description of symmetries. Moreover, it was shown how $\k$-symmetry could be understood as a right action on these left-coset models.
+
+The models of superstrings in flat and $\ads$ backgrounds were studied as coset spaces with the intention of making explicit their symmetries. Moreover, it was emphasized the conditions to have invariant tensors and forms when constructing their WZW-like actions, as well as the relevance of the $\Z_4$-automorphism of the $\mf{psl}(4|4)$ Lie superalgebra.
+
+Finally, it would not take much effort to continue this work in the following directions: p-branes in supercosets spaces, a more detailed account of $\k$-symmetry as a right action, Pure Spinor description of strings in $\ads$ and some quantum aspects of the CFT's associated to WZW models.
+
+
+\newpage
+
+
+\appendix
+
+\section{Clifford Algebras and Spinor Representations}
+Clifford algebras $\cl(V,q)$ are defined abstractly as the quotient space of the tensor algebra of $V$ over the two-sided ideal
+	\begin{equation}
+	I_q(V)=\left\{ \sum_i A_i\otimes(v\otimes v-q(v)1)\otimes B_i\ \Big|\ \forall v\in V, \forall A_i,B_i\in\mathcal{T}(V) \right\}
+	\end{equation}
+
+However to simplify things, we will define a Clifford algebra $C\ell(t,s)$ as the algebra of matrices generated by $\{\G_m\}_{m=1,\ldots,d}$ that satisfy the property
+	\begin{equation}
+	\{\G_m, \G_n\} = 2\eta_{mn} 1
+	\end{equation}
+It is also known that these matrices can be used to construct a double cover of the Lorentz group $SO(t,s)$. We call this group $Spin(t,s)$ that is precisely the one that acts on spinors. Thus we define the Lorentz generators or more precisely the $Spin(t,s)$-generators
+	\begin{equation}
+	\G_{mn} := \frac14 [\G_m, \G_n]
+	\end{equation}
+that can be proven to satisfy
+	\begin{align}
+%	[\G_{\m\n}, \G_\r] & = c(4\eta_{\n\r}\G_\m - 4\eta_{\m\r}\G_\n) \\
+	[\G_{mn}, \G_{a b}] & = \eta_{n a} \G_{m b} - \eta_{m a} \G_{n b} + \eta_{n b} \G_{a m} - \eta_{m b} \G_{a n}
+	\end{align}
+i.e. they satisfy the Lorentz algebra. Therefore, by studying representations of the Clifford algebra we will be able to study spinor representations of the Lorentz group $SO(t,s)$.
+
+In the following subsections we study some properties of spinor representations and refer to \cite{Kugo1983} for more details.
+
+
+\subsection{Dirac representation}
+	\begin{df}
+	A Dirac representation for a Clifford algebra $C\ell(t,s)$ is given by a realization of $\{\G_m\}_{m=1,\ldots,d}$ as operators in a (complex) vector space satisfying
+		\begin{equation}
+		\{\G_m, \G_n\} = 2\eta_{mn} I
+		\end{equation}
+	Plus, a hermitian inner product with the following property of invariance is also required
+		\begin{equation}
+		\langle \G_m \psi_1, \psi_2 \rangle = \pm \langle \psi_1, \G_m \psi_2 \rangle
+		\end{equation}
+	In matrix language this means that we have (complex) matrices satisfying
+		\begin{align}
+		\{\G_m, \G_n\} = 2\eta_{mn} 1 \\
+		(\G_m)^\dagger A = \pm A \G_m \label{hermiticity}
+		\end{align}
+	where $A$ is the hermitian matrix corresponding to $\langle\cdot,\cdot\rangle$.
+	\end{df}
+Elements of the representation space are commonly known as {\it Dirac spinors} and the inner product is used to define the {\it Dirac conjugate}
+	\begin{equation}
+	\bar\psi_\b = (\psi^\a)^* A_{\a\b}\qquad\text{equivalently}\qquad \bar\psi = \psi^\dagger A
+	\end{equation}
+
+To show that there is always a Dirac representation in an arbitrary dimension and signature goes as follows. We start with the usual construction of gamma matrices for the complexified Clifford algebra i.e. $C\ell (s,t)_\C \cong C\ell (s+t, \C)$ and  define a set of creation and annihilation operators. For $d = s+t$ in case even or odd define the integer $k$ as $d=2k$ or $d=2k+1$, then
+	\begin{equation}
+	b^\pm_i = \frac{1}{\sqrt2} (\g_i \pm i \g_{i+k})\ ;\quad i=1,\ldots, k
+	\end{equation}
+and it easy to verify that they satisfy the expected anticommutation relations
+	\begin{equation}
+	\{b^+_i, b^-_j\} = \d_{ij}\qquad\{b^\pm_i, b^\pm_j\} = 0
+	\end{equation}
+With this algebra of operators we can construct the usual state space (Fock space) of linear combinations of basis vectors
+	\begin{equation}
+	|\pm\pm\ldots\pm\rangle\quad \longrightarrow\quad 2^k\ \text{states}
+	\end{equation}
+together with the natural hermitian inner product that make them orthonormal and hermiticity properties
+	\begin{equation}
+	(b^+_i)^\dagger = b^-_i \qquad (b^-_i)^\dagger = b^+_i
+	\end{equation}
+Because of the way we construct the state space, all corresponding matrices to $b^\pm_i$ are real which implies that all gamma matrices are hermitian
+	\begin{equation}
+		\begin{aligned}
+		\g_i & = \frac{1}{\sqrt2} (b^+_i + b^-_i) \\
+		\g_{i+k} & = \frac{1}{i\sqrt2} (b^+_i - b^-_i) \\
+		\g_{2k+1} & = \a \g_1\ldots \g_{2k}\ (d\ \text{odd case})
+		\end{aligned}
+	\Longrightarrow\quad (\g_m)^\dagger = \g_m
+	\end{equation}
+Finally, we can multiply by the complex number $i$ any gamma matrix to change its hermiticity properties and squared value. Thus we end up with
+	\begin{equation}
+	\{\G_m, \G_n\} = 2 \eta_{mn}1 \qquad\text{and}\qquad
+		\begin{aligned}
+		(\G_m)^\dagger & = -\G_m\ ,\quad m=1,\ldots, t\\
+		(\G_m)^\dagger & = \G_m\ ,\quad m=t+1,\ldots,t+s
+		\end{aligned}
+	\end{equation}
+and for the hermitian inner product $\langle\cdot,\cdot\rangle$ it is common to choose
+	\begin{equation}
+	A = \b\G_1\ldots\G_t
+	\end{equation}
+where $\b$ is fixed by asking hermiticity of $A$. It is important to clarify that these matrices are not unique since we can make a transformation %changing the spinor basis e_\a -> U^\b_\a e_\b 
+	\begin{equation}
+	\G_m \longrightarrow U \G_m U^{-1} \qquad (U\ \text{unitary matrix})
+	\end{equation}
+and they will have the same exact properties.
+
+
+\subsection{Chirality and reality conditions}
+Using the gamma matrices we can define the so-called chirality operator
+	\begin{equation}
+	\G = \a\G_1\ldots\G_{2k}
+	\end{equation}
+We can see that in $d$ odd case, the chirality operator coincides with $\G_{2k+1}$. This operator has the following properties
+	\begin{align}
+	\G^2 & = 1 \\
+	\{\G,\G_m\} & = 0\qquad m=1,\ldots,2k
+	\end{align}
+Then $\G$ is a projector with eigenvalues $\pm 1$ which allows us to define Weyl and anti-Weyl spinors as
+	\begin{equation}
+		\begin{aligned}
+		\G \psi & = + \psi \qquad (\text{Weyl}) \\
+		\G \psi & = - \psi \qquad (\text{anti-Weyl})
+		\end{aligned}
+	\end{equation}
+Despite the fact that $\G$ always exists, the Weyl and anti-Weyl eigenspaces are only $Spin(t,s)$-invariant for even dimensions. That is, under any Lorentz transformation a Weyl (anti-Weyl) spinor will remain a Weyl (anti-Weyl) spinor
+	\begin{equation}
+	[\G, \G_{mn}] = 0\qquad (Spin(t,s)-\text{invariance})
+	\end{equation}
+For $d$ odd however, take the Lorentz generator $\G_{m (2k+1)}$, and we will have $\G \G_{m (2k+1)} = -\G_{m (2k+1)} \G$. Therefore, the Dirac representation of $C\ell(t,s)$ can only be reduced with the projector $\G$ for $d=t+s$ even dimensional case.
+
+	\begin{df}
+	A real (quaternionic resp.) structure on a complex vector field is a conjugate-linear mapping ${\mathcal J}(c\psi) = c^* {\mathcal J}(\psi)$ that satisfies the condition ${\mathcal J}^2 = 1$ (${\mathcal J}^2 = -1$ resp.). Furthermore, we say that it is $Spin(t,s)$-invariant if it commutes with any Lorentz transformation ${\mathcal J}(\L \psi) = \L ({\mathcal J}\psi)$.
+	\end{df}
+A result we won't prove here is the fact that the existence of a real (quaternionic resp.) structure is directly related to the existence of a symmetric (antisymmetric resp.) complex-bilinear form
+	\begin{equation}
+		\begin{aligned}
+		C(\psi_1,\psi_2) & = \pm C(\psi_2,\psi_1) \\
+		C(\G_m \psi_1, \psi_2) & = (\#)\ C(\psi_1, \G_m\psi_2)
+		\end{aligned}
+	\quad \Leftrightarrow \quad
+		\begin{aligned}
+		{\mathcal J}^2 & = \pm 1 \\
+		Spin(t,s)&\text{-invariance}
+		\end{aligned}
+	\end{equation}
+in matrix form these conditions are
+	\begin{equation}
+		\begin{aligned}
+		C^{tr} & = \pm C \\
+		(\G_m)^{tr} C & = (\#)\ C \G_m
+		\end{aligned}
+	\end{equation}
+Independently of the chosen sign $(\#)$ we will have $Spin(t,s)$-invariance.
+
+The fact that there is only one inequivalent irreducible representation of the Clifford algebra implies that the algebras generated by $\pm(\G_m)^*$ are both related to our original construction which means
+	\begin{equation}
+	\pm(\G_m)^* = B_{\pm} \G_m B_{\pm}^{-1}
+	\end{equation}
+that means that using (\ref{hermiticity}) and the previous equation we can construct a couple of matrices $C_{\pm}$ in terms of $B_{\pm}$ and $A$.
+
+In QFT textbooks is common to define the charge conjugation $\psi^c$  and express the Majorana condition as
+	\begin{equation}
+	\psi^c = \bar\psi\qquad\text{equivalently}\qquad\psi^{tr} C = \psi^\dagger A
+	\end{equation}
+
+
+\subsection{Conventions for $SO(1,9)$ spinors}
+In the ten dimensional case with signature $1+9$ we can impose both chiral and Majorana conditions. Then there exist real gamma matrices that can all be put in off-diagonal form. Here we give such representation
+	\begin{equation}
+	\G_m = \left(
+		\begin{array}{cc}
+		0 & (\g_m)^{\a\b} \\
+		(\g_m)_{\a\b} & 0
+		\end{array}
+	\right)\ ;\qquad
+		\begin{aligned}
+		m=0,1,\ldots,9 \\
+		\a,\b = 1,\ldots,16
+		\end{aligned}
+	\end{equation}
+where the $(\g_m)^{\a\b}$, $(\g_m)_{\a\b}$ matrices are constructed in terms of real $SO(8)$ gamma matrices. With these conventions, the chirality operator becomes
+	\begin{equation}
+	\G = \G^0 \G^1 \ldots \G^9 = \left(
+		\begin{array}{cc}
+		I_{16} & 0 \\
+		0 & -I_{16}
+		\end{array}
+	\right)
+	\end{equation}
+while the charge conjugation matrix
+	\begin{equation}
+	C = \left(
+		\begin{array}{cc}
+		0 & c_\a{}^\b \\
+		c^\a{}_\b & 0
+		\end{array}
+	\right) = \left(
+		\begin{array}{cc}
+		0 & I_{16} \\
+		-I_{16} & 0
+		\end{array}
+	\right)
+	\end{equation}
+
+Finally, we know that supersymmetry charges organize themselves in multiplets of spinor representations. It follows some conventions
+	\begin{itemize}
+	\item $\mc N=1$ $d=(10+1)$ $Q_{\a=1,\ldots,32}$ Majorana
+	\item $\mc N=(2,0)$ $d=(9+1)$ $Q^{i=1,2}_{\a = 1,\ldots,16}$ Majorana-Weyl same chirality
+	\item $\mc N=(1,1)$ $d=(9+1)$ $Q_{\a=1,\ldots,16}$ $Q^{\a= 1,\ldots,16}$ Majorana-Weyl opposite chirality
+	\item $\mc N=8$ $d=(3+1)$ $Q^{i=1,\ldots,8}_{\a=1,2}$ $\bar Q^{j=1,\ldots,8}_{\dot\b=1,2}$ Weyl and anti-Weyl
+	\end{itemize}
+
+
+
+\section{On Differential (Super)Forms}
+Let $F$ be a $k$-form and $F_{\m_1\ldots\m_k}$ its coefficients i.e.
+	\begin{equation}
+	F = \sum_{\m_1<\ldots<\m_k} F_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}
+	\end{equation}
+We would like to make a connection with its form
+	\begin{equation}
+	F = \frac{1}{k!} F_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}
+	\end{equation}
+It is important to clarify even further what the coefficients of a form are. Suppose we define some $k$-form using an arbitrary collection of numbers $C_{\m_1\ldots\m_k}$ only defined for $\m_1<\ldots<\m_k$
+	\begin{equation}
+	F := \sum_{\m_1<\ldots<\m_k} C_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}
+	\end{equation}
+then we can reexpress this sum as
+	\begin{align}
+	F & = \frac{1}{k!}\left( k! \sum_{\m_1<\ldots<\m_k} C_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}\right) \nonumber \\
+	& = \frac{1}{k!}\left( \sum_{\s\in S_k} \sum_{\m_{\s_1}<\ldots<\m_{\s_k}} C_{\m_{\s_1}\ldots\m_{\s_k}} dx^{\m_{\s_1}} \we\ldots\we dx^{\m_{\s_k}}\right) \nonumber \\
+	& = \frac{1}{k!}\left(\sum_{\s\in S_k} \sum_{\m_{\s_1}<\ldots<\m_{\s_k}} (-1)^{\s} C_{\m_{\s_1}\ldots\m_{\s_k}} dx^{\m_1} \we\ldots\we dx^{\m_k}\right)
+	\end{align}
+then, if we define $F_{\m_1\ldots\m_k} := (-1)^\s C_{\m_{\s_1}\ldots\m_{\s_k}}$ for $\m_{\s_1}<\ldots <\m_{\s_k}$
+	\begin{align}
+	F & = \frac{1}{k!}\left(\sum_{\s\in S_k} \sum_{\m_{\s_1}<\ldots<\m_{\s_k}} F_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k} \right) \nonumber \\
+	& = \frac{1}{k!} F_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}
+	\end{align}
+
+We can reason in the opposite direction. Let's say we have the expression
+	\begin{align}
+	F & = C_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k} \nonumber \\
+	& = \sum_{\s\in S_k} \left( \sum_{\m_{\s_1}<\ldots<\m_{\s_k}} C_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k} \right) \nonumber \\
+	& = \sum_{\s\in S_k} \left( \sum_{\m_1<\ldots<\m_k} C_{\m_{\s\mo_1}\ldots\m_{\s\mo_k}} dx^{\m_{\s\mo_1}} \we\ldots\we dx^{\m_{\s\mo_k}} \right) \nonumber \\
+	& = \sum_{\s\in S_k} \left( \sum_{\m_1<\ldots<\m_k} (-1)^{\s\mo} C_{\m_{\s\mo_1}\ldots\m_{\s\mo_k}} dx^{\m_1} \we\ldots\we dx^{\m_k} \right) \nonumber \\
+	& = \sum_{\m_1<\ldots<\m_k} \left[\sum_{\s\in S_k}(-1)^{\s\mo} C_{\m_{\s\mo_1}\ldots\m_{\s\mo_k}} \right] dx^{\m_1} \we\ldots\we dx^{\m_k} \nonumber \\
+	& = \sum_{\m_1<\ldots<\m_k} k! (\A C)_{\m_1\ldots\m_k} dx^{\m_1} \we\ldots\we dx^{\m_k}
+	\end{align}
+
+Be $F$ a $k$-form, then it's easy to show that
+	\begin{align}
+	(dF)_{\m_0\m_1\ldots\m_k} & = \frac{1}{k!}\left( \sum_{\s\in S_{k+1}} (-1)^\s \p_{\m_{\s_0}}F_{\m_{\s_1}\ldots \m_{\s_k}} \right) \nonumber \\
+	& = \frac{1}{k!}\left( \sum_{\s\in S_{k+1}^{(1)}} (-1)^\s \p_{\m_{\s_0}}F_{\m_{\s_1}\ldots \m_{\s_k}} + \ldots +\right. \nonumber \\
+	& \quad \left. + \sum_{\s\in S_{k+1}^{(k+1)}} (-1)^\s \p_{\m_{\s_{k}}}F_{\m_{\s_0}\ldots \m_{\s_{k-1}}} \right) \nonumber \\
+	& = \frac{1}{k!}\left( \sum_{\s\in S_{k+1}^{(1)}} (-1)^\s \p_{\m_0}F_{\m_{\s_1}\ldots \m_{\s_k}} + \ldots +\right. \nonumber \\
+	& \quad \left. + \sum_{\s\in S_{k+1}^{(k+1)}} (-1)^\s \p_{\m_{k}}F_{\m_{\s_0}\ldots \m_{\s_{k-1}}} \right) \nonumber \\
+	& = \frac{1}{k!}\left( k! \p_{\m_0}F_{\m_1\ldots\m_k} + \ldots + k! \p_{\m_k}F_{\m_0\ldots\m_{k-1}}\right) \nonumber \\
+	& = \p_{\m_0}F_{\m_1\ldots\m_k} + \ldots + \p_{\m_k}F_{\m_0\ldots\m_{k-1}}
+	\end{align}
+
+Now we introduce the conventions for dealing with superforms. Usually coordinates in superspace $Z^M$ are divided into even and odd ones with their grading denoted by $|M|$, such that
+	\begin{equation}
+	Z^M Z^N = (-1)^{|M||N|} Z^N Z^M
+	\end{equation}
+and also, exterior products of these coordinates have the properties
+	\begin{equation}
+	dZ^M \we dZ^N = - (-1)^{|M||N|} dZ^N \we dZ^M
+	\end{equation}
+Since we are interested in working with even superforms, $p$-forms like
+	\begin{equation}
+	W = dZ^{M_1} \we \ldots \we dZ^{M_p} W_{M_p\ldots M_1}
+	\end{equation}
+should hold the condition $|M_1|+ \ldots + |M_p| + |W_{M_p\ldots M_1}| = \bar 0 $. This conditions has the advantage of reproducing the usual commutativity relations of the exterior product, depending only on the form grading and not on the $\Z_2$-grading (super)
+	\begin{equation}
+	W_{p} \we W_{q} = (-1)^{pq} W_{q}\we W_{p}
+	\end{equation}
+Also, the exterior derivative is defined to act as
+	\begin{equation}
+	d W = dZ^{M_1}\we\ldots \we dZ^{M_p}\we dZ^{N} \p_N  W_{M_p\ldots M_1}
+	\end{equation}
+notice how the exterior derivative doesn't change the $\Z_2$-grading.
+
+
+
+\section{Extras}
+
+\subsection{Derivation of (\ref{var_current})}
+Now, we present a derivation of equation (\ref{var_current}). Given the action $S[\phi]$, we can add terms corresponding to total derivatives without modifying the functional nor the EOM
+	\begin{equation}
+	S[\phi]=S[\phi]+\int\p_a\left(f^a(\phi,\p\phi)\right)=S[\phi]+\int\left[\frac{\p f^a}{\p\phi}\p_a\phi+\frac{\p f^a}{\p\p_b\phi}\p_a\p_b \phi\right]
+	\end{equation}
+Then, to compute the variation of the action with the added term, we only need to compute the variation of this extra integral. Instead of going
+	\begin{align}
+	\d \left[\int\p_a(f^a) \right] & = \int\d\left[\frac{\p f^a}{\p\phi} \p_a\phi + \frac{\p f^a}{\p\p_b\phi} \p_a\p_b \phi\right] \nonumber \\
+	& = \int\left[\delta\left(\frac{\p f^a}{\p\phi}\right)\p_a\phi + \frac{\p f^a}{\p\phi}\delta(\p_a\phi)\right. \nonumber \\ 
+	& \qquad\quad \left. + \delta\left(\frac{\p f^a}{\p(\p_b\phi)}\right)\p_b\p_a\phi + \frac{\p f^a}{\p(\p_b\phi)}\delta(\p_b\p_a\phi) \right] \nonumber \\
+	& = \int\left[ \frac{\p^2 f^a}{\p\phi^j\p\phi}(\d\phi^j)\p_a\phi+\frac{\p^2 f^a}{\p(\p_b\phi^j)\p\phi}\p_b(\d\phi^j)\p_a\phi +\frac{\p f^a}{\p\phi}\p_a(\delta \phi) \right. \nonumber \\
+	& \qquad \left.+\frac{\p^2f^a}{\p\phi^j\p(\p_b\phi)}(\d\phi^j)\p_b\p_a\phi+ \frac{\p^2f^a}{\p(\p_c\phi^j)\p\p_b\phi}(\p_c\d\phi^j) \p_b\p_a \phi + \right. \nonumber \\
+	& \qquad \left. + \frac{\p f^a}{\p\p_b\phi}\p_b\p_a(\d\phi) \right] \nonumber \\
+	& = \int\left[\p_a\left(\frac{\p f^a}{\p\phi}\d\phi\right) + \p_a\left(\frac{\p f^a}{\p(\p_b\phi)} \p_b(\d\phi) \right) \right] \nonumber \\
+	& = \int\p_a(\d f^a(\phi,\p\phi))
+	\end{align}
+%How to prove conservation of this current? Vary the action and realize that the extra term is a total derivative, thus it only modifies the current which is again conserved on-shell. Use some simple example, let say a  complex scalar field with U(1) symmetry where the $f^a=\p^a\phi$. It can be shown explicitly that the modified current is again conserved.
+
+
+\subsection{Conventions for the worldsheet}
+It is clear that the integral in the action is not dependent on the charts of the manifolds that we use to parametrize them. However, it is useful to have at hand some conventions for the most frequent parametrizations. Now as a matter of setting some of these notation and conventions, we will describe the change of tensors when we go from any arbitrary charts of coordinates $\s^a$ to light-cone or holomorphic ones.
+
+If we had consider $(\Sigma,h)$ as a two-dimensional pseudo-Riemannian manifold of signature $(-,+)$, we can express the metric tensor $h_{ab}$ as locally a flat Minkowski space i.e. $h_{ab} = \eta_{ab}$ in some chart with coordinates $(\s^0, \s^1)$. Here we can define new coordinates by the transformation
+	\begin{equation}
+		\begin{array}{l}
+			\s^+ = \s^0 + \s^1 \\
+			\s^- = \s^0 - \s^1
+		\end{array}
+		\quad\text{equivalently}\quad
+		\begin{array}{l}
+			\s^0 = \frac{1}{2}(\s^+ + \s^-) \\
+			\s^1 = \frac{1}{2}(\s^+ - \s^-)
+		\end{array}
+	\end{equation}
+called light-cone coordinates. For example, the metric tensor $h_{ab} = \eta_{ab}$ takes the form
+	\begin{equation}
+	[\wt{\eta}_{ab}] = -\frac{1}{2}\left(\begin{array}{ll}0&1\\1&0\end{array}\right)\qquad
+	[\wt{\eta}^{ab}] = -2 \left(\begin{array}{ll}0&1\\1&0\end{array}\right)
+	\end{equation}
+also for the Levi-Civita symbol $\e^{ab}$ ($\epsilon^{01} = 1$)
+	\begin{equation}
+	[\wt\epsilon^{ab}] = 2 \left(
+		\begin{array}{cc}
+		0 & -1 \\
+		1 & 0
+		\end{array}
+	\right)
+	\end{equation}
+where the lower-index Levi-Civita symbol was defined as $\e_{ab} := \eta_{a\a}\eta_{b\b} \e^{\a\b}$.
+%[\wt\epsilon_{ab}]=\frac{1}{2}\left(\begin{array}{cc}0&-1\\1&0\end{array}\right)
+
+In the same fashion, for $(\Sigma,\gamma)$ a two-dimensional Riemannian manifold (i.e. signature $(+,+)$), we can express the metric as locally flat $h_{ab} = \d_{ab}$ with coordinates $(\s^1, \s^2)$; plus, we define {\it holomorphic coordinates}%
+%\footnote{We are following the conventions of Polchinski's book}
+	\begin{equation}
+	\begin{array}{l}
+		z      = \s^1 + i\s^2 \\
+		\bar z = \s^1 - i\s^2
+	\end{array}
+	\quad\text{equivalently}\quad	
+	\begin{array}{l}
+	 	\s^1 = \frac{1}{2}(z + \bar z) \\
+	 	\s^2 = \frac{1}{2i}(z - \bar z)
+	\end{array} 
+	\end{equation}
+where the metric tensor $h_{ab} = \d_{ab}$ and the Levi-Civita symbol $\e^{ab}$ ($\e^{12} = 1$) become
+	\begin{equation}
+	[\wt\d_{ab}] = \frac{1}{2} \left(
+		\begin{array}{cc}
+		0 & 1 \\
+		1 & 0
+		\end{array}
+	\right)\ ,\quad [\wt\e^{ab}] = \left(
+		\begin{array}{cc}
+		0 & -2i \\
+		2i & 0
+		\end{array}
+	\right)
+	\end{equation}
+
+We can think of both coordinates as related by a Wick rotation $\s^2=i\s^0$ which identifies left-moving function with holomorphic ones and right-moving functions with anti-holomorphic ones%
+\footnote{What defines left-moving or right-moving functions is the relative sign of $\s^0$ and $\s^1$.}
+	\begin{align}
+	F(\s^-) = F(\s^0 - \s^1)\quad & \sim\quad F(-z) \\
+	F(\s^+) = F(\s^0 + \s^1)\quad & \sim\quad F(\bar z)
+	\end{align}
+
+As a side note, there are some identities to remember when dealing with variations of tensors. The first one says that the determinant of a $2\times 2$ matrix is
+	\begin{equation}
+	h := \det[h] = \frac{1}{2} \e^{\a\b}\e^{ab} h_{a\a} h_{b\b}
+	\end{equation}
+which help us in deducing
+	\begin{equation}
+	\d h = h h^{ab}\d h_{ab} \qquad \d h^{ab} = -h^{ac} h^{bd} \d h_{cd} \qquad h^{ab}\d h_{ab} = - h_{cd} \d h^{cd}
+	\end{equation}
+% use (...)\e_{\a\b} = \e^{ab} h_{a\a} h_{b\b}, vary h h^{-1} = 1, vary h^{ab} h_{bc} = \d^a_{\ c}, in 2d cofactor \e^{a\a} \e^{b\b} h_{\a\b}
+independently of the signature%
+\footnote{Remember that in any case, $\e_{ab}$ is defined such that $ \e^{ab}\e_{bc} = \d^a_{\ c} $.}. Furthermore, we have the following numeric identities that can be used according the situation i.e. Minkowski or Euclidean space
+	\begin{align}
+	\e^{\a\b}\e^{ab} & = \d^{\a a} \d^{\b b} - \d^{\a b} \d^{\b a} \\
+	\e^{\a\b}\e^{ab} & = \eta^{\a b}\eta^{\b a} - \eta^{\a a}\eta^{\b b}
+	\end{align}
+
+\newpage
+
+\bibliographystyle{myunsrt}
+\addcontentsline{toc}{section}{References}
+
+\bibliography{../biblio.bib}
+
+
+\end{document}

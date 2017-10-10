@@ -1,0 +1,2928 @@
+\documentclass[a4paper,12pt]{article}
+
+%Packages
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[bookmarks=false,colorlinks=true,linkcolor=blue,citecolor=blue,linktocpage=true,urlcolor=blue]{hyperref}
+
+%Environments and numering
+\newtheorem{exe}{Exercise}
+\numberwithin{equation}{section}
+\numberwithin{exe}{section}
+
+%Operators and others
+\newcommand{\ph}[1]{\phantom{#1}}
+\newcommand{\Z}{{\mathbb Z}}
+\renewcommand{\dag}{{\dagger}}
+\newcommand{\X}{{\mathbb X}}
+\newcommand{\lag}{{\mathcal L}}
+\newcommand{\p}{{\partial}}
+\newcommand{\Qb}{{\bar Q}}
+\newcommand{\Db}{{\bar D}}
+\newcommand{\Dc}{{\mathcal D}}
+\newcommand{\Dcb}{{\bar{\mathcal D}}}
+\newcommand{\yb}{{\bar y}}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Fb}{{\bar F}}
+\newcommand{\Ft}{{\tilde F}}
+\newcommand{\vac}{{\left|\Omega\right>}}
+\newcommand{\Wb}{{\bar W}}
+\newcommand{\Vt}{{\tilde V}}
+\newcommand{\at}{{\tilde a}}
+\newcommand{\At}{{\tilde A}}
+\newcommand{\iu}{{\underline i}}
+\newcommand{\ju}{{\underline j}}
+\newcommand{\ku}{{\underline k}}
+\newcommand{\lu}{{\underline l}}
+\renewcommand{\u}[1]{{\underline #1}}
+\newcommand{\xd}{{\dot x}}
+\newcommand{\N}{{\nabla}}
+
+%Greek letters
+\renewcommand{\a}{{\alpha}}
+\newcommand{\ad}{{\dot\alpha}}
+\renewcommand{\b}{{\beta}}
+\newcommand{\bd}{{\dot\beta}}
+\newcommand{\g}{{\gamma}}
+\newcommand{\G}{{\Gamma}}
+\renewcommand{\d}{{\delta}}
+\newcommand{\dd}{{\dot\delta}}
+\newcommand{\e}{{\epsilon}}
+\newcommand{\eb}{{\bar\epsilon}}
+\newcommand{\ve}{{\varepsilon}}
+\renewcommand{\k}{{\kappa}}
+\renewcommand{\l}{{\lambda}}
+\newcommand{\lb}{{\bar\lambda}}
+\renewcommand{\L}{{\Lambda}}
+\newcommand{\Lb}{{\bar\Lambda}}
+\newcommand{\Lt}{{\tilde\Lambda}}
+\newcommand{\m}{{\mu}}
+\newcommand{\om}{\omega}
+\newcommand{\omt}{{\tilde\omega}}
+\newcommand{\s}{{\sigma}}
+\renewcommand{\S}{{\Sigma}}
+\newcommand{\Sb}{{\bar\Sigma}}
+\renewcommand{\sb}{{\bar\sigma}}
+\renewcommand{\t}{{\theta}}
+\newcommand{\tb}{{\bar\theta}}
+\newcommand{\vphi}{{\varphi}}
+\newcommand{\vphib}{{\bar\varphi}}
+\newcommand{\xib}{{\bar\xi}}
+\newcommand{\chib}{{\bar\chi}}
+\newcommand{\taub}{{\bar\tau}}
+\newcommand{\Phib}{{\bar \Phi}}
+\newcommand{\Phit}{{\tilde\Phi}}
+\newcommand{\psib}{{\bar\psi}}
+
+%Ignacio's definitions
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+
+
+\title{\Huge Introduction to Supersymmetry
+\bigskip}
+
+\author{Nathan Berkovits$^1$ \and Ignacio Reyes$^2$ \and Dennis Zavaleta$^3$ }
+
+\date{\bigskip
+$^1$ \emph{ICTP South American Institute for Fundamental Research} \\%
+$^{1,3}$ \emph{Instituto de F\'\i sica Te\'orica, UNESP,} \\%
+\emph{Rua Dr. Bento T. Ferraz 271, 01140-070, Sao Paulo, SP, Brasil} \\%
+$^2$ \emph{ Institut f\"ur Theoretische Physik und Astrophysik, Julius-Maximilians-Universit\"at W\"urzburg, Am Hubland, 97074, Germany} \\%
+$^2$ \emph{Instituto de F\'\i sica, Pontificia Universidad Cat\'olica de Chile, Casilla 306, Santiago, Chile} \\[1 \baselineskip]%
+Email: \href{mailto:nberkovi@ift.unesp.br}{\tt nberkovi@ift.unesp.br}, \href{mailto:iareyes@uc.cl}{\tt iareyes@uc.cl}, \href{dezavaleta@ift.unesp.br}{\tt dezavaleta@ift.unesp.br}\\[2\baselineskip] %
+\today
+}
+
+
+\begin{document}
+\maketitle
+
+\noindent These notes are based on a (semi-regular) course on Supersymmetry given by Nathan Berkovits at {\it Instituto de F\'\i sica Te\'orica UNESP (Brazil)} and also on a lecture series that was part of the {\it 2015 ICTP Latin-American String School (CINVESTAV Mexico City)}. Please inform the authors of any typos or mistakes.
+
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{What is supersymmetry?}
+We will understand supersymmetry as a consistent and non-trivial extension of the Poincar\'e symmetry. The rationale goes as follows, we start with systems with symmetries that realize the Lorentz algebra
+	\begin{equation}
+	[M^{mn}, M^{pq}] = \eta^{mp}M^{nq} - \eta^{mq} M^{np} + \eta^{nq} M^{mp} - \eta^{np} M^{mq}
+	\end{equation}
+where $M^{0i}$ are boots and $M^{ij}$ rotations ($i,j=1,\ldots (D-1)$). Then, when we add translations $P_m$, we end up with the Poincar\'e algebra
+	\begin{equation}
+	[P_m, P_n] = 0\ ,\quad [P_m, M^{np}] = \d^n_m P^p - \d^p_m P^n
+	\end{equation}
+The defining property of relativistic systems is that they possess this algebra of symmetries.
+
+Nonetheless, we can make a further generalization introducing generators $Q_\a$ (SUSY generators)
+	\begin{equation}
+	[Q_\a, P_m] = 0\ ,\quad \{Q_\a, Q_\b\} = \g^m_{\a\b} P_m\ ,\quad [Q_\a, M^{mn}] = (\g^{mn})_\a^{\ \b} Q_\b
+	\end{equation}
+where $\{,\}$ denotes the anticommutator. In the same way that by looking at the commutation relations of $P_m$ and $M^{np}$ we would call $P_m$ a vector, we now say that $Q_\a$ is a spinor. Actually this is the only consistent and non-trivial generalization of the Poincar\'e algebra.
+
+Another feature of the SUSY generators is that they are fermionic (Spin-statistics theorem) which means that SUSY interchanges bosons and fermions. We could ask if any fermionic symmetry could be called supersymmetry. The answer is NO. As counter-examples we have BRST symmetry ($\{Q,Q\}= 0$) and some nuclear symmetries ($\{Q_\a, Q_\b\}= F_{\a\b}$ internal symmetries).
+
+\subsection{Why study supersymmetry?}
+
+	\begin{enumerate}
+	\item[A] Phenomenological reasons:
+		\begin{enumerate}
+		\item[1.] Supersymmetric systems have less divergences.
+		
+		a.) The Higgs particle mass.
+			\begin{figure}[h]
+			\centering
+			\includegraphics{fig1.pdf}
+			\caption{Loop correction to the Higgs mass}
+			\end{figure}
+		
+		In perturbation theory, the Higgs mass acquires quadratic divergences $g^2 \int d^4p(1/p^2)$. A cut-off $\L$ is needed, and under renormalisation, $m^2_H\rightarrow m^2_H + g^2\L^2$ ($\L_{Planck} = 10^{19}$GeV). Why is then $m_H$  ``small"? SUSY implies the cancellation of quadratic divergences to $m_H$ (see figure 2) since the fermionic ``Higgsino'' mass only has logarithmic divergences. 
+			\begin{figure}[ht]
+			\centering
+			\includegraphics{fig2.pdf}
+			\caption{Cancellation of divergences}
+			\end{figure}
+
+		If SUSY is broken at scale $\L_{SUSY}$, then $m^2_H\rightarrow m^2_H + g^2 \L^2_{SUSY}$.
+		
+		b.) The cosmological constant problem: the Einstein-Hilbert action with cosmological constant $\lambda$ is 
+		$$ S = \int d^4x\ \sqrt{g}(R + \l)$$
+		Why do observations reveal such a small value, $\l\approx 0$ ($\l<10^{-60}$ MeV), if the vacuum energy predicted from QFT scales with the UV cutoff $\Lambda$? In SUYS, 			the answer is that the ground state energy vanishes due to the fermionic contributions,
+		$$Q_\a\left|0\right>=0\quad\Rightarrow\quad\left<0\right|P_0\left|0\right> \sim \left<0\right| \gamma_0^{\a\b}Q_\a Q_\b \left|0\right>=0$$
+		\item[2.] Unification of the coupling constants. Standard Model (SM) vs  Minimal supersymmetric standard model (MSSM). (See figure 3)
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics{fig3.pdf}
+			\caption{Running of gauge coupling in the SM and the MSSM}
+			\end{figure}
+		\end{enumerate}
+		
+	\item[B] Formal reasons:
+		\begin{enumerate}
+		\item[1.] Consistency.
+		Unification of quantum mechanics with gravity seems to require SUSY (via superstring theory) to be free of divergences.
+		SUSY is the only way to generalize the Poincar\'e symmetry without introducing inconsistencies (Coleman \& Mandula%
+		\footnote{ {\it All Possible Symmetries of the S Matrix}, S. Coleman and J. Mandula, Phys. Rev. 159, 1251 (1967)}%
+		, Haag, Lopuszanski \& Sohnius%
+		\footnote{ {\it All Possible Generators of Supersymmetries of the S-Matrix}, R. Haag, J. Lopuszanski and M. Sohnius, Nuclear Physics B88 (1975) 257 }%
+		).
+		\item[2.] SUSY describes systems with interesting physical properties, e.g.
+		Particle with spin ($D=1$), Superstring ($D=2$), Electromagnetic duality ($\mathcal N=2$ SYM).
+		\item[3.] Applications for mathematicians, e.g.
+		Index theorems, topological systems.
+		\end{enumerate}
+	\end{enumerate}
+
+\subsection{Notation and conventions (Wess-Bagger)}
+Minkowski metric $\eta_{mn}$
+	\begin{equation}
+	[\eta_{mn}] = \left(
+		\begin{array}{cccc}
+		-1 & & & \\
+		& 1 & & \\
+		& & 1 & \\
+		& & & 1 
+		\end{array}
+	\right)
+	\end{equation}
+Pauli matrices $\s^m_{\a\bd}$
+	\begin{equation}
+		\begin{aligned}
+		\s^0 = \left(
+			\begin{array}{cc}
+			-1 & 0 \\
+			0 & -1
+			\end{array}
+		\right)\ ,&\quad \s^1=\left(
+			\begin{array}{cc}
+			0 & 1 \\
+			1 & 0
+			\end{array}
+		\right) \\
+		\s^2 = \left(
+			\begin{array}{cc}
+			0 & -i \\
+			i & 0
+			\end{array}
+		\right)\ ,&\quad\s^3 = \left(
+			\begin{array}{cc}
+			1 & 0 \\
+			0 & -1
+			\end{array}
+		\right)
+		\end{aligned}
+	\end{equation}
+Isomorphism between Minkowski space and 2-by-2 hermitian matrices
+	\begin{equation}
+	P_m \longrightarrow [P_{\a\bd}] = P_m [\s^m_{\a\bd}] = \left(
+		\begin{array}{cc}
+		P_3 - P_0 & P_1 - iP_2 \\
+		P_1 + iP_2 & -P_3 - P_0
+		\end{array}
+	\right)
+	\end{equation}
+with property $\det[P_{\a\ad}]= -P^mP_m$. Our convention for the epsilon tensors $\e_{\a\b}$ are
+	\begin{equation}
+	\e_{12} = -\e_{21} = -1\ ,\quad \e^{12} = - \e^{21} = 1\ ,\quad \e_{11} = \e_{22}=\e^{11}=\e^{22} = 0
+	\end{equation}
+and exactly the same for $\e_{\ad\bd}$.
+
+It is useful to define
+	\begin{equation}
+	\sb^{m\bd\a} = \e^{\a\g}\e^{\bd\dot{\rho}}\s^m_{\g\dot{\rho}}
+	\end{equation}
+thus, $\sb^0 = \s^0$, $\sb^i = -\s^i$.
+
+Some properties of these matrices are
+	\begin{equation}
+		\begin{aligned}
+		\text{Tr}\ \s^m \sb^n = -2\eta^{mn}\ &,\quad \s^m_{\a\ad} \sb_m^{\bd\b} = -2\d^\b_\a \d^\bd_\ad \\
+		(\s^{(m}\sb^{n)})_\a^{\ \b} = -2\eta^{mn} \d^\b_\a\ &,\quad (\sb^{(m}\s^{n)})^{\ad}_{\ \bd} = -2\eta^{mn} \d^\bd_\ad
+		\end{aligned}
+	\end{equation}
+The generators of Lorentz transformations for spinors are defined as
+	\begin{align}
+	(\s^{mn})_\a^{\ \b} & = \frac14 (\s^{m}_{\a\ad} \sb^{n\ad\b} - \s^{n}_{\a\ad} \sb^{m \ad\b})\\
+	(\sb^{mn})^\ad_{\ \bd} & = \frac14 (\sb^{m\ad\a} \s^{n}_{\a\bd} - \sb^{n\ad\a} \s^m_{\a\bd})
+	\end{align}
+In general, for any element $M^{mn}$ of the algebra of $SO(3,1)$, the Lorentz transformations are
+	\begin{equation}
+	M_\a^{\ \b} = M^{mn}(\s_{mn})_\a^{\ \b}\ ,\quad M^\ad_{\ \bd} = M^{mn} (\sb_{mn})^\ad_{\ \bd}
+	\end{equation}
+and transforms vectors and spinors in the following way
+	\begin{align}
+	\d P_m & = M_{mn} P^n\qquad \text{Vectors} \\
+	\d \psi_\a & = M_\a^{\ \b} \psi_\b\qquad \text{Weyl spinor} \\
+	\d \psib_\ad & = M^\bd_{\ \ad} \psib_\bd\qquad \text{anti-Weyl spinor}
+	\end{align}
+where $M_{mn} = - M_{nm}$. Furthermore, the Weyl and anti-Weyl spinors are related by $(\psi_\a)^* = \psib_\ad$.
+
+We raise and lower indices as follows
+	\begin{equation}
+	\psi^\a = \e^{\a\b} \psi_\b\ ,\quad \psib^\ad = \e^{\ad\bd} \psib_\bd
+	\end{equation}
+Also, contractions are always done as
+	\begin{equation}
+	\psi\chi := \psi^\a \chi_\a\ ,\quad \psib\chib := \psib_\ad \chib^\ad = (\psi\chi)^\dagger
+	\end{equation}
+
+
+Finally, we define the ``Weyl basis" for gamma matrices
+	\begin{equation}
+	\g^m = \left(
+		\begin{array}{cc}
+		0 & \s^m \\
+		\sb^m & 0
+		\end{array}
+	\right)\ ,\quad \{\g^m, \g^n\} = -2 \eta^{mn}
+	\end{equation}
+plus, define the Dirac spinor as
+	\begin{equation}
+	\Psi_D = \left(
+		\begin{array}{c}
+		\chi_\a \\
+		\psib^\ad
+		\end{array}
+	\right)
+	\end{equation}
+and the Majorana spinor
+	\begin{equation}
+	\Psi_M = \left(
+		\begin{array}{c}
+		\psi_\a \\
+		\psib^\ad
+		\end{array}
+	\right)
+	\end{equation}
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\sb^{m\bd\a} = \ve^{\a\g} \ve^{\bd\dd} \s^m_{\g\dd}
+		\end{equation}
+	implies
+		\begin{equation}
+		\sb^0 = \s^0\quad,\qquad \sb^i = -\s^i
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\bar\psi \bar\xi = (\psi\xi)^\dag
+		\end{equation}
+	and that
+		\begin{equation}
+		\d(\psi\xi) = 0
+		\end{equation}
+	for a Lorentz transformation. Use the following fact
+		\begin{equation}
+		(\s^{mn})_\a^{\ \b} \ve_{\b\g} = (\s^{mn})_\g^{\ \b} \ve_{\b\a}
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\Psi_M = c \g_0 (\Psi_M)^*
+		\end{equation}
+	where $c = i\g^0\g^2$ is the charge conjugation matrix.
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{align}
+		\t^\a \t^\b & = -\frac12 \ve^{\a\b} \t\t \\
+		\t_\a \t_\b & = +\frac12 \ve_{\a\b} \t\t \\
+		(\t\s^m\tb)(\t\s^n\tb) & = -\frac12 (\t\t) (\tb\tb) \eta^{mn}
+		\end{align}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		(\t\vphi) (\t\psi) = -\frac12 (\vphi\psi) (\t\t)
+		\end{equation}
+	\end{exe}
+
+\newpage
+
+
+
+\section{Supersymmetry in $D=1$}
+
+The action for a relativistic particle of mass $M$ and charge $e$ in a electromagnetic background is given by
+	\begin{equation}
+	S = \int d\tau \left[ cM\sqrt{\xd^2} + \frac{e}{c} \xd^m A_m(x) \right]
+	\end{equation}
+where $\xd_m = \frac{\p}{\p\tau} x_m$, $m=0,1,2,3$. The corresponding equation of motion is
+	\begin{equation}
+	Mc\frac{\p}{\p\tau}\left(\frac{\xd_m}{\sqrt{\xd^2}}\right) + \frac{e}{c}\frac{\p}{\p\tau}(A_m) = \frac{e}{c} \xd^n\p_m A_n\ \Rightarrow\ Mc\frac{\p}{\p\tau}\left(\frac{\xd_m}{\sqrt{\xd^2}}\right) = \frac{e}{c} \xd^n F_{mn}
+	\end{equation}
+We can use reparametrization invariance to choose $\xd^2 = c^2$. In this gauge, we could have started with the simpler action
+	\begin{equation}
+	S = \int d\tau \left[ \frac{M}{2} \xd^2 + \frac{e}{c}\xd^m A_m(x) \right]
+	\end{equation}
+with equation of motion
+	\begin{equation}
+	M \ddot{x}_m = \frac{e}{c}\xd^n F_{mn}
+	\end{equation}
+
+In the non-relativistic limit $|\vec v|\ll c$: $x_0 = c\tau$, $\xd_0 = c$ , $ \xd_i = v_i$ ($i=1,2,3$), the equation of motion reads
+	\begin{equation}
+	M \vec a = e \vec E + \frac{e}{c}\vec v \times \vec B
+	\end{equation}
+
+The equations of motion for a particle with spin $\vec S$ are
+	\begin{align}
+	& M\vec a = e\vec E + \frac{e}{c}\vec v \times \vec B + \frac{ge}{2Mc}\vec\nabla(\vec B\cdot \vec S) \\
+	& \dot{\vec S} = \frac{ge}{2Mc} \vec S \times \vec B
+	\end{align}
+and, we can ask if there is an action that gives these equations of motion. The answer is affirmative, when $g=2$ and the spin $1/2$ (i.e. $|\vec S|^2 = \frac34 \hbar^2$). That action possesses $D=1$ supersymmetry.%
+\footnote{ {\it Local supersymmetry for spinning particles}, L. Brink, S. Deser, B. Zumino, P. Di Vecchia and P. Howe, Phys. Lett. B64 (1976) 435}
+
+The field variables are $x^m(\tau)$ and $\psi^m(\tau)$ where the latter is an anticommuting field
+	\begin{equation}
+	S = \int d\tau \left[ \frac{M}{2}(\xd^2 + i\dot\psi^m\psi_m) + \frac{e}{c}(\xd^m A_m + \frac{i}{2} \psi^m\psi^n F_{mn}) \right]
+	\end{equation}
+There is also an action with reparametrization invariance but it is complicated.%
+\footnote{Ibid.}
+
+The action has translation symmetry ($P$)
+	\begin{equation}
+	\label{transl}
+	x^m\rightarrow x^m - i\L \xd^m\ ,\quad \psi^m \rightarrow \psi^m - i\L \dot\psi^m
+	\end{equation}
+as well as supersymmetry ($Q$)
+	\begin{equation}
+	x^m \rightarrow x^m + i\a \psi^m\ ,\quad \psi^m \rightarrow \psi^m + \a \xd^m
+	\end{equation}
+with $\a$ an anticommuting parameter.
+
+The invariance under a supersymmetry transformation can be shown by direct computation
+	\begin{align}
+	\d_Q(\xd^2 + i\dot\psi^m \psi_m ) & = 2i\a \xd^m \dot\psi_m + i\a\ddot x^m \psi_m + i\dot\psi^m \a \xd_m \nonumber \\
+	& = i\a \frac{\p}{\p\tau}(\xd^m \psi_m)
+	\end{align}
+and thus the action varies merely by a boundary term. Likewise for
+	\begin{align}
+	\d_Q (\xd^m A_m + \frac{i}{2} \psi^m\psi^n F_{mn}) & = i\a \dot\psi^m A_m + \xd^m (i\a\psi^n \p_n A_m) + \frac{i}{2}(\a\xd^m \psi^n +\psi^m\a\xd^n)F_{mn} \nonumber \\
+	& \quad  +\frac{i}{2}\psi^m\psi^n (i\a\psi^p \p_p F_{mn}) \nonumber \\
+	& = i\a \frac{\p}{\p\tau}(\psi^m A_m) + i\a\psi^m\xd^n F_{nm} +i\a\psi^m\xd^n F_{mn} \nonumber \\
+	& = i\a \frac{\p}{\p\tau}(\psi^m A_m)
+	\end{align}
+so the action is supersymmetric
+	\begin{equation}
+	\d_Q S = i\a \int d\tau \frac{\p}{\p\tau}\left[ \frac{M}{2} \xd^m\psi_m +\frac{e}{c}\psi^m A_m \right] = 0
+	\end{equation}
+
+We can also verify that these transformations realize the supersymmetry algebra in $D=1$
+	\begin{align}
+	(\d_{Q_1}\d_{Q_2} - \d_{Q_2}\d_{Q_1})x^m & = \d_{Q_1} (i\a_2 \psi^m) - \d_{Q_2}(i\a_1 \psi^m) = -2 i\a_1\a_2 \xd^m = \d_P x^m \\
+	(\d_{Q_1}\d_{Q_2} - \d_{Q_2}\d_{Q_1})\psi^m & = \d_{Q_1}(\a_2\xd^m)-\d_{Q_2}(\a_1\xd^m) = -2i\a_1\a_2\dot\psi^m = \d_P \psi^m
+	\end{align}
+where $\L = 2\a_1\a_2$ in (\ref{transl}). In the next section after defining the generators, the previous relations will imply the algebra
+	\begin{equation}
+	\{Q,Q\} = 2P
+	\end{equation}
+called {\it supersymmetry algebra in} $D=1$.
+
+After all this, where is the spin? First, we define the angular momentum $M_{jk}$ (no sources). The Lorentz transformations are realized as
+	\begin{equation}
+	\d x^m = \L^{mn} x_n\ ,\quad \d\psi^m = \L^{mn} \psi_n
+	\end{equation}
+and, it can be computed that $\d S = 0$. This implies we have a conserved current associated to this symmetry $\p^m M_{mn} = 0$ where
+	\begin{align}
+	M_{mn} & = \frac{\p L}{\p\xd^p}\frac{\d x^p}{\d \L^{mn}} + \frac{\p L}{\p \dot\psi^p}\frac{\d \psi^p}{\d \L^{mn}} \nonumber \\
+	& = M ( \xd_{[n} x_{m]} + i\psi_n\psi_m )
+	\end{align}
+where the first term is associated to the orbital motion and the second one to the spin. Then, we can define
+	\begin{equation}
+	\vec S = \frac{i}{2} M \vec\psi\times \vec\psi \Rightarrow \vec S = iM(\psi^2\psi^3, \psi^3\psi^1, \psi^1\psi^2)
+	\end{equation}
+After quantization
+	\begin{equation}
+	[x^m, \xd_n] = \frac{i\hbar}{M}\d^m_n\ ,\quad \{\psi^m ,\psi_n\} = -\frac{\hbar}{M} \d^m_n
+	\end{equation}
+which implies that
+	\begin{equation}
+	[S_a,S_b] = i\e_{abc} S_c \ ,\quad |\vec S|^2 = \frac{3}{4}\hbar^2
+	\end{equation}
+
+As was initially the motivation, this action will give the equations of motion for a particle with spin
+	\begin{equation}
+		\begin{aligned}
+		\frac{\p}{\p\tau}\left(\frac{\p L}{\p\xd^m}\right) & = \frac{\p L}{\p x^m} \\
+		\frac{\p}{\p\tau}\left(\frac{\p L}{\p\dot\psi^m}\right) & = \frac{\p L}{\p \psi^m} \quad\text{(always to the left)}
+		\end{aligned}
+	\end{equation}
+that implies
+	\begin{align}
+	M\ddot x_m & = \frac{e}{c}(\xd^n F_{mn} + \frac{i}{2} \psi^n \psi^p \p_m F_{np}) \\
+	M \dot\psi_m & = \frac{e}{c} F_{mn} \psi^n
+	\end{align}
+In the non-relativistic limit ($|\vec v|\ll c$), $(\xd_m)=(c,\vec v)$. The constraint $\xd_m \xd^m=c^2$ implies by supersymmetry that 
+$\xd_m \psi^m$ is a constant which can be assumed to be zero. So in the non-relativistic limit,  $(\psi_m)=(0,\vec\psi)$
+Therefore, the equations of motions are expressed as
+	\begin{align}
+	M\vec a & = e\vec E + \frac{e}{c}\vec v\times \vec B + \frac{e}{Mc}\vec\nabla (\vec B\cdot \vec S) \\
+	\dot{\vec S} & = iM\dot{\vec\psi}\times\vec\psi = \frac{ie}{c}(\vec\psi\times\vec B)\times\vec\psi = \frac{ie}{2c}(\vec\psi\times\vec\psi)\times\vec B =  \frac{e}{Mc}\vec S\cdot\vec B
+	\end{align}
+which coincides with the desired equations of motion for $g=2$.
+
+\subsection{Manifest supersymmetry}
+Define
+	\begin{equation}
+	\X^m (\tau,\k) = x^m(\tau) + i\k\psi^m(\tau)
+	\end{equation}
+with $\k$ an anticommuting parameter. Then translations and supersymmetry transformations are realized as
+	\begin{align}
+	& P: \quad \tau \rightarrow \tau + i\L\ ,\quad \k\rightarrow \k\quad (x^m\rightarrow x^m - i\L\xd^m\ ,\ \psi^m\rightarrow \psi^m-i\L\dot\psi^m) \\
+	& Q: \quad \tau\rightarrow \tau - i\k\a\ ,\quad \k\rightarrow \k - \a\quad (x^m\rightarrow x^m+i\a\psi^m\ ,\ \psi^m\rightarrow \psi^m+\a\xd^m)
+	\end{align}
+which means that the transformations are generated by
+	\begin{equation}
+	P = -i\frac{\p}{\p\tau}\ ,\quad Q=\frac{\p}{\p\k}-i\k\frac{\p}{\p\tau}
+	\end{equation}
+that satisfy $\{Q,Q\} = 2P$. So, for example, we can apply any supersymmetry transformation on any function of the superfield $f(\X)$
+	\begin{align}
+	\d_Q f(\X) & = \a\left(\frac{\p}{\p\k}-i\k\frac{\p}{\p\tau}\right)f(\X) \nonumber \\
+	& = \a\left(\frac{\p}{\p\k}\X^m - i\k\frac{\p}{\p\tau}\X^m\right) \p_m f(\X) \nonumber \\
+	& = i\a(\psi^m - \xd^m \k)\p_m f(\X)
+	\end{align}
+
+Now it becomes useful to define some notion of integration on the fermionic variable $\k$. This is called {\it Berezin integration}.
+	\begin{equation}
+	\int d\k (a+\k b) := b\ \Rightarrow\ \int d\k f(\X) = \left[\frac{\p}{\p\k}\ f(\X)\right]|_{\k=0}
+	\end{equation}
+With this tool we can construct terms that are invariant under a supersymmetry transformation, e.g. any expression $\int d\tau \int d\k f(\X)$
+	\begin{align}
+	\int d\tau \int d\k\ \d_Q f(\X) & = \int d\tau \int d\k \left[\a\left(\frac{\p}{\p\k} - i\k\frac{\p}{\p\tau}\right)f(\X)\right] \nonumber \\
+	& = -\a\int d\tau \frac{\p}{\p\k}\left[\left(\frac{\p}{\p\k} - i\k\frac{\p}{\p\tau}\right) f(\X)\right]|_{\k=0} \nonumber \\
+	& = -\a\int d\tau \left[ \left(\frac{\p}{\p\k}\right)^2 f(\X) - i\frac{\p}{\p\tau}f(\X) \right]|_{\k=0} = 0
+	\end{align}
+We can also define a fermionic derivative $D=\frac{\p}{\p\k}+i\k\frac{\p}{\p\tau}$. And, notice that
+	\begin{equation}
+	\{D,Q\} = \left\{\frac{\p}{\p\k} + i\k\frac{\p}{\p\tau} ,\frac{\p}{\p\k} - i\k\frac{\p}{\p\tau} \right\} = 0
+	\end{equation}
+so, terms like $\int d\tau \int d\k f(\X) D g(\X)$ are also supersymmetric
+	\begin{align}
+	S & = -i\int d\tau \int d\k \left[ \frac{M}{2} D\X^m \dot\X_m + \frac{e}{c} D\X^m A_m(\X) \right] \nonumber \\
+	& = \int d\tau \left[ \frac{M}{2} (\xd^2 + i\dot\psi^m \psi_m ) + \frac{e}{c} (\xd^m A_m + \frac{i}{2} \psi^m \psi^n F_{mn})   \right]
+	\end{align}
+where
+	\begin{equation}
+		\begin{aligned}
+		D \X^m & = \left(\frac{\p}{\p\k} + i\k\frac{\p}{\p\tau}\right)\X^m = i\psi^m + i\k\dot\X^m\ , \\
+		\dot\X^m & = \xd^m + i\k\dot\psi\ ,\quad A_m(\X) = A_m(x) + i\k\psi^n\p_n A_m(x)
+		\end{aligned}
+	\end{equation}
+then,
+	\begin{align}
+	-\frac{i M}{2} \int d\tau\int d\k D\X^m\dot \X_m & = -\frac{i M}{2}\int d\tau\int d\k (i\psi^m + i\k\xd^m)(\xd_m + i\k\dot\psi_m) \nonumber \\
+	& = -\frac{iM}{2} \int d\tau\int d\k \left[ i\psi^m \xd_m + i\k\xd^2 - \k\dot\psi_m \psi^m \right] \nonumber \\
+	& = \frac{M}{2} \int d\tau (\xd^2 + i\dot\psi_m \psi^m)
+	\end{align}
+
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\{D, Q\} = 0
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\int d\tau \int d\k f(\X) Dg(\X)
+		\end{equation}
+	is supersymmetric.
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		-\frac{ie}{c} \int d\tau \int d\k D\X^m A_m(\X) = \frac{e}{c} \int d\tau (\dot x^m A_m + \frac{i}{2} \psi^m \psi^n F_{mn})
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	The equations of motion are
+		\begin{equation}
+		\frac{\p}{\p\tau}\left(\frac{\p\hat\lag}{\p\dot\X}\right) + D\left(\frac{\p\hat\lag}{\p D\X^m}\right) = \frac{\p\hat\lag}{\p\X^m}
+		\end{equation}
+	where $S = \int d\tau d\k \hat\lag$. Show that these EOM imply
+		\begin{equation}
+		M D\dot\X_m = \frac{e}{c} D\X^n F_{mn}
+		\end{equation}
+	Also, prove (expanding in $\k$) that these EOM imply
+		\begin{align}
+		M \ddot x_m & = \frac{e}{c} (\dot x^n F_{mn} + \frac{i}{2} \psi^n\psi^p \p_m F_{np}) \\
+		M \dot \psi_m & = \frac{e}{c} F_{mn} \psi^n
+		\end{align}
+	\end{exe}
+
+\newpage
+
+
+\section{Supersymmetry in $D=2$}
+
+The action of a relativistic particle of mass $M$ is
+	\begin{equation}
+	S = M \int_{\tau_i}^{\tau_f} d\tau \sqrt{\xd^m \xd_m} = M\times (\text{length of the path})
+	\end{equation}
+the worldline is one-dimensional and $m=0,\ldots,(d-1)$.
+
+For the string our field variables are $x^m(\tau, \s)$ with $m=0,\ldots, (D-1)$ which are the coordinates of the two-dimensional worldsheet. The action is a generalization of the one for the particle, but instead of the length of the worldline, we use the {\it area} of the worldsheet
+	\begin{equation}
+	S = T \int d\tau d\s \sqrt{\xd^2 x'^2 - (\xd\cdot x')^2}
+	\end{equation}
+with $\xd^m = \frac{\p x^m}{\p\tau}$ and $x'^m = \frac{\p x^m}{\p\s}$. The momentum variables are
+	\begin{equation}
+	P_m = \frac{\p \lag}{\p\xd^m} = \frac{\xd^m (x')^2 - x'^m (\xd)^2}{\sqrt{\xd^2 x'^2 - (\xd\cdot x')^2}} \Rightarrow P^2 = T^2 (x')^2
+	\end{equation}
+Using the fact that we can get a parametrization where
+	\begin{equation}
+	\left\{
+		\begin{aligned}
+		\xd^2 + x'^2 & = 0 \\
+		\xd\cdot x' & = 0
+		\end{aligned}
+	\right.
+	\end{equation}
+the action can be reexpressed as
+	\begin{equation}
+	S = \frac{T}{2} \int d\tau d\s (\xd^2 - x'^2) = \frac{T}{2} \int d\tau d\s\ \p_+ x^m \p_- x_m
+	\end{equation}
+with $\p_{\pm} = \p_\tau \pm \p_\s$ and equation of motion $\p_+\p_- x^m = 0$. This leads to a general solution of the form
+	\begin{equation}
+	x^m(\tau,\s) = x^m_0 + \frac{1}{T} P^m_0 \tau + \sum_{N\neq 0} a^m_N e^{iN(\tau+\s)} + \sum_{N\neq 0}\at_N^m e^{iN(\tau-\s)}
+	\end{equation}
+where we imposed the periodic condition $x^m(\tau,\s) = x^m(\tau,\s+2\pi)$ for a closed string. Canonical quantization implies the commutation relations
+	\begin{equation}\label{ccr}
+	[x^m(\s), P_n(\s')] = i\hbar \d^m_n \d(\s-\s')\Rightarrow  [a^m_N, a^n_R] = [\at^m_N, \at^n_R] = \frac{1}{R} \eta^{mn} \d_{N+R}
+	\end{equation}
+
+To see the spectrum we compute $M^2 = (P_0)^2$
+	\begin{align}
+	M^2 & = T^2 \sum_{N\neq 0} (N^2 a_N \cdot a_{-N} + N^2 \at_N \cdot \at_{-N}) \nonumber \\
+	& = T^2 \sum_{N> 0} (2N^2 a_N\cdot a_{-N} + 2N^2 \at_N\cdot \at_{-N} + 2N(D-2))
+	\end{align}
+and after doing the zeta regularization ($\sum_{N>0} N = -1/12$) and setting $D=26$ (the `critical dimension') we get the spectrum, e.g.
+	\begin{equation}
+		\begin{aligned}
+		State \quad & \quad Mass \\
+		\vac \quad & \quad -4T^2\quad\text{tachyon} \\
+		a^m_{-1} \at^n_{-1} \vac \quad & \qquad\quad 0\quad\text{graviton}
+		\end{aligned}
+	\end{equation}
+The spectrum contains a tachyon and scattering amplitudes have divergences.
+
+\subsection{Superstring}
+The first example of a supersymmetric system was a generalization of the bosonic string as shown by Gervais and Sakita (1971)\footnote{ {\it Field Theory Interpretation of Supergauges in Dual Models}, J.L. Gervais and B. Sakita, Nucl. Phys. B34, 477 (1971)}.%
+The field variables are $x^m(\tau,\s)$, $\psi^m_+(\tau,\s)$, $\psi^m_-(\tau,\s)$ and action
+	\begin{equation}
+	S = \frac{T}{2}\int d\tau d\s (\p_+ x^m \p_- x_m - i\psi^m_-\p_+\psi_{-m} -i\psi^m_+\p_-\psi_{+m})
+	\end{equation}
+The supersymmetry transformation are
+	\begin{equation}
+	\d x^m = i\a^+\psi^m_+ + i\a^-\psi^m_-\ ,\quad \d\psi^m_+ = \a^+\p_+x^m\ ,\quad\d\psi^m_- = \a^-\p_-x^m
+	\end{equation}
+thus, the action varies as
+	\begin{align}
+	\d S & = \frac{T}{2} \int d\tau d\s ( -2(i\a^+\psi^m_+ + i\a^-\psi^m_-)\p_+\p_-x_m \nonumber \\
+	& \qquad\qquad\qquad -2i\a^-(\p_-x^m)\p_+\psi_{-m} -2i\a^+(\p_+x^m)\p_-\psi_{+m} ) \nonumber \\
+	& = \frac{T}{2} \int d\tau d\s ( -2i\a^+\p_-(\psi^m_+ \p_+ x_m) -2i\a^- \p_+ (\psi^m_- \p_- x_m) ) \nonumber \\
+	& = 0
+	\end{align}
+Actually, there are two independent SUSY transformations
+	\begin{align}
+	\a^+ Q_+ :&\quad\d x^m=i\a^+\psi^m_+\ ,\quad \d\psi^m_+ = \a^+\p_+ x^m\ ,\quad \d\psi^m_- = 0 \\
+	\a^- Q_- :&\quad\d x^m=i\a^-\psi^m_-\ ,\quad \d\psi^m_+ = 0 \ ,\quad \d\psi^m_- = \a^-\p_- x^m
+	\end{align}
+
+The equations of motion have solutions
+	\begin{align}
+	\p_+\p_- x^m & = 0 \Rightarrow x^m = x^m_0 + P^m_0 \tau + \sum_{N\neq 0} (a^m_N e^{iN(\tau+\s)} + \at^m_N e^{iN(\tau-\s)})  \\
+	\p_-\psi^m_+ & = 0 \Rightarrow \psi^m_+ = \sum_N b^m_N e^{iN(\tau +\s)} \\
+	\p_+\psi^m_- & = 0 \Rightarrow \psi^m_- = \sum_N {\tilde b}^m_N e^{iN(\tau-\s)}
+	\end{align}
+Then, we can quantize and add to (\ref{ccr}) the anticommutation relations for the fermionic modes
+	\begin{align}
+	\{b^m_N, b^n_R\} & = \eta^{mn} \d_{N+R} \\
+	\{ {\tilde b}^m_N, {\tilde b}^n_R \} & = \eta^{mn} \d_{N+R}
+	\end{align}
+
+Now we compute the spectrum of the theory by expanding the operator $P^2 = T^2(x'^2 - i\psi^m_+\p_+\psi_{+m}-i\psi^m_-\p_-\psi_{-m})$
+	\begin{align}
+	M^2 & = T^2 \sum_N(N^2 a_N\cdot a_{-N} + N^2 \at_N\cdot \at_{-N} + N b_N\cdot b_{-N} + N{\tilde b}_N\cdot {\tilde b}_{-N}) \nonumber \\
+	& = T^2 \sum_{N>0} [ 2N^2 a_N\cdot a_{-N} + 2 N^2 \at_N\cdot \at_{-N} + 2N b_N\cdot b_{-N} + 2N{\tilde b}_N\cdot {\tilde b}_{-N} \nonumber \\
+	& \qquad\qquad\ +(D-2)(N^2[a_{-N},a_N] + N^2 [\at_{-N},\at_N]- N\{b_{-N},b_N\} - N\{{\tilde b}_{-N},{\tilde b}_N\}) ] \nonumber \\
+	& = 2 T^2 \sum_{N>0} (N^2 a_N\cdot a_{-N} + N^2 \at_N\cdot \at_{-N} + N b_N\cdot b_{-N} + N{\tilde b}_N\cdot {\tilde b}_{-N})
+	\end{align}
+The spectrum doesn't have tachyons, but still has massless gravitons. Plus, scattering amplitudes are finite (quantum gravity).
+
+The SUSY algebra is
+	\begin{align}
+	&\a^+Q_+ + \a^- Q_-: \quad
+		\begin{aligned}
+		\d x^m & = i\a^+\psi^m_+ + i\a^-\psi^m_- \ , \\
+		\d\psi^m_+ & = \a^+\p_+ x^m\ , \\
+		\d\psi^m_- & = \a^-\p_- x^m
+		\end{aligned}
+	\\
+	& \nonumber \\
+	& \L^+ P_+ + \L^- P_-: \quad
+		\begin{aligned}
+		\d x^m & = -i\L^+\p_+ x^m -i\L^-\p_- x^m\ , \\
+		\d\psi^m_+ & = (-i\L^+\p_+ -i\L^-\p_-)\psi^m_+\ , \\
+		\d\psi^m_- & = (-i\L^+\p_+ - i\L^-\p_-)\psi^m_-)
+		\end{aligned}
+	\end{align}
+with $\L^\pm$ imaginary numbers. We can verify that these transformations satisfy the supersymmetry algebra. First we compute
+	\begin{align}
+	(\d^Q_1 \d^Q_2 - \d^Q_2 \d^Q_1)x^m & = \d^Q_1 (i\a^+_2 \psi^m_+ + i\a^-_2 \psi^m_-) - \d^Q_2 (i\a^+_1 \psi^m_+ + i\a^-_1\psi^m_-) \nonumber \\
+	& = -2i\a^+_1 \a^+_2 \p_+ x^m - 2i\a^-_1\a^-_2 \p_- x^m \nonumber \\
+	& = \d^P x^m
+	\end{align}
+likewise for $\psi_\pm$
+	\begin{align}
+	(\d^Q_1 \d^Q_2 - \d^Q_2 \d^Q_1)\psi^m_+ & = \d^Q_1 (\a^+_2 \p_+ x^m) - \d^Q_2 (\a^+_1 \p_+ x^m) \nonumber \\
+	& = \a^+_2 ( i\a^+_1 \p_+ \psi^m_+ + i\a^-_1 \p_+ \psi^m_-) - \a^+ _1 (i\a^+ _ 2 \p_+ \psi^n_+ + i\a^-_2 \p_+\psi^m_-) \nonumber \\
+	& = -2i(\a^+_1 \a^+_2 \p_+ + \a^-_1 \a^-_2 \p_-) \psi^m_+ + \text{(terms that cancel on-shell)} \nonumber \\
+	& = \d^P \psi^m_+ \text{(on-shell)}
+	\end{align}
+Then, the SUSY algebra only closes on-shell. (i.e. using the equations of motion).
+
+We modify the action adding {\it auxiliary} fields (non-propagating)
+	\begin{equation}\label{stringaction}
+	S = \frac{T}{2} \int d\tau d\s (\p_+ x^m \p_- x_m - i \psi^m_+ \p_- \psi_{+m} - i\psi^m_- \p_+ \psi_{-m} + F^m F_m)
+	\end{equation}
+The extra equation of motion for $F^m$ is simply $F^m = 0$, but the SUSY transformations are modified to the form
+	\begin{equation}
+		\begin{aligned}
+		\a^+ Q_+ + \a^- Q_-:\ &\d x^m = i\a^+ \psi^m_+ + i\a^- \psi^m_-\ ,\quad \d\psi^m_+ = \a^+ \p_+ x^m + \a^- F^m \\
+		& \d\psi^m_- = \a^- \p_- x^m - \a^+ F^m\ ,\quad \d F^m = i\a^- \p_-\psi^m_+ -i\a^+ \p_+ \psi^m_-
+		\end{aligned}
+	\end{equation}
+This extra field helps in closing the SUSY algebra off-shell
+	\begin{align}
+	(\d^Q_1 \d^Q_2 - \d^Q_2\d^Q_1) \psi^m_+ & = \d^Q_1 (\a^+_2 \p_+ x^m + \a^-_2 F^m) - \d^Q_2 (\a^+\p_+ x^m + \a^-_1 F^m) \nonumber \\
+	& = \a^+_2 (i\a^+_1 \p_+ \psi^m_+ + i\a^-_1 \p_+ \psi^m_-) + i\a^-_2 (\a^-_1 \p_-\psi^m_+ - \a^+_1 \p_+ \psi^m_-) \nonumber \\
+	& \quad - \a^+_1 (i\a^+_2 \p_+ \psi^m_+ + i\a^-_2 \p_+ \psi^m_-) -i\a^-_1 (\a^-_2 \p_-\psi^m_+ = \a^+_2 \p_+\psi^m_-) \nonumber \\
+	& = -2i (\a^+_1 \a^+_2 \p_+ + \a^-_1 \a^-_2 \p_-)\psi^m_+
+	\end{align}
+So the SUSY algebra closes off-shell at the price of adding extra degrees of freedom.
+
+We define the super-variables as:
+	\begin{equation}
+	\X^m (\tau,\s;\k^+,\k^-) = x^m(\tau,\s) + i\k^+\psi^m_+(\tau,\s) + i\k^-\psi^m_-(\tau,\s) + i\k^+\k^- F^m(\tau,\s)
+	\end{equation}
+with $\k^\pm$ anticommuting parameters. By defining $\tau^\pm = \frac12 (\tau \pm\s)$, we can write the SUSY transformations and translations as
+	\begin{align}
+	&\a^+ Q_+: \tau^+\rightarrow \tau^+ - i\a^+\k^+\ ,\quad \tau^-\rightarrow \tau^-\ ,\quad \k^+\rightarrow \k^+ +\a^+\ ,\quad\k^-\rightarrow \k^- \\
+	&\a^- Q_-: \tau^+\rightarrow \tau^+\ ,\quad \tau^-\rightarrow \tau^--i\a^-\k^-\ ,\quad \k^+\rightarrow \k^+\ ,\quad \k^-\rightarrow \k^-+\a^- \\
+	&\L^+ P_+: \tau^+\rightarrow \tau^+-i\L^+\ ,\quad \tau^-\rightarrow \tau^-\ ,\quad \k^+\rightarrow \k^+\ ,\quad \k^-\rightarrow \k^- \\
+	&\L^- P_-: \tau^-\rightarrow \tau^+\ ,\quad \tau^-\rightarrow \tau^--i\L^-\ ,\quad \k^+\rightarrow \k^+\ ,\quad \k^-\rightarrow \k^-
+	\end{align}
+Then, the generators are
+	\begin{equation}\label{susygens}
+	Q_+ = \frac{\p}{\p\k^+}-i\k^+\p_+\ ,\quad Q_-= \frac{\p}{\p\k^-}-i\k^-\p_-\ ,\quad P_+=-i\p_+\ ,\quad P_- = -i\p_-
+	\end{equation}
+
+	\begin{equation}
+	\d^Q\X^m = (\a^+ Q_+ + \a^- Q_-)\X^m\ ,\quad \d^Q f(\X) = [(\a^+ Q_+ + \a^- Q_-)\X^m]\p_m f(\X)
+	\end{equation}
+
+Berezin integration.
+	\begin{equation}
+	\int d\k^+ d\k^- (A+ \k^+ B + \k^- C + \k^-\k^+ D) := D
+	\end{equation}
+or equivalently
+	\begin{equation}
+	\int d\k^+ d\k^- f(\X) := \left[ \frac{\p}{\p\k^+}\frac{\p}{\p\k^-} f(\X) \right]|_{\k^\pm=0}
+	\end{equation}
+
+	\begin{align}
+	\int d\tau d\s \int d\k^+ d\k^- \d^Q f(\X) & = \int d\tau d\s \int d\k^+ d\k^- (\a^+ Q_+ + \a^- Q_-)f(\X) \nonumber \\
+	& = \int d\tau d\s \int d\k^+ d\k^- \bigg(\a^+ \frac{\p}{\p\k^+} + \a^-\frac{\p}{\p\k^-} + \a^+ \k^+ \p_+ \nonumber \\
+	& \hspace{4cm}  + \a^- \k^- \p_-\bigg) f(\X) \nonumber \\
+	& = 0
+	\end{align}
+
+We have that the following fermionic derivatives anticommute with the SUSY generators $Q_\pm$:
+	\begin{equation}
+	D_+ = \frac{\p}{\p\k^+} + i\k^+\p_+\ ,\quad D_- = \frac{\p}{\p\k^-} + i\k^- \p_-
+	\end{equation}
+Then, expressions like $\int d\tau d\s \int d\k^+ d\k^- f(\X) D_+ g(\X)$ are supersymmetric because
+	\begin{align}
+	\d(fD_+ g) & = [(\a^+ Q_+ + \a^- Q_-) f]D_+ g + fD_+(\a^+ Q_+ + \a^- Q_-) g \nonumber \\
+	& = (\a^+ Q_+ + \a^- Q_-)(fD_+ g)
+	\end{align}
+
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		(\d^Q_1 \d^Q_2 - \d^Q_2 \d^Q_1) F^m = -2 i (\a^+_1 \a^+_2 \p_+ + \a^-_1 \a^-_2 \p_-) F^m
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\d^Q\X^m = (\a^+ Q_+ + \a^- Q_-)\X^m
+		\end{equation}
+	implies the transformations of $x^m$, $\psi^m_+$, $\psi^m_-$, $F^m$ shown in the lecture.
+	\end{exe}
+
+	\begin{exe}
+	Show that the operators (\ref{susygens}) satisfy
+		\begin{equation}
+		\{Q_\a, Q_\b\} = 2 \s^a_{\a\b} P_a
+		\end{equation}
+	where
+		\begin{equation}
+		[\s^0_{\a\b}] = \left(
+			\begin{array}{cc}
+			1 & 0 \\
+			0 & 1
+			\end{array}
+		\right)\quad [\s^1_{\a\b}] = \left(
+			\begin{array}{cc}
+			1 & 0 \\
+			0 & -1
+			\end{array}
+		\right)
+		\end{equation}
+	and
+		\begin{equation}
+		Q_1 = Q_+,\quad Q_2 = Q_-,\quad P_0 = \frac12 (P_+ + P_-),\quad P_1 = \frac12 (P_+ - P_-).
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\int d\tau d\s (\psi^m_+ \p_-\psi_{+m} + \psi^m_- \p_+ \psi_{-m}) = \int d\tau d\s (\psi_\a \sb^{\a\b}_a \p^a \psi_\b)
+		\end{equation}
+	where $\sb^{a\b\a} = \ve^{\a\g}\ve^{\b\g} \s^a_{\g\d}$, $\psi_1 = \psi_+$, $\psi_2 = \psi_-$.
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		\frac{T}{2}\int d\tau d\s \int d\k^+ d\k^- D_+ \X^m D_- \X_m
+		\end{equation}
+	is equal to the action (\ref{stringaction}).
+	\end{exe}
+
+
+\newpage
+
+\section{Supersymmetry in $D=4$: scalars}
+The Dirac action for spinors reads
+	\begin{equation}\label{fer}
+	S_F = -i \int d^4 x\ \left( \psib_\ad (\sb^n)^{\ad\b} \p_n \psi_\b - \frac{iM}{2}(\psi^\a \psi_\a + \psib_\ad \psib^\ad )\right)
+	\end{equation}
+This action gives equations of motion
+	\begin{align}
+	(\sb^n)^{\ad\b} \p_n \psi_\b & = iM\psib^\ad \\
+	(\s^n)_{\a\bd} \p_n \psib^\bd & = iM\psi_\a
+	\end{align}
+Also, it can be proven that $\square\psi^\a = M^2 \psi^\a$. Furthermore, these EOM imply that the spinor fields $\psi_\a, \psib_\ad$ have in total two physical degrees of freedom which can be deduced from the dependence of $\psib^\ad$ on $\psi_\a$ and from solving one of the equations
+	\begin{equation}
+	(\psi_\a)^* = \psib_\ad\ ,\quad\psib^\ad = -\frac{i}{M} (\sb^n)^{\ad\b} \p_n\psi_\b
+	\end{equation}
+In supersymmetric theories the number of bosonic physical d.o.f. is the same as the number of fermionic physical d.o.f., so we need at least two real scalars or one complex scalar. Here we choose the complex scalar, and the action of this bosonic field is
+	\begin{equation}\label{bos}
+	S_B = -\int d^4 x [\p_m\vphi\p^m\vphib + M^2\vphi\vphib]
+	\end{equation}
+with $\vphi = \vphi_1 + i \vphi_2$ and $\vphib = \vphi_1 -i\vphi_2$. The corresponding EOM are
+	\begin{equation}
+	\square\vphi = M^2 \vphi\ ,\qquad \square\vphib = M^2 \vphib
+	\end{equation}
+
+Using (\ref{fer}) and (\ref{bos}), we have that the total action $S = S_B + S_F$ is invariant under the following transformations
+	\begin{equation}\label{susyWZ}
+		\begin{aligned}
+		\d_Q\vphi & = \sqrt2 \xi^\a \psi_\a \\
+		\d_Q\vphib & = \sqrt2 \xib_\ad \psib^\ad \\
+		\d_Q\psi_\a & = i\sqrt2 \s^m_{\a\ad} \xib^\ad \p_m\vphi - \sqrt2 M\vphib\xi_\a \\
+		\d_Q\psib^\ad & = i\sqrt2 (\sb^m)^{\ad\a} \xi_\a \p_m\vphib - \sqrt2 M\vphi\xib^\ad
+		\end{aligned}
+	\end{equation}
+This is proven by direct computation as follows
+	\begin{equation}
+	\d_Q S_B = -\sqrt2 \int d^4 x [\xi^\a\psi_\a (-\square + M^2)\vphib + \xib_\ad \psib^\ad(-\square + M^2) \vphi]
+	\end{equation}
+analogously
+	\begin{align}
+	\d_Q S_F & = -\sqrt2 \int d^4 x [\p_m\vphib \xi^\b \s^m_{\b\ad} (\sb^n)^{\ad\g}\p_n\psi_\g - M^2 \vphib\xi^\a\psi_\a + c.c.] \nonumber \\
+	& = -\sqrt2 \int d^4 x[\xi^\b\psi_\g (-\s^m_{\b\ad}(\sb^n)^{\ad\g})\p_m\p_n\vphib - \xi^\a\psi_\a M^2 \vphib + c.c.] \nonumber \\
+	& = -\sqrt2 \int d^4 x[\xi^\a\psi_\a (\square - M^2)\vphib + c.c.]
+	\end{align}
+thus, $\d_Q S = \d_Q S_B + \d_Q S_F = 0$.
+
+\subsection{SUSY algebra}
+We can verify that the commutator of two supersymmetry transformations $\d^1_Q$ , $\d^2_Q$ is proportional to a translation (up to terms that cancel on-shell)
+	\begin{align}
+	(\d^1_Q \d^2_Q - \d^2_Q \d^1_Q)\vphi & = \d^1_Q (\sqrt2 \xi^\a_2 \psi_\a) - \d^2_Q (\sqrt2 \xi^\a_1 \psi_\a) \nonumber \\
+	& = 2i [(\xi_2\s^m\xib_1)\p_m\vphi + iM(\xi_2\xi_1) - (\xi_1\s^m\xi_2) \p_m\vphi -iM(\xi_1\xi_2)] \nonumber \\
+	& = -2i [(\xi_1 \s^m\xib_2) + (\xib_1 \sb^m \xi_2) ] \p_m\vphi \nonumber \\
+	& = 2 \d_P\vphi
+	\end{align}
+where $\d_P\vphi = -i\l^m\p_m\vphi$ and $\l^m = \xi_1\s^m\xib_2 + \xib_1 \sb^m \xi_2$. Likewise for the fermionic field
+	\begin{align}
+	(\d^1_Q \d^2_Q - \d^2_Q \d^1_Q)\psi_\a & = \d^1_Q \left(i\sqrt2 (\s^m\xib_2)_\a\p_m\vphi - \sqrt2 M\vphib \xi_{2\a}\right) - (1\lra 2) \nonumber \\
+	& = 2i(\s^m \xib_2)_\a \p_m(\xi^\b_1\psi_\b) - 2M(\xib_1\psib)\xi_{2\a} - (1\lra 2) \nonumber \\
+	& = -2i(\s^m\xib_2)_\b \xi_{1\a} \p_m\psi^\b - 2i\e_{\b\a}(\s^m \xib_2)_\g \xi_{1\d} \e^{\g\d} \p_m\psi^\b - 2M(\xib_1\psib)\xi_{2\a} \nonumber \\
+	& \quad - (1\lra 2) \nonumber \\
+	& = 2i\left( (\xi_1\s^m\xib_2) - (\xi_2\s^m \xib_1) \right)\e_{\b\a} \p_m\psi^\b + 2i\xi_{1\a}(\xib_2\sb^m\p_m\psi - iM\xib_2\psib) \nonumber \\
+	& \quad -2i\xi_{2\a}(\xib_1\s^m\p_m\psi - iM \xib_1 \psib) \nonumber \\
+	& = -2i (\xi_1\s^m \xib_2 + \xib_1\sb^m\xi_2)\p_m\psi_\a + \text{terms that cancel on-shell}
+	\end{align}
+
+\subsection{Manifest SUSY}
+Manifest SUSY implies that we have the same number of bosonic and fermionic degrees of freedom (physical and non-physical). So far our model has
+	$$
+		\begin{array}{cc}
+		\vphi, \vphib & 2\ d.o.f. \\
+		\psi_\a, \psib_\ad & 4\ d.o.f.
+		\end{array}
+	$$
+Therefore, we need to include two extra auxiliary bosonic fields. Thus, a complex scalar field $F$ is introduced, and the action is modified to
+	\begin{align}
+	S = \int d^4 x & [-\p_m\vphi \p^m\vphib - i\psib_\ad(\sb^n)^{\ad\b}\p_n \psi_\b + F{\bar F} \nonumber \\
+	& + M(\vphi F + \vphib \bar F -\frac12 \psi^\a \psi_\a - \frac12 \psib_\ad \psib^\ad)] \label{star1}
+	\end{align}
+This action give the following EOM
+	\begin{align}
+	\square \vphi = - M \bar F\ &,\quad \square\vphib = -M F\ , \nonumber \\
+	\bar F = - M\vphi\ &,\quad F = -M\vphib\ , \\
+	\sb^m \p_m \psi = iM\psib\ &,\quad \s^n\p_n\psib = iM\psi \nonumber
+	\end{align}
+which imply $\square \vphi = M^2 \vphi$, $\square \vphib = M^2 \vphib$ showing that $F$ and $\bar F$ are just auxiliary.
+
+After the inclusion of fields $F$ and $\Fb$, we have to modify the SUSY transformations (\ref{susyWZ})
+	\begin{equation}\label{star2}
+		\begin{aligned}
+		\d_Q\vphi & = \sqrt2 \xi \psi \\
+		\d_Q\vphib & = \sqrt2 \xib \psib \\
+		\d_Q\psi_\a & = i\sqrt2(\s^m\xib)_\a\p_m\vphi + \sqrt2 \xi_\a F  \\
+		\d_Q\psib^\ad & = i\sqrt2(\sb^m\xi)^\ad\p_m\vphib + \sqrt2 \xib^\ad \bar F \\
+		\d_Q F & = i\sqrt2 \xib\sb^m\p_m\psi \\
+		\d_Q \bar F & = i\sqrt2 \xi\s^m\p_m \psib
+		\end{aligned}
+	\end{equation}
+and compute
+	\begin{align}
+	(\d^1_Q \d^2_Q - \d^2_Q \d^1_Q)\psi_\a & = \d^1_Q \left(i\sqrt2 (\s^m\xib_2)_\a \p_m\vphi + \sqrt2 (\xi_2)_\a F\right) - (2\lra 1) \nonumber \\
+	& = 2i(\s^m\xib_2)_\a \p_m (\xi_1\psi) + 2i \xi_2 (\xib_1\sb^m \p_m \psi) - (2\lra 1) \nonumber \\
+	& = -2i(\s^m\xib_2)_\b \xi_{1\a}\p_m\psi^\b + 2i\e_{\b\a} (\xi_1 \s^m\xib_2) \p_m\psi^\b \nonumber \\
+	&\quad + 2i \xi_{2\a}(\xib_1 \sb^m \p_m\psi) - (2\lra 1) \nonumber \\
+	& = -2i(\xi_1 \s^m \xib_2 + \xib_1 \s^m \xi_2) \p_m\psi_\a \nonumber \\
+	& = \d_P \psi_\a
+	\end{align}
+therefore, the SUSY algebra closes off-shell.
+
+Finally, we introduce superfields that will allow us to make supersymmetry manifest. So, in the same way we added fermionic parameters for $D=1$ ($\tau,\k$), $D=2$ ($\tau,\s,\k^\pm$), we extend the Minkowski coordinates $(x^m)$ to $(x^m,\t^\a,\tb^\ad)$, and we define superfields
+	\begin{equation}
+		\begin{aligned}
+		\Phi(y^m,\t^\a) & = \vphi(y) + \sqrt2 \t^\a \psi_\a(y) + \t^\a \t_\a F(y) \\
+		\Phib(\yb^m,\tb_\ad) & = \vphib(\yb) + \sqrt2 \tb_\ad \psib^\ad(\yb) + \tb_\ad \tb^\ad \bar F(\yb)
+		\end{aligned}
+	\end{equation}
+where $y^m = x^m + i\t\s^m \tb$ , $\yb^m = x^m - i \t\s^m\tb$. Thus, SUSY transformations can be recovered by the following variations in the coordinates
+	\begin{equation}
+	(\xi^\a Q_\a + \xib_\ad \bar Q^\ad) :\quad \d x^m = -i(\xi\s^m\tb + \xib\sb^m\t)\ ,\quad \d\t^\a = \xi^\a\ ,\quad \d \tb_\ad = \xib_\ad
+	\end{equation}
+and we can deduce $\d y^m = -2i \xib\sb^m \t$ , $\d\yb^m = -2i \xi\s^m\tb$.
+	
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that the EOM for the Dirac action imply
+		\begin{equation}
+		\square \psi^\a = M^2 \psi^\a
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that the terms proportional to $M$ cancel in $\d_Q S_F$.
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		[\xi_1 Q + \xib_1 \bar Q, \xi_2 Q + \xib_2 \bar Q] = 2(\xi_1 \s^m \xib_2 + \xib_1 \sb^m \xi_2) P_m
+		\end{equation}
+	implies
+		\begin{align}
+		\{Q_\a, Q_\b \} & = \{\bar Q_\ad, \bar Q_\bd \} = 0 \\
+		\{Q_\a, \bar Q_\bd\} & = 2 \s^m_{\a\bd} P_m
+		\end{align}
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		(\s^m \xib_2)_\a \p_m (\xi_1 \psi) = - (\s^m \xib_2)_\b \xi_{1\a} \p_m \psi^\b - (\xi_1 \s^m \xib_2)\p \psi_\a
+		\end{equation}
+	\end{exe}
+
+	\begin{exe}
+	Show that action (\ref{star1}) is supersymmetric under transformations (\ref{star2}).
+	\end{exe}
+
+	\begin{exe}
+	In terms of $x^m$, $\t^\a$, $\tb^\ad$, what is the definition of operators $Q_\a$ and $\bar Q_\ad$ that produces the transformations (\ref{star2})? Consider that
+		\begin{align}
+		\d_Q\Phi(y,\t) & = (\xi Q + \xib \bar Q) \Phi(y,\t) \\
+		\d_Q\bar\Phi(\bar y, \tb) & = (\xi Q + \xib \bar Q) \bar\Phi(\bar y, \tb)
+		\end{align}
+	\end{exe}
+
+
+\newpage
+
+\section{Wess-Zumino superfields}
+
+In the previous lecture we took the first step to make SUSY manifest by defining superfields as
+	\begin{equation}
+		\begin{aligned}
+		\Phi(y^m,\t^\a) & = \vphi(y) + \sqrt2 \t^\a \psi_\a(y) + \t^\a \t_\a F(y) \\
+		\Phib(\yb^m,\tb^\ad) & = \vphib(\yb) + \sqrt2 \tb_\ad \psib^\ad(\yb) + \tb_\ad \tb^\ad \bar F(y)
+		\end{aligned}
+	\end{equation}
+where $y^m = x^m + i\t\s^m \tb$ , $\yb^m = x^m - i \t\s^m\tb$. Also, the SUSY generators can be computed to be
+	\begin{equation}
+	Q_\a = \frac{\p}{\p\t^\a}- i\s^m_{\a\ad} \tb^\ad \frac{\p}{\p x^m}\ ,\quad \bar Q^\ad = \frac{\p}{\p\tb_\ad} - i \sb^{m\ad\b}\t_\b \frac{\p}{\p x^m}
+	\end{equation}
+
+Later it will be useful to reexpress these operators by making a change of coordinates. So, for $(x,\t,\tb)\rightarrow (y,\t,\tb)$, we obtain
+	\begin{equation}
+	Q_\a = \frac{\p}{\p \t^a}\ ,\quad \bar Q^\ad = \frac{\p}{\p \tb_\ad} - 2i\sb^{m\ad\b} \t_\b \frac{\p}{\p y^m}
+	\end{equation}
+likewise for coordinate transformation $(x,\t,\tb)\rightarrow (\yb,\t,\tb)$
+	\begin{equation}
+	Q_\a = \frac{\p}{\p\t^\a} -2i\s^m_{\a\ad} \tb^\ad \frac{\p}{\p \yb^m}\ ,\quad \bar Q^\ad = \frac{\p}{\p\tb_\ad}
+	\end{equation}
+
+\subsection{Action in superspace}
+Following the same pattern as in the $D=1$ and $D=2$ cases, define the following integral
+	\begin{equation}
+	\int d^4\t f(x,\t,\tb) = \int d^4\t \left(A(x) + \t B(x) + \ldots + \t\t\tb\tb D(x)\right) \equiv D(x)
+	\end{equation}
+or equivalently
+	\begin{equation}
+	\int d^4\t\ f = \frac{1}{16} \left( \frac{\p}{\p\t_\a}\frac{\p}{\p\t^\a}\frac{\p}{\p\tb^\ad}\frac{\p}{\p\tb_\ad} f \right)|_{\t = \tb = 0}
+	\end{equation}
+
+Then, we claim that the following integral will give us the kinetic part of the Wess-Zumino model up to total derivatives
+	\begin{align}
+	\int d^4\t\ \Phi(y,\t) \Phib(\yb,\tb) & = \int d^4\t\ \Phi(x^m + i \t \s^m \tb, \t) \Phib(x^m -i\t \s^m\tb, \tb)
+	\end{align}
+To verify it, expand the superfields
+	\begin{align}
+	\Phi(x^m + i\t\s^m \tb, \t) & = \vphi(x) + i\t\s^m \tb \p_m\vphi(x) + \frac12 (i\t\s^m\tb)(i\t\s^n \tb)\p_m\p_n\vphi \nonumber \\
+	& \quad + \sqrt2 \t\psi(x) + i\sqrt 2 \t^\a(\t\s^m\tb) \p_m\psi_\a(x) + \t^\a \t_\a F(x) \nonumber \\
+	& = \vphi(x) + i\t\s^m\tb \p_m\vphi(x) + \frac14 \t\t \tb\tb \square \vphi(x) + \sqrt2 \t\psi(x) \nonumber \\
+	& \quad - \frac{i}{\sqrt2} \t\t \p_m\psi(x)\s^m\tb + \t\t F(x)
+	\end{align}
+likewise for $\Phib$
+	\begin{align}
+	\Phib(x^m -i \t\s^m\tb,\tb) & = \vphib(x) - i\t\s^m\tb \p_m\vphib(x) + \frac14 \t\t\tb\tb \square \vphib(x) + \sqrt2 \tb\psib(x) \nonumber \\
+	& \quad  + \frac{i}{\sqrt2} \tb\tb\t\s^m\p_m \psib(x) + \tb\tb \Fb(x)
+	\end{align}
+The final result is
+	\begin{align}
+	\int d^4 \t\ \Phi(y,\t)\Phib(\yb, \tb) & = F(x) \Fb(x) + \frac14 ( \vphi(x)\square \vphib(x) + \square \vphi(x) \vphib(x) ) \nonumber \\
+	& \quad -\frac{1}{2} \p_m\vphi(x) \p^m \vphib(x) - \frac{i}{2} (\psi(x) \s^m \p_m \psib(x) - \p_m\psi(x)\s^m\psib(x))
+	\end{align}
+and we can easily see that, by taking a final integral in $x^m$ coordinates, the kinetic term of action (\ref{star1}) is recovered
+	\begin{equation}
+	\int d^4x\int d^4\t\ \Phi(y, \t)\Phib(\yb,\tb) =  \int d^4 x(-\p_m\vphi\p^m\vphib - i \psi\s^m\p_m \psib + F\Fb)
+	\end{equation}
+For more general actions, we have to introduce fermionic derivatives $D_\a$, $\Db^\a$ that satisfy $\{D_\a, Q_\b\} = \{D_\a, \Qb_\bd\} = \{\Db_\ad, Q_\b\} = \{\Db_\ad, \Qb_\bd\} = 0 $.
+	\begin{equation}
+	D_\a = \frac{\p}{\p\t^\a} + i\s^m_{\a\ad} \tb^\ad \frac{\p}{\p x^m}\quad, \qquad \Db^\ad = \frac{\p}{\p\tb_\ad} + i(\sb^m)^{\ad\b}\t_\b \frac{\p}{\p x^m}
+	\end{equation}
+and, then integrals like the following will be supersymmetric
+	\begin{equation}
+	\int d^4 x\int d^4 \t\ f(x,\t,\tb) D_\a g(x,\t,\tb)
+	\end{equation}
+
+Our next question is how to produce the mass term $M\int d^4 x(\vphi F + \vphib\Fb - \frac12 \psi\psi - \frac12 \psib\psib)$. An initial guess would be to try more products of the superfields; however, this won't get us too far since the answer is related to a new kind of fermionic integration. To get that, first notice that in coordinates $(y,\t,\tb)$
+	\begin{equation}
+	D_\a = \frac{\p}{\p\t^\a} + 2i\s^m_{\a\ad} \tb^\ad \frac{\p}{\p y^m}\ ,\quad \Db_\ad = -\frac{\p}{\p\tb^\ad}
+	\end{equation}
+and in coordinates $(\yb, \t,\tb)$
+	\begin{equation}
+	D_\a = \frac{\p}{\p \t^\a}\ ,\quad \Db_\ad = -\frac{\p}{\p\tb^\ad} -2i\t^\b \s^m_{\b\ad} \frac{\p}{\p\yb^m}
+	\end{equation}
+so, $\Db_\ad \Phi = 0$ and $D_\a \Phib = 0$. Actually, these are the defining properties of the superfields that we initially constructed. We call $\Phi$ a ``chiral" superfield and $\Phib$ an ``antichiral" superfield.
+
+We are now able to define another type of integral in superspace, referred as {\it chiral integration}
+	\begin{align}
+	\int d^2 \t\ f(y,\t) & = \int d^2\t (A(y) + \t B(y) + \t\t F(y)) \equiv F(x) \\
+	\int d^2\tb\ \bar f(\yb, \tb) & = \int d^2 \tb (\bar A(\yb) + \tb \bar B(\yb) + \tb\tb\bar F(\yb)) \equiv \Fb(x)
+	\end{align}
+or equivalently
+	\begin{equation}
+	\int d^2\t\ f = \frac14\left(\frac{\p}{\p\t_\a}\frac{\p}{\p\t^\a}f\right)|_{\t = \tb = 0}\ ,\quad\int d^2\tb\ \bar f = \frac14\left(\frac{\p}{\p\tb^\ad}\frac{\p}{\p\tb_\ad}\bar f\right)|_{\t=\tb=0}
+	\end{equation}
+This integral has the property that if $f$ is a chiral superfield (i.e. $\Db_\ad f=0$), then $\int d^4 x\int d^2\t\ f$ is supersymmetric
+	\begin{align}
+	\d\left( \int d^4 x\int d^2\t\ f\right) & = \int d^4 x\int d^2\t\ (\d f) \nonumber \\
+	& = \int d^4 x\int d^2\t \left[\xi^\a\left(\frac{\p}{\p\t^\a}-i\s^m_{\a\ad}\tb^\ad\frac{\p}{\p x^m}\right) \right. \nonumber \\
+	& \qquad\qquad\qquad\quad  \left. + \xib_\ad\left(\frac{\p}{\p\tb_\ad}-i\sb^{m\ad\b}\t_\b\frac{\p}{\p x^m}\right) \right]f \nonumber \\
+	& = \int d^4 x\int d^2\t \left[\xi^\a\left(\frac{\p}{\p\t^\a}-i\s^m_{\a\ad}\tb^\ad\frac{\p}{\p x^m}\right) \right. \nonumber \\
+	& \qquad\qquad\qquad\quad \left. + \xib_\ad\left(\Db^\ad - 2i\sb^{m\ad\b}\t_\b\frac{\p}{\p x^m}\right) \right]f \nonumber \\
+	& = \frac14 \int d^4 x\left[\left(\frac{\p}{\p\t_\a}\frac{\p}{\p\t^\a}\right)\left(\xi^\a\frac{\p}{\p\t^\a}f-\text{surface terms}\right)\right] \nonumber \\
+	& = 0
+	\end{align}
+Similarly, the integral $\int d^4 x\int d^2 \tb\bar f$ is supersymmetric when $\bar f$ is an anti-chiral superfield ($D_\a \bar f = 0$). Thus, it is not hard to guess that the mass term we are looking for can be obtained by integrating chiral and antichiral superfields $\Phi^2$ and $\Phib^2$ (since mass terms are quadratic in the fields)
+	\begin{align}
+	S_{mass} & = \frac{M}{2} \int d^4 x\int d^2\t\ \Phi^2 + \frac{M}{2} \int d^4 x \int d^2 \tb\ \Phib^2 \nonumber \\
+	& = M\int d^4 x \left( \vphi F - \frac12 \psi^\a \psi_\a + \vphib \Fb - \frac12 \psib_\ad \psib^\ad\right)
+	\end{align}
+
+Finally, the most general renormalizable supersymmetric action of a scalar superfields is
+	\begin{align}
+	S & = \int d^4 x \left[ \int d^4\t\ \Phi\Phib + \int d^2\t \left(\l\Phi + \frac{M}{2} \Phi^2 + \frac{g}{3}\Phi^3\right) \right. \nonumber \\
+	& \qquad\qquad\ \left. + \int d^2\t\left(\bar\l \Phib + \frac{\bar M}{2}\Phib^2 + \frac{\bar g}{3}\Phib^3\right)\right] \nonumber \\
+	& = \int d^4 x \Big[ - \p_m\vphi\p^m\vphib - i\psi\s^m\p_m\psib + F\Fb \nonumber \\
+	& \qquad\qquad\quad + \l F + M(\vphi F-\frac12\psi\psi) + g(\vphi^2 F - \psi^\a\psi_\a \vphi) \nonumber \\
+	& \qquad\qquad\quad + \lb\Fb + \bar M(\vphib\Fb - \frac12\psib\psib) + \bar g(\vphib^2\Fb - \psib_\ad\psib^\ad\vphib)\Big] \label{star22}
+	\end{align}
+Computing the equations of motion yields
+	\begin{equation}\label{star11}
+		\begin{aligned}
+		-\square\vphib = MF + 2g\vphi F - g\psi\psi\ ,&\quad -\square\vphi = \bar M\Fb + 2\bar g\vphib\Fb - \bar g\psib\psib \\
+		-i\s^m_{\a\ad}\p_m\psib^\ad = M\psi_\a + 2g\vphi\psi_\a\ ,&\quad -i\sb^{m\ad\a}\p_m\psi_\a = \bar M\psib^\ad + 2\bar g\vphib\psib^\ad \\
+		\Fb = -\l-M\vphi - g\vphi^2\ ,&\quad F = -\lb - \bar M\vphib - \bar g\vphib^2
+		\end{aligned}
+	\end{equation}
+which imply
+	\begin{equation}
+	\square\vphi = |M|^2\vphi + \bar M\l + 2\bar g\l\vphi + 2\bar g M\vphi\vphib + 2|g|^2 \vphi^2 \vphib +\bar M g\vphi^2 + \bar g\psib\psib
+	\end{equation}
+
+The minimum energy configuration can be computed for this model. If we look at the equations of motion for $F$, $\Fb$ (these are algebraic ones and already solved in terms of the rest of the fields), then we can replace them in the action, at the cost of losing manifest supersymmetry, and get
+	\begin{align}
+	S & = \int d^4 x [-\p_m\vphi\p^m\vphib - i\psi\s^m\p_m\psib - \frac12M\psi\psi - \frac12\bar M\psib\psib \nonumber \\
+	& \qquad\qquad -g\psi\psi\vphi - \bar g\psib\psib\vphib - V(\vphi,\vphib)]
+	\end{align}
+where $V(\vphi,\vphib) = |\l + M \vphi + g\vphi^2|^2$. This means that $V(\vphi,\vphib)=0$ for values
+	\begin{equation}
+	 \vphi = \frac{-M\pm\sqrt{M^2-4g\l}}{2g}
+	\end{equation}
+and, we could in principle use $\vphi$ as a Higgs boson since $\left<\vphi\right> \neq 0$.
+
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Compute $D_\a$ and $\bar D_\ad$ in terms of $y$, $\t$, $\tb$ starting with
+		\begin{align}
+		D_\a & = \frac{\p}{\p\t^\a} + i \s^m_{\a\ad} \tb^\ad \frac{\p}{\p x^m} \\
+		\bar D^\ad & = \frac{\p}{\p\tb_\ad} + i(\sb^m)^{\ad\b} \t_\b \frac{\p}{\p x^m}
+		\end{align}
+	\end{exe}
+
+	\begin{exe}
+	Show that $\bar D_\ad \Phi = 0$ implies $\Phi = \bar D_\ad \bar D^\ad U$ for some superfield $U$.
+	\end{exe}
+
+	\begin{exe}
+	Show that $f = \Db\Db g$ implies $\int d^4 x d^2 \t f = -4 \int d^4 x d^4\t g$.
+	\end{exe}
+
+	\begin{exe}\label{exe4}
+	Given
+		\begin{equation}
+		S = \int d^4 x\left( \int d^4\t A(\Phi,\Phib) + \int d^2\t B(\Phi) + \int d^2\tb \bar B(\Phib) \right)
+		\end{equation}
+	the EOM in superspace is
+		\begin{equation}
+		-\frac14 \Db\Db\left( \frac{\d A}{\d \Phi} \right) + \frac{\d B}{\d \Phi} = 0
+		\end{equation}
+	Show that this is consistent with the previous exercise.
+	\end{exe}
+
+	\begin{exe}
+	Show that the EOM (\ref{star11}) agree with the one in the previous exercise for the action (\ref{star22}).
+	\end{exe}
+
+	\begin{exe}
+	(Special credit) Explain how to prove that the EOM for the action in Exercise \ref{exe4} is
+		\begin{equation}
+		-\frac14 \Db\Db\left( \frac{\d A}{\d \Phi} \right) + \frac{\d B}{\d \Phi} = 0
+		\end{equation}
+	\end{exe}
+
+
+\newpage
+
+\section{Representations of $\mathcal N=1$ SUSY}
+
+\subsection{R-symmetry}
+The Wess-Zumino action was written as
+	\begin{align}
+	S & = \int d^4 x \int d^4 \t\ \Phi\Phib + \int d^4 x\int d^2 \t\left(\l\Phi +\frac{M}{2} \Phi^2+\frac{g}{3}\Phi^3\right) + c.c. \nonumber \\
+	& = \int d^4 x[-\p_m\vphi\p^m\vphib - i\psi\s^m\p_m\psib + F\Fb + \l F + M(\vphi F-\frac12\psi\psi) \nonumber \\
+	& \qquad\qquad + g(\vphi^2 F - \psi\psi\vphi) + c.c.]
+	\end{align}
+By setting $\l = M = 0$, the action has a global symmetry called {\it R-symmetry}
+	\begin{equation}
+	\vphi\rightarrow e^{\frac{2i}{3}K}\vphi\ ,\quad\psi\rightarrow e^{-\frac{i}{3}K}\psi\ ,\quad F\rightarrow e^{-\frac{4i}{3}K}F
+	\end{equation}
+In term of superfields, the transformation can be written as
+	\begin{align}
+	\Phi(y,\t) \rightarrow e^{2inK}\Phi(y,e^{-iK}\t) \\
+	\Phib(\yb,\tb) \rightarrow e^{-2inK}\Phib(\yb,e^{iK}\tb)
+	\end{align}
+where $n=\frac13$. We can verify this by an explicit calculation for the kinetic term
+	\begin{align}
+	\int d^4 x\int d^4\t\ \Phi\Phib \rightarrow & \int d^4 x\int d^2\t \int d^2\tb\ \Phi(y,e^{-iK}\t)\Phib(\yb,e^{iK}\tb) \\
+	& = \int d^4 x\int d^2\t' \int d^2\tb'\ \Phi(y,\t')\Phib(\yb,\tb')
+	\end{align}
+and for the cubic one
+	\begin{align}
+	\int d^4 x\int d^2\t\ \Phi^3 \rightarrow \int d^4 x\int d^2\t\ e^{2iK}\left(\Phi(y,e^{-iK}\t)\right)^3 = \int d^4 x\int d^2\t'\ \left(\Phi(y,\t')\right)^3
+	\end{align}
+where $\t' = e^{-iK}\t$. A similar R-symmetry exists when we set $\l = g =0$, but the transformation gets modified to $n=1/2$ (see exercises).
+
+Finally, we have to be aware that although this symmetry is global, it could have anomalies (like chiral anomalies). 
+
+\subsection{Representations of super Poincar\'e algebra}
+To find irreducible unitary representations of the super-Poincar\'e group (Poincar\'e + SUSY), we will follow the same method that is used to construct representations of the Poincar\'e group i.e. the {\it little group method}. We begin by briefly reviewing the process for the Poincar\'e case.
+
+The Poincar\'e group is generated by operators $P_m$ and $M_{mn}$ that belong to its Lie algebra. There we have Casimir operators $P_m P^m$, $W_m W^m$ where $W^m = \e^{mnpq} P_n M_{pq}$ is the Pauli-Lubanski vector. The method consists of starting with eigenstates of the $P_m$ operators $\left|p_m,\s\right>$, where $p_m$ are the eigenvalues of the state and $\s$ other labels of the representation related to the rest of the algebra (a posteriori the spin and helicity). Then, at each $p_m$ we have to find the subgroup $G_p \subset(\text{Poincar\'e})$ that leaves $p_m$ invariant. And, finally by knowing the finite-dimensional irreducible representations of $G_p$, we will be able to {\it deduce} the representation on the whole Poincar\'e group.%
+	\footnote{Although the specific representation is not hard to find, we are interested in the multiplicities of the representation at each point $p_m$ on the mass-shell since this is what counts the number of physical degrees of freedom.}
+
+The fact that $\left|p_m,\s\right>$ are eigenstates of $P_m$ implies that they are also eigenstates of the Casimir $P_mP^m$ with eigenvalue $p_m p^m$. This means that because we are in an {\it irreducible} representation (and there the Casimirs act proportional to the identity) the only allowed vectors $p_m$ are those that give a constant for $p^mp_m = -M^2$. Then, we have two physically relevant cases
+	\begin{enumerate}
+	\item $P_m P^m = -M^2 < 0$. Choose $P_0 = -M$, $P_i = 0$.
+	Little group is $SO(3)(\times \Z_2)$ and a basis for its irreducible representations are the spherical harmonics $Y_{s,s_z}$. Each irrep, labeled by the spin $s$ ($W_m W^m = -M^2 s(s+1)$) has $2s+1$ states ($s_z = -s,\ldots s$) $\L_{a_1\ldots a_{2s}}$ where $a_i = 1,2$ and $s\in\Z/2$.
+	\item $P_m P^m = 0 $. Choose $-P_0 = P_3 = E$.
+	Little group is $SO(2)(\times \Z_2)$ and a basis for its irreducible representations are functions $e^{is\t}$ for $s\in\Z/2$. Each irrep is labeled by its helicity ($W_m = s P_m$). For $s\neq 0$, we choose a two-state complex representation $\pm s$.
+	\end{enumerate}
+
+We make an analogous analysis for the super-Poincar\'e group generated by $P_m$, $M_{mn}$, $Q_\a$, $\Qb_\ad$. Here $P_m P^m = -M^2$ remains as a Casimir operator but $W^2$ won't be anymore, and therefore representations will have states of different spin.\footnote{One can define a supersymmetric Casimir operator $P^2 \tilde W^2 - (P\cdot \tilde W)^2$ with values $-M^4 s(s+1)$ where $s$ is the lowest spin of the fields in the supersymmetry multiplet and $\tilde W^m \equiv W^m- \frac{1}{2}\sigma^m_{\a\dot\alpha} [Q^\a, \bar Q^{\dot\a}]$}
+However, we have the property \#fermions = \#bosons (with momentum $P_m$) because
+	\begin{align}
+	2 Tr\left[(-1)^{N_f} P_m\s^m_{\a\bd}\right] & = Tr\left[ (-1)^{N_f}(Q_\a\Qb_\bd + \Qb_\bd Q_\a) \right] \nonumber \\
+	& = Tr \left[(-1)^{N_f} Q_\a \Qb_\bd - \Qb_\bd (-1)^{N_f} Q_\a\right] \nonumber \\
+	& = Tr \left[(-1)^{N_f} Q_\a\Qb_\bd\right](1-1) = 0
+	\end{align}
+
+When we use the {\it little group method}, we have again two physically relevant cases, massive and massless
+	\begin{enumerate}
+	\item $P_m P^m = -M^2 <0$. Choose $P_0 = -M$, $P_i=0$. There the SUSY generators realize two copies of a fermionic oscillator algebra
+		\begin{equation}
+		\{Q_\a, \Qb_\ad\} = 2P_m \s^m_{\a\ad} \Rightarrow
+			\begin{array}{l}
+			\{Q_1, \Qb_1\} = \{Q_2, \Qb_2\} = 2M \\
+			\{Q_1, \Qb_2\} = \{Q_2, \Qb_1\} = 0
+			\end{array}
+		\end{equation}
+	Define $a_\a = \frac{1}{\sqrt{2M}}Q_\a$, $(a_\a)^\dagger = \frac{1}{\sqrt{2M}}\Qb_\ad$, $a_\a\vac = \left<\Omega\right|(a_\a)^\dagger=0$. Then, the states are $\{\vac$, $(a_\a)^\dagger\vac$, $(a_\a)^\dagger(a^\a)^\dagger\vac\}$. It is crucial not to forget that $\vac$ is degenerate and belongs to a spin $s$ multiplet $\left|\Omega_s\right>$.  Then this representation has $2(2s+1)$ bosons and $2(2s+1)$ fermions
+		\begin{equation}
+		\L_{(a_1\ldots a_{2s})}\oplus \L_{(a_1\ldots a_{2s-1})}\oplus\L_{(a_1\ldots a_{2s+1})}\oplus\L_{(a_1\ldots a_{2s})}
+		\end{equation}
+		Examples of massive representations:
+		\begin{equation}
+			\begin{aligned}
+			& \left|\Omega_0\right>:\quad 2\text{ of spin }0,\ 1\text{ of spin 1/2 (Massive WZ)} \\
+			& \left|\Omega_{\frac12}\right>:\quad 1\text{ of spin }0,\ 2\text{ of spin 1/2, 1 of spin 1 (Massive SYM or s-Proca)}
+			\end{aligned}
+		\end{equation}
+	
+	\item $P_m P^m = 0$. Choose $-P_0 = P_3 = E$. There the SUSY generators realize a fermionic oscillator algebra
+		\begin{equation}
+		\{Q_\a, \Qb_\ad\} = 2P_m\s^m_{\a\ad} \Rightarrow
+			\begin{array}{l}
+			\{Q_1,\Qb_1\} = 4E \\
+			\{Q_2, \Qb_2\} = \{Q_2,\Qb_2\} = \{Q_2, \Qb_1\}= 0
+			\end{array}
+		\end{equation}
+	Define $a=\frac{1}{2\sqrt E}Q_1$, $a^\dagger = \frac{1}{2\sqrt E} \Qb_1$ with the vacuum state annihilated by $a\vac = \left<\Omega\right| a^\dagger = Q_2\vac = \Qb_2\vac =0$ where $\vac$ is complex with helicity $s$ ($s=0$ gives only two scalars). The states are
+		\begin{equation}
+		\vac\ ,\quad a\vac\ ,\quad \left|\Omega^*\right>\ ,\quad a^\dagger\left|\Omega^*\right>
+		\end{equation}
+	Then, we have four states with helicities: $s,\ (s+\frac12),\ -s,\ (-s-\frac12)$.
+	Examples of massless representations:
+	\begin{equation}
+		\begin{aligned}
+		\left|\Omega_0\right>:&\quad (0,0,1/2,-1/2)\ \text{(Massless WZ)} \\
+		\left|\Omega_{1/2}\right>:&\quad (1,-1,1/2,-1/2)\ \text{(SYM)} \\
+		\left|\Omega_{3/2}\right>:&\quad (2,-2, 3/2, -3/2)\ \text{(Supergravity)}
+		\end{aligned}
+	\end{equation}
+	\end{enumerate}
+
+\subsection{$\mathcal N=1$ Super-Maxwell}
+Next we will describe a theory for the so-called {\it vector multiplet}, that is the one corresponding to the $\left|\Omega_{1/2}\right>$ in the massless case. From what we found we can deduce that the field content is given by a vector field $A_m(x)$ and spinor $\l^\a(x)$. The action is
+	\begin{equation}
+	S = \int d^4 x\left(-\frac14 V_{mn} V^{mn} - i\l\s^m\p_m\lb\right)
+	\end{equation}
+where $V_{mn} = \p_m A_n - \p_n A_m$. The SUSY transformations are
+	\begin{equation}
+		\begin{aligned}
+		\d A^m & = i\xi\s^m\lb + i\xib\sb^m\l \\
+		\d \l_\a & = V_{mn}(\s^{mn}\xi)_\a \\
+		\d \lb^\ad & = V_{mn}(\sb^{mn}\xib)^\ad
+		\end{aligned}
+	\end{equation}
+We can verify the algebra closes only up to gauge transformations and equations of motion
+	\begin{align}
+	[\d_1,\d_2]A^m & = i\xi_2\s^m(\sb^{pq} V_{pq}\xib_1) + i\xib_2 \sb^m(\s^{pq}V_{pq}\xi_1) - (1\lra 2) \nonumber \\
+	& = V_{pq}\frac12 (i\xi_2\s^m\sb^p\s^q\xib_1 - i\xib_1\sb^m\s^p\sb^q\xi_2 + i\xib_2\sb^m \s^p\sb^q\xi_1 - i\xi_1\s^m\sb^p\s^q\xib_2) \nonumber \\
+	& = V_{pq}\frac{i}{2}(\xi_2(\s^m\sb^p\s^q + \s^q\sb^p\s^m)\xib_1 + \xib_2 (\sb^m\s^p\sb^q + \sb^q\s^p\sb^m)\xi_1) \nonumber \\
+	& = V_{pq}\frac{i}{2}(\xi_2\s^p\xib_1 4\eta^{mq} + \xib_2\sb^p\xi_1 4\eta^{mq}) \nonumber \\
+	& = 2i(\xi_2\s^p\xib_1 + \xib_2\sb^p \xi_1)(\p_p A^m - \p^m A_p) \nonumber \\
+	& = \L^p\p_p A^m - \p^m(\L^p A_p)\ ,\quad\text{where}\ \L^p = 2i(\xi_2\s^p\xib_1 + \xib_2\s^p\xi_1) \nonumber \\
+	& = \d_P A^m + \text{gauge transf.}
+	\end{align}
+likewise for the photino
+	\begin{align}
+	[\d_1, \d_2]\l = \L^p\p_p \l + \text{EOM}
+	\end{align}
+
+As it was done in previous sections, we could try to make the SUSY algebra close off-shell by adding auxiliary fields. A counting of the (non-gauge) off-shell degrees of freedom gives 3 non-gauge bosonic d.o.f. and 4 non-gauge fermionic ones. This means we need one extra auxiliary real scalar field. The action with the extra scalar field is
+	\begin{equation}
+	S = \int d^4 x \left( -\frac14 V_{mn} V^{mn} -i\l\s^m\p_m\lb + \frac12 d^2\right)
+	\end{equation}
+and, the supersymmetry transformations are modified to
+	\begin{equation}
+		\begin{aligned}
+		\d A_m & = i\xi \s^m \lb + i\xib\s^m\l \\
+		\d \l & = V_{mn}(\s^{mn}\xi) + i\xi d \\
+		\d \lb & = V_{mn}(\sb^{mn}\xib) - i\xib d \\
+		\d d & = \xib\sb^m\p_m\l - \xi\s^m\p_m\lb
+		\end{aligned}
+	\end{equation}
+Then, the commutation relations become
+	\begin{align}
+		[\d_1,\d_2] A^m & = \L^p\p_p A^m - \p^m(\L^p A_p) \nonumber \\
+		[\d_1, \d_2] \l & = \L^p\p_p \l\ ,\quad [\d_1, \d_2]\lb = \L^p\p_p\lb \\
+		[\d_1, \d_2]d & = \L^p \p_p d \nonumber
+	\end{align}
+and it can be seen that there are no more terms proportional to the equations of motion; however, there still remain terms that only vanish after a gauge transformation. The way to get around this is to make supersymmetry manifest, and it requires to have an equal number of bosons and fermions (including gauge degrees of freedom). So, we introduce the {\it real superfield}
+	\begin{equation}
+		\begin{aligned}
+		V(x,\t,\tb) & = C(x) + i\t\chi(x) - i\tb\chib(x) + \frac{i}{2}\t\t(M(x) + iN(x)) \\
+		& \quad -\frac{i}{2} \tb\tb (M(x) - i N(x)) - (\t\s^m\tb) A_m(x) + i(\t\t) \tb (\lb(x) + \frac{i}{2}\sb^m\p_m\chi(x)) \\
+		& \quad -i(\tb\tb)\t(\l(x) + \frac{i}{2}\s^m\p_m\chib(x)) + \frac12 (\t\t)(\tb\tb)(d(x) +\frac12\square C(x))
+		\end{aligned}
+	\end{equation}
+where $C$, $M$, $N$, $A_m$ and $d$ are real fields. The name comes from the fact that it is the most general expression for a superfield with the property
+	\begin{equation}
+	(V(x,\t,\tb))^* = V(x,\t,\tb).
+	\end{equation}
+Furthermore, the gauge transformation for the vector field $\d A_m = \p_m\L$ has a supersymmetric version given by
+	\begin{equation}
+	\d V(x,\t,\tb) = \L(y,\t) + \bar\L(\yb,\tb)
+	\end{equation}
+where $\L$ is a chiral superfield i.e. $\Db_\ad\L = D_\a\bar\L = 0$. And, if we write this transformation in components by first denoting
+	\begin{equation}
+	\L(y,\t) = a(y) + \sqrt 2\t b(y) + \t\t f(y)
+	\end{equation}
+we can verify that
+	\begin{equation}\label{WZgauge}
+		\begin{aligned}
+		&\d C = a+ a^*\ ,\quad \d\chi = -i\sqrt 2 b\ ,\quad \d(M+iN) = -2if\ ,\\
+		&\d A_m = -i\p_m(a-a^*)\ ,\quad \d\l = \d d = 0.
+		\end{aligned}
+	\end{equation}
+that is, it transforms the vector field $A_m$ with the usual gauge transformation.
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that the WZ action with $\l = g = 0$ is $R$-invariant if $n = \frac12$.
+	\end{exe}
+
+	\begin{exe}
+	Show that $W_\a = (-1/4)\Db_\ad \Db^\ad D_\a V$ and $ \bar W_\ad = (-1/4)D^\a D_\a \Db_\ad V$ are invariant under $\d V = \Lambda + \bar\Lambda$ when $\Db_\ad \Lambda = D_\a \bar\Lambda = 0$.
+	\end{exe}
+
+	\begin{exe}
+	Write the superfield $W_\a$ in components.
+	\end{exe}
+
+	\begin{exe}
+	Write the action
+		\begin{equation}
+		S = \frac12 \int d^4 x \int d^2 \t\ W^\a W_\a
+		\end{equation}
+	in components. Show that this action is real (ignore surface terms).
+	\end{exe}
+
+	\begin{exe}
+	What is the EOM in superspace for $V$, using the action in the previous exercise?.
+	\end{exe}
+
+
+\newpage
+
+\section{Super-Yang-Mills I}
+
+\subsection{Super-QED}
+
+The super-Maxwell action can be written as (see exercise of past lecture)
+	\begin{align}
+	S & = \int d^4 x\left( -\frac14 V_{mn}V^{mn} - i\l\s^m\p_m\lb + \frac12 d^2\right) \nonumber \\
+	& = \frac14 \int d^4 x\left( \int d^2 \t\ W^\a W_\a + \int d^2\tb\ \Wb_\ad \Wb^\ad\right)  \nonumber \\
+	& = \frac18 \int d^4 x\int d^4\t\ V D^\a\Db\Db D_\a V
+	\end{align}
+where $W_\a = -\frac14 \Db\Db D_\a V$.
+
+{\it Quantum Electrodynamics} describes, aside from the electromagnetic field, the interaction with matter, specifically electrons and positrons. Now, we want to have a supersymmetric version of QED, but first we have to notice that the matter content in QED is given by a Dirac spinor
+	\begin{equation}
+	\left(
+		\begin{array}{c}
+		\psi_\a \\
+		\chib^\ad
+		\end{array}
+	\right)
+	\end{equation}
+where $\psi_\a$ is the electron (charge $e$ and mass $M$) and $\chi_\a$ the positron (charge $-e$ and mass $M$). Therefore, we will have to use two chiral superfields. Then, define
+	\begin{align}
+	\Phi(y,\t) & = \vphi(y) + \sqrt2 \t\psi(y) + \t\t F(y) \\
+	\S(y,\t) & = \tau(y) + \sqrt2 \t\chi(y) + \t\t E(y)
+	\end{align}
+that contain the electron and positron respectively, as well as their superpartners, the {\it selectron} $\vphi$ and {\it spositron} $\tau$.
+
+The QED action uses a minimal coupling prescription, where the matter fields enter as
+	\begin{equation}
+	S_{matter} = - i\int d^4 x\left[ \psib\sb^n\p_n\psi + \chib\sb^n\p_n\chi + ieA^m(\psib\sb_m\psi-\chib\sb_m\chi)-M(\psi\chi+\psib\chib)\right]
+	\end{equation}
+with the gauge transformation being
+	\begin{equation}
+	\psi\rightarrow e^{-iea(x)}\psi\ ,\quad\chi\rightarrow e^{iea(x)}\chi\ ,\quad V^m\rightarrow V^m + \p^m a(x)
+	\end{equation}
+In superspace, the way we have to describe the matter part of sQED is
+	\begin{equation}
+	S_{matter} = \int d^4 x\int d^4\t\left[\Phib e^{2eV}\Phi + \Sb e^{-2eV}\S \right] + M\int d^4 x\left(\int d^2\t\ \Phi\S + \int d^2\tb\ \Phib\Sb \right)
+	\end{equation}
+that is invariant under the following gauge transformations
+	\begin{equation}
+		\begin{aligned}
+		\Phi\rightarrow e^{-2ie\L}\Phi\ ,&\quad\S\rightarrow e^{2ie\L}\S\ ,\quad V\rightarrow V+i(\L-\Lb) \\
+		\Phib\rightarrow e^{2ie\Lb}\Phib\ ,& \quad\Sb\rightarrow e^{-2ie\Lb}\Sb
+		\end{aligned}
+	\end{equation}
+where the gauge parameter $\L$ is also a chiral superfield,
+	\begin{equation}
+	\Db_\ad\L = \Db_\ad \Phi =\Db_\ad\S = 0 :
+		\begin{array}{l}
+		\L(y,\t) = b(y) + \sqrt2\t p(y) + \t\t h(y) \\
+		\Phi(y,\t) = \vphi(y) + \sqrt2 \t\psi (y) + \t\t F(y) \\
+		\S(y,\t) = \tau(y) + \sqrt2\t\chi(y) + \t\t E(y)
+		\end{array}
+	\end{equation}
+
+\subsection{Wess-Zumino gauge}
+Verifying that the action in superspace is correct can be simplified by going to the Wess-Zumino gauge. Notice that from the gauge transformation in component form, e.g. (\ref{WZgauge}), we can set to zero some auxiliary fields in the real superfield $V$ and remain with
+	\begin{equation}
+	V(x,\t,\tb) = -\t\s^m\tb A_m + i\t\t\tb\lb -i\tb\tb\t\l + \frac12 \t\t\tb\tb d
+	\end{equation}
+Then, the exponential of $V$ that appears in the action is reduced to
+	\begin{equation}
+	e^{2eV} = 1 + 2eV + 2e^2 V^2 + \ldots = 1- 2e\t\s^m\tb A_m + 2e\t\t\tb\lb -2ie\tb\tb\t\l + e\t\t\tb\tb (d-e A_m A^m)
+	\end{equation}
+and the action in components becomes
+	\begin{align}
+	S_{matter} = \int d^4x & \Big[ \vphib(\p^m + ieA^m)(\p_m + ieA_m)\vphi + \taub(\p^m-ie A^m)(\p_m-ie A_m)\tau \nonumber \\
+	& + E \bar E + \Fb F - i\psib\sb^m(\p_m + ie A_m)\psi -i\chib \sb^m(\p_m - ie A_m)\chi \nonumber \\
+	& + M (\vphi E+ \vphib \bar E + \tau F + \taub\Fb - \psi\chi - \psib \chib) \nonumber \\
+	& -ie\sqrt2(\vphi\psib\lb - \vphib\psi\l - \tau\chib\lb + \taub\chi\l) + ed(\vphib\vphi -\taub\tau) \Big]
+	\end{align}
+%
+%Only covariant derivatives appear in the action. We need 2 {\it selectrons} ($\vphi$ and $\chib$) and 2 {\it spositrons} ($\vphib$ %and $\chi$) propagating with mass $M$. Also, notice that $\l_\a$ is chargeless (same representation of $V_m$).
+%
+
+\subsection{Review of Yang-Mills theory}
+Non-abelian Yang-Mills theories describe gauge fields $A_m(x)=A^I_m(x) T_I$ that belong to the Lie algebra of some Lie group $G$. In components 
+	\begin{equation}
+	A^I_m(x)\ \text{with}\ I=1,\ldots,dim\ G
+	\end{equation}
+As an example, consider $G = SU(N)$ ($M^\dagger = M^{-1}$, $\det M =1$), then we denote its matrices as
+	\begin{equation}
+	M_A^{\ B}\ ,\qquad A,B=1,\ldots,N\qquad I=1\ldots (N^2-1)
+	\end{equation}
+and some common representations
+	\begin{align}
+	\text{Singlet rep.:}&\qquad s\rightarrow s \\
+	\text{Fundamental rep.:}&\qquad f_B\rightarrow M_B^{\ C} f_C \\
+	\text{Anti-fundamental rep.:}&\qquad \bar f^B \rightarrow \bar f^C(M^\dagger)_C^{\ B} \\
+	\text{Adjoint rep.:}&\qquad a^I (T_I)_A^{\ B} = a_A^{\ B} \rightarrow M_A^{\ D}a_D^{\ C} (M^\dagger)_C^{\ B}
+	\end{align}
+The properties of the algebra of generators $T_I$ of $SU(N)$ imply
+	\begin{equation}
+	a_A^{\ B} = {a^\dagger}_A^{\ B}\ ,\quad a_A^{\ A} = 0
+	\end{equation}
+where $a_A^{\ B}$ is a matrix in the Lie algebra $(M_A^{\ B} = (e^{ia})_A^{\ B})$.
+
+We could also compute the infinitesimal transformations of the multiplets (or equivalently the representations of the Lie algebra induced by the reps. of the Lie group): $M_A^{\ B} = (e^{i\L})_A^{\ B}$ for $\L$ small
+	\begin{equation}
+	\d f_B = i\L_B^{\ C} f_C\ ,\quad \d \bar f^B = -i\bar f^C \L_C^{\ D}\ ,\quad \d a_A^{\ B} = i(\L_A^{\ C} a_C^{\ B} - a_A^{\ C} \L_C^{\ B})
+	\end{equation}
+Then, we can construct some invariant terms such as
+	\begin{equation}
+	\bar f^B f_B,\ \bar f^B a_B^{\ C} f_C,\ a_A^{\ B} a_B^{\ A},\ \ldots
+	\end{equation}
+Although, if we want to get invariant terms under local gauge transformations $M_A^{\ B}(x)$, we need to define a covariant derivative $\N_m f_B$ that should satisfy $\N_m f_B\rightarrow M_B^{\ C} \N_m f_C$. Then for a gauge field $(A_m(x))_A^{\ B}$ that transforms as
+	\begin{equation}
+	(A_m)_A^{\ B} \rightarrow M_A^{\ D}(A_m)_D^{\ C}(M^\dagger)_C^{\ B} + i M_A^{\ B} \p_m(M^\dagger)_B^{\ C}
+	\end{equation}
+define
+	\begin{align}
+	\N_m f_B & = \p_m f_B - i(A_m)_B^{\ C} f_C \\
+	\N_m \bar f^B & = \p_m\bar f^B + i\bar f^C (A_m)_C^{\ B} \\
+	\N_m a_B^{\ C} & = \p_m a_B^{\ C} - i(A_m)_B^{\ D} a_D^{\ C} + ia_B^{\ D} (A_m)_D^{\ C}
+	\end{align}
+Then we can easily verify that the following terms satisfy their expected transformation laws,
+	\begin{align}
+	&M(\N_m f) \\
+	&(\N_m \bar f) M^\dagger \\
+	& M(\N_m a) M^\dagger
+	\end{align}
+Therefore we can construct invariant terms such as $\bar f^B\N_m f_B$, $\N_ma_B^{\ C}\N^m a_C^{\ B}$ and $\e^{B_1\ldots B_N} f_{B_1\ldots B_N}$. Notice that we can go backwards and by assuming that the covariant derivatives transform the right way then deduce the transformation of the gauge field $(A_m(x))_B^{\ C}$.
+
+Finally, we define the field strength as
+	\begin{equation}
+	(F_{mn})_B^{\ C} = \p_m(A_n)_B^{\ C} - \p_n(A_m)_B^{\ C} - i\left( (A_m)_B^{\ D} (A_n)_D^{\ C} - (A_n)_B^{\ D} (A_m)_D^{\ C} \right)
+	\end{equation}
+	This field strength has the properties that
+	\begin{align}
+	(F_{mn})_B^{\ C} & \rightarrow (M F_{mn} M^\dagger)_B^{\ C} \\
+	(F_{mn})_B^{\ C} & = [\N_m, \N_n]_B^{\ C} \\
+	(F_{mn})_B^{\ C} &(F^{mn})_C^{\ B}\text{ is gauge invariant}
+	\end{align}
+Then, with these elements we construct an action that possesses $SU(N)$ gauge symmetry
+	\begin{equation}
+	S = \int d^4x [ -\frac{1}{4g^2}Tr(F_{mn} F^{mn}) + \N_m\bar f^A \N^m f_A + M^2 \bar f^A f_A ]
+	\end{equation}
+In this normalization the coupling constant $g$ only appears in front of the kinetic term for the gauge field. We can go to another normalization (like the one used for QED) by scaling the gauge field $A_m \rightarrow g A_m$.
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		S = S_{sMax} + S_{matter} + \int d^4 x d^2\t\ g\Phi^3 + \int d^4 x d^2\t\ \bar g \Phib^3
+		\end{equation}
+	is $R$-invariant. What are the transformations of $V(x,\t,\tb)$, $\Phi(y,\t)$, $\S(y,\t)$?.
+	\end{exe}
+
+	\begin{exe}
+	For the abelian case, compute the transformation of $A_m$, $\l^\a$, $\lb^\ad$ and $d$ in the WZ gauge using the fact that
+		\begin{equation}
+		\d_Q V = (\xi Q + \xib \Qb) V + \Lambda + \bar\Lambda 
+		\end{equation}
+	where $\Db_\ad \Lambda = D_\a \bar\Lambda = 0$ and $(\Lambda, \bar\Lambda)$ are chosen to leave $V$ invariant in the WZ gauge (i.e. $\d_Q c = \d_Q \chi = \d_Q(M+iN) = 0$).
+	\end{exe}
+
+	\begin{exe}
+	Show that
+		\begin{equation}
+		(F_{mn})_B^{\ C}\longrightarrow (M F_{mn} M^\dag)_B^{\ C}
+		\end{equation}
+	where $F_{mn} = \p_{[m}A_{n]} - i A_{[m} A_{n]}$.
+	\end{exe}
+
+\newpage
+
+\section{Super-Yang-Mills II}
+
+\subsection{Super-Yang-Mills: Field content}
+In the same way we generalize QED to its supersymmetric version, we can construct a supersymmetric generalization of an $SU(N)$ Yang-Mills theory. Firstly, we introduce the real superfields that contain the gauge fields
+	\begin{equation}
+	(V(x,\t,\tb))_B^{\ C} = V^I (T_I)_B^{\ C} = a_B^{\ C} + \t^\a(b_\a)_B^{\ C} - \t\s^m\tb (A_m)_B^{\ C} + \ldots
+	\end{equation}
+where $V = V^\dagger $ is hermitian. Secondly, the parameter fields $M_A^{\ B}(x)$ of the gauge transformations will be promoted to chiral superfields
+	\begin{equation}
+		\begin{aligned}
+		M_A^{\ B}(y,\t) & = (e^{+i\L(y,\t)})_A^{\ B} \\
+		(M^{-1})_A^{\ B}(y,\t) & = (e^{-i\L(y,\t)})_A^{\ B}
+		\end{aligned}
+	\ ,\quad \L_A^{\ B} = \L^I(y,\t) (T_I)_A^{\ B}
+	\end{equation}
+
+	\begin{equation}
+		\begin{aligned}
+		{M^\dagger}_A^{\ B}(\yb,\tb) & = (e^{-i\Lb(\yb,\tb)})_A^{\ B} \\
+		{(M^{-1})^\dagger}_A^{\ B}(\yb,\tb) & = (e^{+i\Lb(\yb,\tb)})_A^{\ B}
+		\end{aligned}
+	\ ,\quad \Lb_A^{\ B} = \Lb^I(\yb,\tb) (T_I)_A^{\ B}
+	\end{equation}
+where $\L\neq \L^\dagger$ because $\L^I$ is complex. And, finally the matter fields are set to be multiplets $\Phi^A(y,\t)$, $\S_A(y,\t)$ of chiral superfields in the antifundamental and fundamental representation, respectively. They transform under a gauge transformation as
+	\begin{equation}
+		\begin{aligned}
+		\S_A\rightarrow M_A^{\ B}\S_B=(e^{+i\L}\S)_A\ ,&\quad \Sb^B\rightarrow \Sb^B {M^\dagger}_B^{\ A} = (\Sb e^{-i\Lb})^A \\
+		\Phi^A\rightarrow \Phi^A {(M^{-1})}_A^{\ B} = (\Phi e^{-i\L})^A \ ,&\quad \Phib_A\rightarrow {(M^{-1})^\dagger}_A^{\ B}\Phib_B = (e^{+i\Lb}\Phib)_A
+		\end{aligned}
+	\end{equation}
+
+In constructing the action in superspace, it was shown for the super-QED case that we need to use exponentials of the vector superfield to get gauge invariant coupling terms
+	\begin{equation}
+		\begin{aligned}
+		(e^{V(x,\t,\tb)})_A^{\ B} & \rightarrow {(M^{-1})^\dagger}_A^{\ D}(e^V)_D^{\ C}(M^{-1})_C^{\ B}= (e^{+i\Lb} e^V e^{-i\L})_A^{\ B} \\
+		(e^{-V(x,\t,\tb)})_A^{\ B} & \rightarrow M_A^{\ D}(e^{-V})_D^{\ C}{M^\dagger}_C^{\ B}= (e^{+i\L} e^{-V} e^{-i\Lb})_A^{\ B}
+		\end{aligned}
+	\end{equation}
+Thus, the matter fields will enter the action in the form
+	\begin{align}
+	S_{matter} = \int d^4 x & \left[  \int d^4\t \left( \Phi^A(e^{-V})_A^{\ B}\Phib_B + \Sb^A(e^V)_A^{\ B}\S_B \right) \right. \nonumber \\
+	& \left. + m \left(\int d^2\t\ \Phi^A\S_A + \int d^2\tb\ \Sb^A \Phib_A\right)\right]
+	\end{align}
+
+Since the gauge parameter fields $M(y,\t)$ are now superfields, we would like to covariantize the fermionic derivatives $D_\a$, $\Db_\ad$. Thus, we want
+	\begin{equation}
+	\Dc_\a \S_A\rightarrow M_A^{\ B} \Dc_\a \S_B\ ,\quad \Dcb_\ad\S_A \rightarrow M_A^{\ B}\Dcb_\ad\S_B
+	\end{equation}
+so an extra term is needed related to the gauge fields $V^I$. Define
+	\begin{equation}
+	\Dc_\a\S_A = D_\a\S_A -i(A_\a)_A^{\ B}\S_B\ ,\quad\text{where}\ (A_\a)_A^{\ B} = i(e^{-V} D_\a e^V)_A^{\ B}
+	\end{equation}
+plus,
+	\begin{equation}
+	\Dcb_\ad\S_A = \Db_\ad\S_A\ ,\quad \bar A_\ad = 0
+	\end{equation}
+This is called the {\it chiral representation} of the gauge field. To verify that this fermionic covariant derivatives hold the expected property, compute
+	\begin{align}
+	A_\a \rightarrow iMe^{-V} M^\dagger D_\a((M^{-1})^\dagger e^V M^{-1}) & = iMe^{-V} D_\a(e^V) M^{-1}) \nonumber \\
+	& = M A_\a M^{-1} + i M D_\a M^{-1}
+	\end{align}
+this in turn implies for $\S_A$ that
+	\begin{align}
+	\Dc_\a\S_A \rightarrow & D_\a(M\S)_A - i(M A_\a M^{-1} M \S)_A - (D_\a M) M^{-1} (M\S)_A \nonumber \\
+	& = (M\Dc_\a\S)_A
+	\end{align}
+i.e. $\Dc_\a \rightarrow M \Dc_\a M^{-1}$. Similarly, for fields in the antifundamental and adjoint representations, we want the properties
+	\begin{align}
+	\Dc_\a\Phi^A &\rightarrow \Dc_\a\Phi^B (M^{-1})_B^{\ A} \\
+	\Dc_\a a_A^{\ B} & \rightarrow M_A^{\ C} (\Dc_\a a_C^{\ D})(M^{-1})_D^{\ B}
+	\end{align}
+which leads us to the definitions
+	\begin{align}
+	\Dc_\a\Phi^A & = D_\a \Phi^A + i\Phi^B (A_\a)_B^{\ A} \\
+	\Dc_\a a_A^{\ B} & = D_\a a_A^{\ B} - i(A_\a)_A^{\ C} a_C^{\ B} + i a_A^{\ C} (A_\a)_C^{\ B}
+	\end{align}
+And, finally to define its action on the antichiral superfield multiplets $\Dc_\a\Phib_A$, $\Dc_\a \Sb^A$, $\Dc_\a \bar a_A^{\ B}$, use $V$
+	\begin{align}
+	(e^{-V} \Phib)_A & \rightarrow M_A^{\ B} (e^{-V} \Phib)_B \nonumber \\
+	(\Sb e^V)^A & \rightarrow (\Sb e^V)^B (M^{-1})_B^{\ A} \\
+	e^{-V}\bar a e^V & \rightarrow M(e^{-V} \bar a e^V) M^{-1}\nonumber
+	\end{align}
+Then, for example, we can construct gauge invariant terms like
+	\begin{equation}
+	\int d^4 x \int d^4\t\ \Dc^\a \Phi^A \Dc_\a(e^{-V} \Phib)_A
+	\end{equation}
+(which is however non renormalizable).
+
+\subsection{Super-Yang-Mills: Action}
+%Covariant derivatives
+%	\begin{equation}
+%	\Dcb_\ad = \Db_\ad\quad (A_\ad = 0)\ ,\quad \Dc_\a = D_\a -i A_\a = D_\a + e^{-V} (D_\a e^V)
+%	\end{equation}
+The final ingredient to assemble the action for the super-Yang-Mills theory is the one corresponding to the kinetic part of the real vector superfields. So, as we did for super-Maxwell where it was defined as
+	\begin{equation}
+	W_\a = -\frac14 \Db\Db D_\a V = - \frac{i}{4} \Dcb\Dcb A_\a
+	\end{equation}
+we define the following superfield for the non-abelian case
+	\begin{equation}
+	(W_\a)_A^{\ B} = -\frac{i}{4} \Dcb\Dcb A_\a = -\frac14 \Db\Db (e^{-V} (\Dc_\a e^{V}))_A^{\ B}
+	\end{equation}
+which will transform
+	\begin{equation}
+	\Db^2 A_\a \rightarrow \Db^2(M A_\a M^{-1} + i M D_\a M^{-1}) \Longrightarrow W_\a \rightarrow M W_\a M^{-1}
+	\end{equation}
+and similarly for $\Wb^\ad$. Therefore, the kinetic term for vector superfields is
+	\begin{equation}
+	S_{kin} = \int d^4 x \frac{1}{4g^2}\left[\int d^2\t\ (W_\a)_A^{\ B} (W^\a)_B^{\ A} + \int d^2\tb\ (\Wb_\ad)_A^{\ B} (\Wb^\ad)_B^{\ A} \right]
+	\end{equation}
+and the full super-Yang-Mills action is $S_{SYM} = S_{kin} + S_{matter}$, i.e. 
+	\begin{align}
+	S_{SYM} = \int d^4 x & \frac{1}{4g^2}\left[\int  d^2\t \ Tr(W_\a W^\a) + \int d^2\tb\ Tr(\Wb_\ad \Wb^\ad) \right] \nonumber \\
+	+ \int d^4 x  & \left[  \int d^4\t \left( \Phi^A(e^{-V})_A^{\ B}\Phib_B + \Sb^A(e^V)_A^{\ B}\S_B \right) \right. \nonumber \\
+	& \left. + M \left(\int d^2\t\ \Phi^A\S_A + \int d^2\tb\ \Sb^A \Phib_A\right)\right]
+	\end{align}
+
+As we did for the case of super-QED, we can use the Wess-Zumino gauge to simplify computations and express the action in field components, it consists of using $\L$ and $\Lb$ to set
+	\begin{equation}
+	V_A^{\ B} = -\t\s^m\tb (A_m)_A^{\ B} + i\t\t\tb\lb_A^{\ B} - i\tb\tb\t \l_A^{\ B} + \frac12 \t\t\tb\tb d_A^{\ B}
+	\end{equation}
+In this gauge
+	\begin{equation}
+	W_\a = -i\l_\a(y) + \t_\b (\d_\a^\b d(y) + \frac{i}{2} (\s^m\sb^n)_\a^{\ \b} F_{mn}(y)) + \t\t (\s^m\N_m\lb)_\a 
+	\end{equation}
+and the action is
+	\begin{align}
+	S_{SYM} & = \int d^4 x  \Big[ -\frac{1}{4g^2}(F_{mn})_A^{\ B} (F^{mn})_B^{\ A} - \frac{i}{g^2} \lb_A^{\ B} \sb^m (\N_m\l)_B^{\ A} + \frac{1}{2g^2} d_A^{\ B} d_B^{\ A} \nonumber \\
+	 & \quad + \frac{i}{8g^2} \e_{klmn} (F^{kl})_A^{\ B} (F^{mn})_B^{\ A} - (\N^m\vphib)_A(\N_m\vphi)^A -i\psib_A\sb^m(\N_m\psi)^A + \Fb_A F^A \nonumber \\
+	& \quad -(\N_m\taub)^A(\N^m\tau)_A -i\chib^A\sb^m(\N_m\chi)_A + \bar E_A E^A \nonumber \\
+	& \quad + \frac{i}{\sqrt2}(\taub^A\l_A^{\ B}\chi_B-\chib^A\l_A^{\ B}\tau_B + \psi^A\l_A^{\ B}\vphib_B - \vphi^A\l_A^{\ B}\psib_B) \nonumber \\
+	& \quad + \frac12 (\taub^A d_A^{\ B} \tau - \vphi^A d_A^{\ B} \vphib_B) + M (\psi^A\chi_A + \psib_A\chib^A + \vphi^A E_A +\tau_A F^A + \vphib_A \Fb^A \nonumber \\
+	& \quad + \taub^A \Fb_A) \Big]
+	\end{align}
+
+%
+%e.g.
+%	\begin{equation}
+%	S = -\frac{1}{4g^2 k}Tr\int d^4 x\left( \tilde F_{mn} \tilde F^{mn} -i\tilde\psi\sb^m\Dc_m\psi + \vphi\Dc^m\Dc_m\vphi \right)
+%	\end{equation}
+%
+%Non-abelian super-Yang-Mills
+%	\begin{equation}
+%	\Phi_f(y,\t)\rightarrow e^{-i\Lt(y,\t)}\Phi_f*y,\t)\ ,\quad \Phi^\dagger_f(\yb,\tb)\rightarrow \Phi^\dagger_f(\yb,%\tb)e^{i\Lt^\dagger(\yb,\tb)}
+%	\end{equation}
+%We want $\int d^4 x\int d^4\t\ \Phi^\dagger_f e^{\Lt}\Phi_f$ invariant
+%	\begin{equation}
+%	e^{\Vt(x,\t,\tb)}\rightarrow e^{-i\Lt^\dagger(\yb,\tb)} e^{\Vt(x,\t,\tb)}e^{i\Lt(y,\t)}
+%	\end{equation}
+%We have to use Hausdorf's formula $e^A e^B = e^{A+B+(1/2)[A,B]+\ldots}$ to explicitly evaluate
+%
+%Define $\Dc_\a=e^{-\Vt} D_\a e^{\Vt}$ , $\Dcb_\ad = \Db_\ad$ (chiral representation of the gauge field). Then
+%	\begin{equation}
+%	\Dc_\a\rightarrow e^{-i\Lt(y,\t)} \Dc_\a e^{i\Lt(y,\t)}\ ,\quad \Dcb_\ad \rightarrow e^{-i\Lt(y,\t)}\Dcb_\ad e^{i\Lt(y,\t)}
+%	\end{equation}
+%
+%	\begin{equation}
+%	\tilde W_\a = -\frac14 \Db\Db(e^{-V}(D_\a e^V)) = -\frac14 \Dcb\Dcb \Dc_\a
+%	\end{equation}
+%
+%	\begin{equation}
+%	\Phit_a(y,\t)\rightarrow e^{-i\Lt(y,\t)}\Phit_a(y,\t) e^{i\Lt(y,\t)}\ ,\quad \Phit^\dagger_a(\yb,\tb)\rightarrow e^{-i\Lt^\dagger(\yb,\tb)}\Phit_a(\yb,\tb) e^{i\Lt^\dagger(\yb,\tb)}
+%	\end{equation}
+%Notice
+%	\begin{equation}
+%	(\Phi^\dagger_f e^{\Vt})\rightarrow (\Phi^\dagger_f e^\Vt) e^{i\Lt(y,\t)}\ ,\quad (e^{-\Vt}\Phit_a e^\Vt)\rightarrow e^{-i\Lt(y,%\t)}(e^{-\Vt}\Phit_a e^\Vt) e^{i\Lt(y,\t)}
+%	\end{equation}
+%
+%For $SO(N)$,
+%	\begin{equation}
+%	 (T_I)_{ij} = - (T_I)_{ji} \Rightarrow e^{-i\Lt} \Phit_f = \Phit_f e^{i\Lt}
+%	\end{equation}
+%For $SU(N)$,
+%	\begin{equation}
+%	(T_I)_{ij} = -(T_I)_{ji}^*
+%	\end{equation}
+%and we can also define a representation $ (-T^*_I)_{ij}$
+%	\begin{equation}
+%	\hat\Phi_{f*}(y,\t)\rightarrow \hat\Phi_{f*}(y,\t) e^{i\Lt(y,\t)}\ ,\quad \hat\Phi^\dagger_{f*}\rightarrow e^{-i\Lt^\dagger(\yb,%\tb)}\hat\Phi^\dagger_{f*}(\yb,\tb)
+%	\end{equation}
+%Action for $SO(N)$ case
+%	\begin{align}
+%	S & = \frac{1}{k} Tr\int d^4 x \left[ \int d^2\t (\frac{1}{4g^2}W^\a W_\a) + \int d^2\tb(\frac{1}{4g^2} \Wb_\ad \Wb^\ad) \right] %+ \int d^4 x \int d^4\t (\Phi^{i\dagger} (e^V)_{ij} \Phi^j) \nonumber \\
+%	& = \frac{1}{k} Tr\int d^4 x \left( -\frac{1}{4g^2} \Vt_{mn}\Vt^{mn} - \frac{i}{g^2} \tilde\lb \sb^m \Dc_m\tilde\l + \frac{1}{2g^2} \tilde d\tilde d \right) \nonumber \\
+%	& \quad + \int d^4x [ M (\frac12 \psi^i\psi^i + \frac12 \psib^i\psib^i + \vphi^i F^i + \vphib^i \Fb^i)- (\Dc_m\vphib)^i(\Dc_m\vphi)^i - i\psib^i \sb^m(\Dc_m\psi)^i \nonumber \\
+%	& \quad + \Fb^i F^i +i\sqrt2 (\vphib^i\tilde\l_{ij}\psi^j - \vphi^i\tilde\lb_{ij}\psib^j) + \vphib^i\tilde d_{ij} \vphi^j]
+%	\end{align}
+%where the second equality is for the Wess-Zumino gauge.
+%
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Compute $\Dc_\a = e^{-\widetilde V} D_\a e^{\widetilde V}$ in the WZ gauge for the non-abelian case. Also, compute $\{\Dc_\a, \Db_\ad\}$ in this gauge.
+	\end{exe}
+
+	\begin{exe}
+	Write the action in superspace for supersymmetric $QCD$ with massless (quark, squark) multiplets. (Three flavors of quarks transforming in the {\bf 3} and $\overline{{\bf 3}}$ representations of $SU(3)$. Ignore the $SU(2)$ labels of the weak interactions).
+	\end{exe}
+
+	\begin{exe}
+	Write the action in superspace of the supersymmetric Standard Model $(SU(3)\times SU(2)\times U(1))$ without the Higgs (quarks and leptons without mass, each quark and lepton belongs to a chiral or antichiral superfield).
+	\end{exe}
+
+	\begin{exe}
+	(Special credit) Include the Higgs field (It is needed a chiral superfield with mass term. The quartic term for the Higgs comes from solving the equation of motion for $d_A^{\ B}$ in the action. The Yukawa coupling with the leptons and quarks comes from a cubic term in the action).
+	\end{exe}
+
+
+\newpage
+
+\section{Symmetry breaking}
+
+\subsection{Spontaneous symmetry breaking and Higgs mechanism}
+Given a theory of scalars with $SU(N)$ global symmetry and action of the form
+	\begin{equation}
+	S = \int d^4x \left( \vphib^A\square \vphi_A - (\vphib^A\vphi_A - \m)^2 \right)
+	\end{equation}
+we have two cases, $\m>0$ and $\m<0$.
+
+	\begin{itemize}
+	\item If $\m>0$, then the system has minimum energy ($E=0$) for constant field configurations that hold $\vphib^A \vphi_A =\m$ (e.g. $\vphi_1 = \vphib^1 = \sqrt\m$, $\vphi_A=\vphib^A=0$ for $A>1$). Here we say that the symmetry is spontaneously broken from $SU(N)$ to $SU(N-1)$. This can be seen by expanding the action around a minimum energy configuration, so define $\tau_A = \vphi_A - \left< \vphi_A\right>$ ($\tau_1 = \vphi_1 - \sqrt\m$, $\tau_A = \vphi_A$ for $A>1$)
+	\begin{align}
+	S & = \int d^4x\ \taub^A \square \tau_A - \left(\taub^A \tau_A +\sqrt\m(\tau_1 + \taub^1)\right)^2 \nonumber \\
+	& = \int d^4x \left[ \left(\frac{\taub^1+\tau_1}{2}\right)(\square -4\m)\left(\frac{\taub^1 + \tau_1}{2}\right) + \left(\frac{i(\taub^1 - \tau_1)}{2}\right)\square \left(\frac{i(\taub^1 - \tau_1)}{2}\right) \right. \nonumber \\
+	& \qquad\qquad \left. + \sum_{A>1} \taub^A \square \tau_A + \text{interactions}\right]
+	\end{align}
+Also notice that after the spontaneous symmetry breaking, we end up with $(N^2 -1) - ((N-1)^2 - 1) = 2N-1$ Goldstone bosons (real massless bosons). 
+
+	\item For the case when $\m<0$, the system has minimum energy ($E=\m^2$) for a constant field configuration constrained to $\vphib^A \vphi_A = 0$. In this case there is no symmetry breaking, and it would be only describing a theory of interacting massive scalars.
+	\end{itemize}
+
+When the spontaneous symmetry breaking takes places in a theory with local symmetry, it appears the so called {\it Higgs effect} or {\it Higgs mechanism} that will account for the appearance of massive gauge fields. To see this consider the action with gauge group $SU(N)$
+	\begin{equation}
+	S = \int d^4x \left( -\frac12 (F^{mn})_A^{\ B} (F_{mn})_B^{\ A} + \vphib^A (\Dc_m\Dc^m\vphi)_A - (\vphib^A\vphi_A - \m)^2\right)
+	\end{equation}
+where $\Dc_m\vphi_A = \p_m\vphi_A - i(A_m)_A^{\ B} \vphi_B$. Here by assuming that $\m>0$, we have minimum energy when the scalars are constant and take values in $ \vphib^A\vphi_A=\m$. As we did previously, we rewrite the action in terms of $\tau_A = \vphi_A - \left<\vphi_A\right>$
+	\begin{align}
+	S = \int d^4x & \left[ -\frac12 (F^{mn})_A^{\ B} (F_{mn})_B^{\ A} + \left(\frac{i(\taub^1-\tau_1)}{2}\right)\Dc_m\Dc^m\left(\frac{i(\taub^1-\tau_1)}{2}\right) \right. \nonumber \\
+	& + \sum_{A>1}\taub^A\Dc_m\Dc^m\tau_A + \left(\frac{\taub^1 + \tau_1}{2}\right)(\Dc_m\Dc^m - 4\m)\left(\frac{\taub^1 + \tau_1}{2}\right) \nonumber \\
+	& + i(\Dc_m\taub)^A (A^m)_A^{\ 1}\sqrt\m - i\sqrt\m (A^m)_1^{\ A}(\Dc_m\tau)_A - \m (A_m)_1^{\ B} (A^m)_B^{\ 1} \nonumber \\
+	& + \text{interactions} \Big]
+	\end{align}
+Now, we make the field redefinition
+	\begin{align}
+		&\begin{aligned}
+		(B_m)_1^{\ D} & = (A_m)_1^{\ D}-\frac{i}{\sqrt\m}(\Dc_m\taub)^D \\
+		(B_m)_D^{\ 1} & = (A_m)_D^{\ 1} + \frac{i}{\sqrt\m} (\Dc_m\tau)_D
+		\end{aligned}\quad\text{for}\ D>1 \\
+		&(B_m)_1^{\ 1} = (A_m)_1^{\ 1} - \frac{i}{2\sqrt\m} (\Dc_m \taub^1 -\Dc_m\tau_1)\\
+		&(B_m)_C^{\ D} = (A_m)_C^{\ D} \quad\text{for}\ C,D> 1
+	\end{align}
+and finally the action can be expressed as
+	\begin{align}
+	S = \int d^4x & \left[ -\frac12 (G^{mn})_A^{\ B} (G_{mn})_B^{\ A} - \m(B_m)_1^{\ C}(B^m)_C^{\ 1} \right. \nonumber \\
+	& \left. + \left(\frac{\taub^1 + \tau_1}{2}\right)(\Dc_m\Dc^m - 4\m)\left(\frac{\taub^1 + \tau_1}{2}\right) + \text{interactions} \right]
+	\end{align}
+where $G_{mn} = \p_m B_n - \p_n B_m + i[B_m, B_n]$. Thus, we have that $2N-1$ components of $(B_m)_A^{\ B}$ have mass (they {\it ate} the Goldstone bosons).
+
+\subsection{Super-Higgs mechanism and spontaneous supersymmetry breaking}
+A supersymmetric theory is forced to have non-negative energy. Indeed, since
+	\begin{equation}
+	\{Q_\a, \Qb_\ad\} = 2P_m\s^m_{\a\ad} \Rightarrow H=P^0= \frac14(\Qb_1 Q_1 + Q_1\Qb_1 + \Qb_2 Q_2 + Q_2\Qb_2)
+	\end{equation}
+it follows that
+	\begin{equation}
+	\left<\psi\right|H\left|\psi\right> = \frac14 \left( |\left<\psi\right|\Qb_1|^2 + |\left<\psi\right|Q_1|^2 + |\left<\psi\right|\Qb_2|^2 + |\left<\psi\right|Q_2|^2 \right) \geq 0
+	\end{equation}
+and $\left<\psi\right|H\left|\psi\right>=0$ if and only if $Q_\a\left|\psi\right> = \Qb_\ad\left|\psi\right>=0$.
+
+Therefore, we have a new criterion to notice if SUSY will be broken. When minimum energy $E=0$ we have that the vacuum preserves SUSY. And, when the minimum energy $E>0$ we end up with spontaneous SUSY breaking ($Q_\a\left|\psi\right>\neq 0$ and/or $\Qb_\ad\left|\psi\right>\neq 0$).
+
+To supersymmetrize the Higgs effect, remember that the most general renormalizable supersymmetric action of chiral superfields is
+	\begin{align}
+	S & = \int d^4x \left[ \int d^4\t\ \Phib_\ku\Phi_\ku + \int d^2\t(\l_\ku\Phi_\ku + \frac12 M_{\ku\lu}\Phi_\ku\Phi_\lu + \frac13 g_{\ju\ku\lu}\Phi_\ju\Phi_\ku\Phi_\lu) + c.c. \right] \nonumber \\
+	& = \int d^4x\left[\vphib_\ku\square \vphi_\ku + i\p_m\psib_\ku\sb^m\psi_\ku - \frac12 M_{\ku\lu}(\psi_\ku\psi_\lu + \psib_\ku\psib_\lu) - g_{\ju\ku\lu}(\psi_\ju\psi_\ku\vphi_\lu + \psib_\ju\psib_\ku\psib_\lu) \right. \nonumber \\
+	& \qquad\qquad\ - V(\vphi_\ku, \vphib_\ku) \Big]
+	\end{align}
+where $V=F_\ju \Fb_\ju$ and $F_\ju = -\l_\ju - M_{\ju\ku}\vphi_\ku - g_{\ju\ku\lu}\vphi_\ku\vphi_\lu$. Then, to have a potential of form
+	\begin{equation}
+	V(\vphi_{\underline 1}^A, \vphi_{\underline 2 A}) = \left|\vphi_{\underline 1}^A \vphi_{\underline 2 A} - \m\right|^2
+	\end{equation}
+we need 3 types of chiral superfields $\vphi_{\underline 1}^A$, $\vphi_{\underline 2 A}$, $\vphi_{\underline 3}$ that should be in the antifundamental $\bar N$, fundamental $N$ and scalar representation, respectively.
+	\begin{align}
+	S & = \int d^4x \left[ \int d^4\t (\Phi^A_{\underline 1}\Phib_{\underline 1 A} + \Phib^A_{\underline 2}\Phi_{\underline 2 A} + \Phib_{\underline 3}\Phi_{\underline 3}) + \int d^2\t(\m\Phi_{\underline 3} + \frac{M}{2}\Phi^2_{\underline 3} - \Phi^A_{\underline 1}\Phi_{\underline 2 A}\Phi_{\underline 3})\right. \nonumber \\
+	& \qquad\qquad \left. + \int d^2\tb(\m\Phib_{\underline 3} + \frac{M}{2}\Phib^2_{\underline 3} - \Phib^A_{\underline 2}\Phib_{\underline 1 A}\Phib_{\underline 3}) \right] \label{shiggs} \\
+	& = \int d^4x\Big[ \vphi^A_{\underline 1}\square \vphib_{\underline 1 A} + \vphib^A_{\underline 2}\square \vphi_{\underline 2 A} + \vphib^A_{\underline 3}\square \vphi_{\underline 3 A}  + i\p_m\psib_{\underline 1 A}\sb\psi^A_{\underline 1} + i\p_m\psib^A_{\underline 2}\sb\psi_{\underline 2 A} \nonumber \\
+	& \qquad\qquad + i\p_m\psib_{\underline 3}\sb\psi_{\underline 3} + (\psi^A_{\underline 1}\psi_{\underline 2 A}\vphi_{\underline 3} + \vphi^A_{\underline 1}\psi_{\underline 2 A}\psi_{\underline 3} + \vphi_{\underline 2 A}\psi^A_{\underline 1}\psi_{\underline 3}) \nonumber \\
+	& \qquad\qquad - \left|\vphi^A_{\underline 1}\vphi_{\underline 2 A} - \m-M\vphi_{\underline 3}\right|^2 - |\vphi_{\underline 3}|^2\vphib^A_{\underline 2}\vphi_{\underline 2 A} - |\vphi_{\underline 3}|^2\vphib_{\underline 1 A} \vphi^A_{\underline 1} \Big]
+	\end{align}
+
+Thus, the minimum energy $E=0$ (SUSY preserved) is obtained when the scalars take values
+	\begin{itemize}
+	\item[a)] $\vphi^A_\u1 \vphi_{\u2 A}=\m$, $\vphi_\u3 =0$ ($\vphi^1_\u1=\vphi_{\u2 1}=\vphib_{\u1 1}=\vphib^1_\u2=\sqrt\m$, others $=0$).
+	\item[b)] $\vphi^A_\u1 = \vphi_{\u2 A}=0$, $\vphi_\u3 = -\frac{\m}{M}$ (Doesn't break $SU(N)$).
+	\end{itemize}
+For the first case
+	\begin{align}
+	S = \int d^4x & \Big[\taub_\u3 (\square - M^2)\tau_\u3 + \sum_{A>1} (\taub_{\u1 A}\square \tau^A_\u1 + \taub^A_{\u2}\square\tau_{\u2 A}) + \taub_{\u1 1}(\square - |\m|)\tau^1_\u1 \nonumber \\
+	& + \taub^1_\u2 (\square - |\m|)\tau_{\u2 1} + \text{interactions} \Big]
+	\end{align}
+We have $2(2N-1)$ massless bosons because the vacua are parametrized by the quotient $GL(N)/GL(N-1)$ (which is a $2N^2-2(N-1)^2$ dimensional space).
+
+Now we can gauge the global $SU(N)$ symmetry of the supersymmetric action (\ref{shiggs}) and obtain the {\it super-Higgs mechanism} that not only gives mass to some components of the gauge fields but also to (lowest order) scalars of the vector multiplet. The action is
+	\begin{align}
+	S & = \int d^4x \left[ \int d^4\t \left(\Phi^A_\u1(e^{-V})_A^{\ B}\Phib_{\u1 B} + \Phib^A_\u2(e^{V})_A^{\ B}\Phi_{\u2 B} + \Phib_\u3\Phi_\u3\right) \right. \nonumber \\
+	& \qquad\qquad \left. + \int d^2\t(\m\Phi_\u3 + \frac{M}{2}\Phi^2_\u3 - \Phi^A_\u1\Phi_{\u2 A}\Phi_\u3 + \frac{1}{2g^2} (W_\a)_A^{\ B}(W^\a)_B^{\ A}) + c.c.  \right] \nonumber \\
+	& = \int d^4x \int d^4\t \left( V^B_1 V^1_B \m^2 + \frac{1}{2g^2} (W_\a)_A^{\ B} (W^\a)_B^{\ A}\right) + \ldots \nonumber \\
+	& = \m^2 \int d^4 x\left( -\frac12 (A_m)_1^{\ B} (A^m)_B^{\ 1} - \frac12(\chi_1^{\ B}\l_B^{\ 1} + \l_1^{\ B}\chi_B^{\ 1} + c.c.) \right. \nonumber \\
+	& \qquad\qquad\quad + \frac12 (M_1^{\ B} M_B^{\ 1} + N_1^{\ B} N_B^{\ 1}) - \frac{i}{2} \chi_1^{\ B}\s^m\p_m\chib_B^{\ 1} - \frac{i}{2} \chib_1^{\ B}\sb^m\p_m\chi_B^{\ 1} \nonumber \\
+	& \qquad\qquad\quad \left. +\frac12 C_1^{\ B}\square C_B^{\ 1} + \frac12 (C_1^{\ B} d_B^{\ 1} + d_1^{\ B} C_B^{\ 1}) \right) \nonumber \\
+	& \quad + \frac{1}{g^2} \int d^4x \left( -\frac14(F_{mn})_A^{\ B}(F^{mn})_B^{\ A} - i\l_A^{\ B}\s^m\p_m\lb_B^{\ A} + \frac12 d_A^{\ B} d_B^{\ A} \right) + \ldots
+	\end{align}
+Thus, we have that $2N-1$ components of $(A_m)_B^{\ A}$ are massive and $2N-1$ massive scalars. This corresponds to the massive vector multiplet ($4+4$).
+
+Finally we study the case of {\it spontaneous supersymmetry breaking}. The potential in a theory of only chiral superfields was $V(\vphi_\ju,\vphib_\ju) = F_\ju \Fb_\ju$ where $\Fb_\ju = -\l_\ju - M_{\ju\ku}\vphi_\ku - g_{\ju\ku\lu}\vphi_\ku\vphi_\lu$. Then, SUSY is spontaneously broken if $F_\ju = 0$ has no solution. As an example consider the following model with 3 chiral superfields
+	\begin{align}
+	S & = \int d^4x \left[ \int d^4\t (\Phib_\u1\Phi_\u1 + \Phib_\u2 \Phi_\u2 + \Phib_\u3 \Phi_\u3 ) + \int d^2\t(\l\Phi_\u1 + M\Phi_\u2\Phi_\u3 + g \Phi_\u1\Phi_\u2^2)\right. \nonumber \\
+	& \qquad\qquad \left. + \int d^2\tb(\l\Phib_\u1 + M\Phib_\u2\Phib_\u3 + g \Phib_\u1\Phib_\u2^2) \right]
+	\end{align}
+then
+	\begin{equation}
+		\begin{aligned}
+		\Fb_\u1 & = -\l-g\vphi^2_\u2 \\
+		\Fb_\u2 & = - M\vphi_\u3 -2g\vphi_\u1\vphi_\u2 \\
+		\Fb_\u3 & = -M\vphi_\u2
+		\end{aligned}
+	\end{equation}
+Energy is minimum when $\vphi_\u2 = \vphi_\u3 = 0$. This field configuration implies $V\geq \l^2$ (suppose $\l<M^2/2g$). And, finally we compute the spectrum
+	\begin{itemize}
+	\item Fermion masses
+	\begin{equation}
+	M\psi_\u2\psi_\u3 = \frac{M}{2}\left[\frac{(\psi_\u2+\psi_\u3)}{\sqrt2}\frac{(\psi_\u2+\psi_\u3)}{\sqrt2} + \frac{i(\psi_\u2-\psi_\u3)}{\sqrt2}\frac{i(\psi_\u2-\psi_\u3)}{\sqrt2}\right]
+	\end{equation}
+	\item Boson masses
+	\begin{equation}
+		\begin{aligned}
+		M^2(\vphi_\u2 \vphib_\u2 + \vphi_\u3\vphi_\u3) + \l g(\vphi_\u2^2 + \vphib^2_\u2) & = (M^2+2\l g)\left(\frac{\vphi_\u2 + \vphib_\u2}{2}\right)^2 \\
+		& \quad + (M^2-2\l g)\left(\frac{i(\vphi_\u2 - \vphib_\u2)}{2}\right)^2 + M^2\vphi_\u3\vphib_\u3
+		\end{aligned}
+	\end{equation}
+	\end{itemize}
+Summarizing, we have
+	\begin{align}
+	\text{Fermion masses:} & \qquad (0,M,M) \\
+	\text{Boson masses:} & \qquad (0,\sqrt{M^2 + 2\l g},\sqrt{M^2 - 2\l g})
+	\end{align}
+Note that $\sum_f (M_f^2) = \sum_b (M_b^2)$. Here, $\psi_\u1$ is the {\it goldstino} (massless fermion since the symmetry being broken is now fermionic).
+
+\subsection{Fayet-Iliopoulos term}
+We can also add an extra term to the super-Maxwell action that is supersymmetric and gauge invariant. This is the {\it Fayet-Iliopoulos term}
+	\begin{align}
+	S_{FI} & = \int d^4x \left[ \int d^2\t\ \frac12 W_\a W^\a + 2k\int d^4\t\ V \right] \nonumber \\
+	& = \int d^4x \left( -\frac14 F_{mn}F^{mn} - i\l\s^m\p_m \lb + \frac{D^2}{2} + kD \right) \nonumber \\
+	& = \int d^4x \left( -\frac14 F_{mn}F^{mn} - i\l\s^m\p_m \lb + \frac12 (D+k)^2 - \frac12 k^2 \right)
+	\end{align}
+As we can notice, the FI term is invariant under $\d V = \L + \Lb$. Plus, from the last line we have that $E\geq \frac12 k^2$ which means that we could use it to have spontaneous SUSY breaking.
+
+Consider super-Maxwell action plus the FI term coupled to two chiral superfields
+	\begin{align}
+	S & = S_{FI} + \int d^4x\left[ \int d^4\t(\Phi^\dagger_1 e^{eV}\Phi_1 + \Phi^\dagger_2 e^{-eV}\Phi_2) + M\int d^2\t\ \Phi_1\Phi_2 + c.c. \right] \nonumber \\
+	& = \ldots + \frac{D^2}{2} + kD + \frac{e}{2} D(|\vphi_1|^2 - |\vphi_2|^2) + |F_1|^2 + |F_2|^2 + M(F_1 \phi_2 + F_2 \phi_1 + c.c.) \nonumber \\
+	& = \dots - \left(\frac12 D^2 + |F_1|^2 + |F_2|^2\right)
+	\end{align}
+where $D= -k-\frac{e}{2}(|\vphi_1|^2 - |\vphi_2|^2)$, $F_1 = -M \phi_2^*$, $F_2 = -M \phi_1^*$. Therefore, the potential energy is
+	\begin{equation}
+	V = \frac12 k^2 + (M^2 + \frac12 ek)|\vphi_1|^2 + (M^2 - \frac12 ek)|\vphi_2|^2 + \frac{e^2}{8}(|\vphi_1|^2 - |\vphi_2|^2)^2
+	\end{equation}
+Here we face two cases
+	\begin{itemize}
+	\item First case, $M^2\geq \frac12 |ek|$ implies broken SUSY but $U(1)$ remains a symmetry (different mass for $\vphi$ and $\psi$).
+	\item The second case is $M^2 < \frac12 |ek|$ which implies that both SUSY and the $U(1)$ symmetry are broken (massive vector).
+	\end{itemize}
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Write a supersymmetric Lagrangian that includes the Standard Model (including Higgs). How many particles does it have? How many coupling constants? What are the masses of these particles in terms of the coupling constants? (It should not have broken supersymmetry).
+	\end{exe}
+
+	\begin{exe}
+	(O'Raifeartaigh model) Solve exercises $1$,$2$ and $3$ from Chapter VIII in Wess \& Bagger's ``Supersymmetry and Supergravity" book.
+	\end{exe}
+
+
+	\begin{exe}
+	Compute the mass spectrum for
+		\begin{align}
+		S & = S_{FI} + \int d^4 x \left[ \int d^4\t \left(\Phi^\dag_1 e^{-eV} \Phi_1 + \Phi^\dag_2 e^{2eV} \Phi_2\right)\right. \nonumber \\
+		& \qquad \left. + \l\left(\int d^2\t\ \Phi_1\Phi_1\Phi_2 + \int d^2\tb\ \Phib_1\Phib_1\Phib_2\right)\right]
+		\end{align}
+	(See Wess \& Bagger (8.5)-(8.17)).
+	\end{exe}
+
+
+\newpage
+
+\section{$\mathcal N=1$ Supergravity}
+Some motivations to study supergravity theories are the following
+	\begin{itemize}
+	\item Helps in getting rid of quantum divergences in gravitation
+	\item To break SUSY without a massless goldstino, local SUSY is needed
+	\end{itemize}
+
+In supergravity theories the fermionic parameter that generates that supersymmetry transformation is a local one. Thus, if $\e_\a(x)$ is not constant, $S= \int d^4x\int d^4\t\ \Phi\Phib$ won't be invariant under transformations
+	\begin{equation}
+	\d \Phi = (\e_\a(x) Q^\a + \eb^\ad(x) \Qb_\ad )\Phi
+	\end{equation}
+We will have a variation of the form
+	\begin{equation}
+	S \rightarrow\quad S + \int d^4x \left( j^m_\a \p_m \e^\a + \bar j^{m\ad} \p_m\eb_\ad \right)
+	\end{equation}
+then, it is needed to include another term in the action
+	\begin{equation}
+	S + \int d^4x \left( j^m_\a \psi^\a_m + \bar j^{m\ad} \psib_{m\ad} \right)
+	\end{equation}
+where $\d\psi^\a_m = \p_m\e^\a$, $\d\psib_{m\ad} = \p_m \eb_\ad$. Plus, $\psi$ has spin $3/2$ i.e. it is a {\it gravitino}. In a supersymmetric theory, having a gravitino implies that we will also have a graviton (spin $2$) which means that the theory will have the spacetime metric as a dynamical variable.
+
+\subsection{Gravity with spinors}
+We need to describe spinors in curved spacetime. We know that $\psi^\a \s^m_{\a\ad} \psib^\ad$ transforms as a vector under Lorentz transformations. How to ``covariantize" $\psi^\a \s^m_{\a\ad} \p_m\psib^\ad$ ? %Since $\s^m_{\a\ad}\nrightarrow \frac{\p x'^m}{\p x^n}\s^n_{\a\ad}$.
+
+Define a ``tetrad" (or vierbein) $e_a^{\ m}(x)$ with $a=0,\ldots, 3$ satisfying
+	\begin{equation}
+	e_a^{\ m}(x) e^{a n}(x) = g^{mn}(x)\qquad (e^{a n} = \eta^{ab} e_b^{\ n})
+	\end{equation}
+plus, define $e_m^{\ph{m}a}:= (e_a^{\ m})^{-1}$, this means that
+	\begin{equation}
+	e_m^{\ph{m} a} e_b^{\ m} = \d^a_b\qquad (e_m^{\ph{m}a} e^{bm} = \eta^{ab})
+	\end{equation}
+and, under coordinate transformations $x^m\rightarrow y^m(x)$, the tetrad transforms
+	\begin{equation}
+	e_a^{\ m}(x) \rightarrow \frac{\p y^m}{\p x^n}(x)e_a^{\ n}(x)
+	\end{equation}
+The tetrad has the role of relating curved coordinates to flat coordinates.
+
+Under local Lorentz transformations, $\d e_a^{\ m}(x) = \l_a^{\ b}(x) e_b^{\ m}(x)$. Then we can see that there is an ambiguity in choosing the vierbein since any transformed set of vierbein doesn't change $g^{mn}(x)$. Furthermore, we expect that the theory has to be invariant under these local transformations. So we can undertand this as having a gauge freedom with the Lorentz group being our gauge group.
+
+The local Lorentz transformation for spinors is
+	\begin{equation}
+	\d \psi_\a(x) = \l_{ab}(x) (\s^{ab})_\a^{\ \b} \psi_\b(x)\ ,\quad \d\psib^\ad(x) = \l_{ab}(x)(\sb^{ab})^\ad_{\ \bd} \psib^\bd
+	\end{equation}
+where $\s^a_{\a\bd}$ is a matrix and does not transform. Then, we can promote derivatives to covariant derivatives to construct gauge invariant terms or in this case, terms invariant under local Lorentz transformations by defining
+	\begin{equation}
+	\int d^4x \sqrt{g} \psi^\a \s^a_{\a\ad} e_a^{\ m} \Dc_m \psib^\ad
+	\end{equation}
+where we have introduced a {\it spin connection} $\om_{mab}$ to construct the covariant derivative. For example, the covariant derivative acts on the spinor as
+	\begin{equation}
+	\Dc_m \psib^\ad = \p_m \psib^\ad + \om_{mab} (\sb^{ab})^\ad_{\ \bd} \psib^\bd
+	\end{equation}
+then, by requiring $\d (\Dc_m \psi^\ad) = \l_{ab}(x) (\sb^{ab})^\ad_{\ \bd}\psib^\bd$, we can deduce the transformation for the spin connection
+	\begin{equation}
+	\d \om_{m a}^{\quad b} = -\p_m \l_a^{\ b} - \l_a^{\ c} \om_{mc}^{\quad b} \l_c^{\ b}
+	\end{equation}
+while its finite transformation is
+	\begin{equation}
+	\om_{ma}^{\quad b} \rightarrow (\L^{-1})_a^{\ c}\p_m \L_c^{\ b} + (\L^{-1})_a^{\ c} \om_{mc}^{\quad d}\L_d^{\ b}
+	\end{equation}
+for $[\L_a^{\ b}]$ in the Lorentz group.
+
+The way in which the covariant derivative acts on tensors with flat indices is
+	\begin{equation}
+	\Dc_m V_{a_1\ldots a_n} = \p_m V_{a_1\ldots a_n} - \om_{ma_1}^{\quad b} V_{b a_2\ldots a_n} -\ldots \om_{ma_n}^{\quad b} V_{a_1\ldots a_{n-1} b}
+	\end{equation}
+As an example of the use of this formalism, consider electromagnetism in curved space. We can define the field strength tensor in tangent space as
+	\begin{equation}
+	F_{ab} = e_a^{\ m} \Dc_m (e_b^{\ n} A_n) - e_b^{\ m}\Dc_m(e_a^{\ m} A_n)
+	\end{equation}
+and even construct its action $S = \int d^4x \sqrt{g} F_{ab}F^{ab}$ without ever having to use the Christoffel symbols $\G_{mn}^{\ph{mn}p}$.
+
+We can see that the spin connection behaves as a gauge field, and we can compute its field strength tensor, in the usual way, as the commutator of the covariant derivatives
+	\begin{equation}
+	R_{mna}{}^b = [\Dc_m, \Dc_n]_a{}^b = \p_m \om_{na}{}^b - \p_n \om_{ma}{}^b + \om_{ma}{}^c\ \om_{mc}{}^b - \om_{na}{}^c\ \om_{mc}{}^b
+	\end{equation}
+and also define the tensor $R_{mnpq} = e_p^{\ a} e_{qb} R_{mna}{}^b$. Of course the notation already suggests that these tensors will be related to the usual Riemann tensor.
+
+The spin connection can either be considered to be independent of $e_a^{\ m}$ off the mass-shell (Palatini formalism), or it could be directly {\it defined} as
+	\begin{equation}
+	\om_m^{\ \ ab}(e) = \frac12 e^{n[a} \p_{[m} e_{n]}{}^{b]} - \frac12 e^{na} e^{pb} (\p_{[n} e_{p]}{}^{c}) e_{mc}
+	\end{equation}
+which can be verified to have the transformations properties that we described.
+
+Using the Palatini formalism, the action for the bosonic fields is
+	\begin{equation}\label{sugrabos}
+	S_B[e,\om] = -\frac{1}{2G} \int d^4x (\det [e_p^{\ a}]) e^{ma} e^{nb} R_{mnab}(\om)
+	\end{equation}
+where $\sqrt g = (\det [e_p^{\ a}])$. Then, the equations of motion are
+	\begin{align}
+	0 & = \frac{\d S}{\d \om_m^{\ph{m}ab}} = \frac{1}{2G} \e^{mnpq} \e_{abcd} (\Dc_q e_p^{\ c}) e_n^{\ d} \\
+	0 & = \frac{\d S}{\d e_a^{\ m}} = \frac{1}{2G} (\det [e_p^{\ c}]) \left(e_b^{\ n} R_{mn}^{\ph{mn}ab} - \frac12 e_m^{\ a} (e_b^{\ n} e_c^{\ p} R_{np}^{\ph{np}bc})\right)
+	\end{align}
+and we can see that the first equation implies
+	\begin{equation}
+	\Dc_q e_p^{\ c} = \p_q e_p^{\ c} + \om_q^{\ cb} e_{pb} = 0
+	\end{equation}
+i.e. $\om_m^{\ ab} = \om_m^{\ ab}(e)$.
+
+\subsection{$\mathcal N=1$ $D=4$ Supergravity}
+For supergravity we need fermions $\psi_m^\a$, $\psib_m^\ad$ with spin $3/2$
+	\begin{equation}\label{sugrafer}
+	S_F = i\int d^4x (\det[e_p^{\ c}]) \left[ \frac14 \e^{abcd} \psi_a^{\ \a} \s_{b\a\ad} e_c^{\ n} \Dc_n \psib_d^{\ \ad}  + 2i \psi_{[a}^{\ \a} \s_{b]\a\ad} e^{bn} \Dc_n \psib^{a\ad} \right]
+	\end{equation}
+where $\psi_a^{\ \a} = e_a^{\ m} \psi_m^{\ \a}$ and $\psi_a^{\ \ad} = e_a^{\ m} \psib_m^{\ \ad}$.
+
+Finally, the action for the $\mathcal N=1$ $D=4$ Supergravity theory is constructed using (\ref{sugrabos}) and (\ref{sugrafer}). Then, $S_{SUGRA}=S_B + S_F$ while the local SUSY transformations are
+	\begin{equation}
+		\begin{aligned}
+		\d e_m^{\ a} & = i\frac{\sqrt G}{2} (\eb_\ad \sb^{a\ad\a} \psi_{m\a} + \e^\a \s^a_{\a\ad} \psib_m^{\ \ad}) \\
+		\d \psi_m^{\ \a} & = \frac{1}{\sqrt G} \Dc_m \e^\a = \frac{1}{\sqrt G} (\p_m\e^\a + \om_{mab}(\s^{ab})^{\a\b}\e_\b) \\
+		\d\psib_m^{\ \ad} & = \frac{1}{\sqrt G} \Dc_m\eb^\ad \\
+		\d \om_{mab} & = -\frac14 \eb^\ad e_m^{\ c} \sb_c^{\ad\a}(e_a^{\ n} \Dc_n\psi_{b\a} - e_b^{\ n}\Dc_n \psi_{a\a}) + c.c.
+		\end{aligned}
+	\end{equation}
+
+This action has $2$ bosonic physical degrees of freedom and $2$ fermionic ones. This means that the algebra only closes up to equations of motion and gauge transformations. We can make it close also off-shell by adding auxiliary fields, so we count the number of non-gauge degrees of freedom (physical and non-physical)
+	\begin{equation}
+	\text{Non-gauge d.o.f.} \rightarrow
+		\begin{array}{l}
+		\text{bosonic} = 16 - 6_{Lorentz} -4_{Coord.} = 6 \\
+		\text{fermionic} = 16 - 4_{SUSY} = 12
+		\end{array}
+	\end{equation}
+then to close the algebra without using the equations of motions we have to add 6 auxiliary bosons $b_a$, $M$, $M^*$
+	\begin{equation}
+	S_{aux.} = \int d^4x \left(\frac43 b_a b^a + \frac83 M M^* + M\psib\psib + M^* \psi\psi - (\psi_m\s^m \psib_a + \psi_a\s^m\psib_m)b^a\right)
+	\end{equation}
+Furthermore, to close the SUSY algebra without using gauge transformations (manifest SUSY) we would need $36$ bosons and $36$ fermions.
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Expand $e^{ma}(x) = \eta^{ma} + \k h^{ma}(x)$ where $\k = \sqrt G$ and
+		\begin{equation*}
+		[\eta^{ma}] = \left(
+			\begin{array}{cccc}
+			-1 & & & \\
+			& 1 & & \\
+			& & 1 & \\
+			& & & 1
+			\end{array}
+		\right).
+		\end{equation*}
+	Write $w_{mab}(e)$ in terms of $h^{ma}$ up to first order in $h^{ma}$. Compute the anticommutator $\{\d^1_Q, \d^2_Q\}h^{\ a}_m$ and $\{\d^1_Q, \d^2_Q\}\psi^\a_m$ using
+		\begin{align}
+		\d_Q h_m^{\ a} & = \frac{\sqrt G}{2} i (\eb \sb^m \psi_m + \e \s^m \psib_m)\quad;\qquad\text{only zeroth order in}\ h_m^{\ a} \\
+		\d_Q \psi_m^{\ \a} & = \frac{1}{\sqrt G} (\p_m \ve^\a + w_{mab} (\s^{ab})^{\a\b} \ve_\b)\quad;\qquad\text{only first order in}\ h_m^{\ a}
+		\end{align}
+	\end{exe}
+
+\newpage
+
+\section{Representations of extended SUSY}
+
+In this lecture we will study the concepts of {\it extended supersymmetry} and {\it dimensional reduction}. And, to show them at once we start with an example.
+
+Given the WZ model with $\mathcal N=1$ supersymmetry in $D=4$ and action
+		\begin{equation}
+		S = \int d^4x \left[ \vphi\square\vphib -i\psi^\a\s^m_{\a\ad} \p_m\psib^\ad + F\Fb \right]
+		\end{equation}
+we can {\it compactify} two spatial dimensions e.g. the ones corresponding to coordinates $x^1, x^2$, so our Minkowski space ${\mathbb R}^{1+3}$ is now $({\mathbb R}^{1+1}\times K)$ where $K$ is some 2-dimensional compact space (e.g. torus, sphere). And we will work only with fields that {\it do not} depend on the compact dimensions i.e. $\frac{\p(fields)}{\p x^1} = \frac{\p(fields)}{\p x^2} = 0$. Furthermore, by defining
+	\begin{equation}
+	\psi^\a\rightarrow \left\{
+		\begin{array}{l}
+		\psi^+ = \psi^+_1 + i\psi^+_2 \\
+		\psi^- = \psi^-_1 + i\psi^-_2
+		\end{array}
+	\right.\ ,\quad \vphi = \vphi_1 + i\vphi_2\ ,\quad F= F_1 + iF_2
+	\end{equation}
+we see that the original action is reduced to
+	\begin{align}
+	S = \text{Vol}(K) \int d^2x & [(\vphi_1 + i\vphi_2)\square (\vphi_1 - i\vphi_2) - i(\psi^+_1 + i\psi^+_2)\p_+ (\psi^+_1 - i\psi^+_2) \nonumber \\
+	&  -i(\psi^-_1 + i\psi^-_2)\p_-(\psi^-_1 - i\psi^-_2) + (F_1 +iF_2)(F_1 -iF_2) ] \nonumber \\
+	= \text{Vol}(K) \int d^2x &[\p_+ \vphi_1 \p_- \vphi_1 - i\psi^+_1\p_+ \psi^+_1 -i\psi^-_1\p_-\psi^-_1 + F_1 F_1 + \p_+\vphi_2\p_-\vphi_2 \nonumber \\
+	& -i\psi^+_2 \p_+\psi^+_2 -i\psi^-_2 \p_-\psi^-_2 + F_2 F_2] \nonumber \\
+	= \text{Vol}(K) \int d^2x & \int d\k^+ d\k^- ( D_+\Phi_1 D_-\Phi_1 + D_+\Phi_2 D_-\Phi_2)
+	\end{align}
+
+This action has $\mathcal N=2$ $D=2$ SUSY (only $\mathcal N=1$ $D=2$ is manifest)
+	\begin{equation}
+		\begin{aligned}
+		\d (\vphi_1 + i\vphi_2 ) & = (i\a^+_1 + \a^+_2)(\psi^-_1 + i\psi^-_2 ) - (-i\a^-_1 - \a^-_2)(\psi^+_1 + i\psi^+_2) \\
+		\d (\vphi_1 - i\vphi_2 ) & = (i\a^-_1 - \a^-_2)(\psi^+_1 + i\psi^+_2 ) - (-i\a^+_1 + \a^+_2)(\psi^-_1 + i\psi^-_2) \\
+		& \quad \vdots
+		\end{aligned}
+	\end{equation}
+then we can deduce
+	\begin{equation}
+		\begin{aligned}
+		\d \vphi_1 & = i\a^+_1 \psi^-_1 + i\a^-_1 \psi^+_1 + i\a^+_2 \psi^-_2 + i\a^-_2 \psi^+_2 \\
+		\d \vphi_2 & = i\a^+_1 \psi^-_2 + i\a^-_1 \psi^+_2 + i\a^+_2 \psi^-_1 - i\a^-_2 \psi^+_1 \\
+		& \quad \vdots
+		\end{aligned}
+	\end{equation}
+
+Then the relations $\{Q_\a, \Qb_\ad\} = 2P_m \s^m_{\a\ad}$ become
+	\begin{equation}
+		\begin{aligned}
+		\{ Q^{(1)}_+ , Q^{(1)}_+\} & = \{Q^{(2)}_+ ,Q^{(2)}_+\} = 2P_+ = 2(-P_0 + P_3) \\
+		\{ Q^{(1)}_- , Q^{(1)}_-\} & = \{Q^{(2)}_- ,Q^{(2)}_-\} = 2P_- = 2(-P_0 - P_3) \\
+		\text{others} & = 0
+		\end{aligned}
+	\end{equation}
+where the supercharges are
+	\begin{equation}
+	(Q_\a) = \frac{1}{\sqrt 2} \left(
+		\begin{array}{c}
+		Q^{(1)}_+ + i Q^{(2)}_+ \\
+		Q^{(1)}_- + i Q^{(2)}_-
+		\end{array}
+	\right)\ ,\quad (\Qb_\ad) = \frac{1}{\sqrt 2} \left(
+		\begin{array}{c}
+		Q^{(1)}_+ - i Q^{(2)}_+ \\
+		Q^{(1)}_- - i Q^{(2)}_-
+		\end{array}
+	\right)
+	\end{equation}
+Finally we could write the algebra in a more compact way
+	\begin{equation}\label{extalg2d}
+	\{ Q_\a^{(i)} , Q^{(j)}_\b\} = 2 \d^{ij} P_{\hat m} \s^{\hat m}_{\a\ad}\ ,\quad \hat m = 0,3
+	\end{equation}
+that gives the standard way of writing the $\mathcal N =2 $ $D=2$ SUSY algebra.
+
+Thus, we have seen how by compactifying some dimensions in a $D$-dimensional space and making the fields depend only on the remaining coordinates, we can get to a theory with less dimensions, say $d$, but with more supersymmetry respect to its $\mathcal N=1$ $d$-dimensional SUSY algebra.
+
+
+\subsection{Extended SUSY algebra and representations}
+
+The extended SUSY algebra (without central charges) in $D=4$ is%
+\footnote{At first glance it may be confusing to compare to algebra (\ref{extalg2d}). This is because in $D=2$ we can actually impose Majorana conditions to Weyl spinors and then the supersymmetric charges are real ones i.e. $\overline{Q^{(i)}_\a} = Q^{(i)}_\a$.}
+	\begin{equation}
+	\{Q_\a^{(i)}, \Qb_\bd^{(j)}\} = 2\d^{ij} P_m \s^m_{\a\ad}\ ,\quad \{Q_\a^{(i)}, Q_\b^{(j)}\} = \{\Qb_\ad^{(i)}, \Qb_\bd^{(j)}\} = 0
+	\end{equation}
+where the label $(i)=1,\ldots,\mathcal N$
+
+A first step to construct actions with extended SUSY is to obtain the field content of the theory. This was done previously by finding representations of the SUSY algebra and computing the spin or helicities of the bosonic and fermionic on-shell degrees of freedom. So for example, by knowing that there is a representation of the $\mathcal N=2$ $D=4$ SUSY algebra with
+	\begin{equation}
+		\begin{array}{cccc}
+		\text{Helicity} & 1/2 & 0 & -1/2 \\
+		\#\text{d.o.f.} & 2 & 4 & 2
+		\end{array}
+	\end{equation}
+we could get a hint that this is describing two complex scalar fields and two Weyl fermions (i.e. two copies of a $\mathcal N=1$ chiral multiplet). Here we got it right since the actual theory is given by
+	\begin{equation}
+	S = \int d^4x [\vphi_{(i)} \square \vphib_{(i)} - i\psi^\a_{(i)} \s^m_{\a\ad} \p_m \psib^\ad_{(i)} ]
+	\end{equation}
+where the SUSY transformations are
+	\begin{equation}
+		\begin{aligned}
+		\d \vphi_{(1)} & = \xi^\a_{(1)} \psi_{(1)\a} + \xib_{(2)\ad} \psib^\ad_{(2)}\ , \\
+		\d \vphi_{(2)} & = \xi^\a_{(1)} \psi_{(2)\a} - \xib_{(2)\ad} \psib^\ad_{(1)}\ , \\
+		\d \psi_{(1)\a} & = i\s^m_{\a\ad} (\xib^\ad_{(1)} \p_m \vphi_{(1)} - \xib^\ad_{(2)} \p_m \vphib_{(2)})\ , \\
+		\d \psi_{(2)\a} & = i \s^m_{\a\ad} (\xib^\ad_{(1)} \p_m \vphi_{(2)} + \xib^\ad_{(2)} \p_m \vphib_{(1)})\ .
+		\end{aligned}
+	\end{equation}
+
+Therefore, we want to find all different representations of the extended SUSY algebra in $D=4$. The method is exactly the same that we use to construct representations for $\mathcal N=1$, that is the {\it little group method}.
+	\begin{enumerate}
+	\item[1)] $P_m P^m = -M^2 < 0$. We choose $P_0 = -M$, $P_i=0$, and the algebra becomes
+		\begin{equation}
+		\{Q^{(i)}_1, \Qb^{(j)}_1 \} = \{Q^{(i)}_2, \Qb^{(j)}_2\} = 2M \d^{ij}
+		\end{equation}
+	Define $a^{(i)}_\a := \frac{1}{\sqrt{2M}} Q^{(i)}_\a$, $(a^{(i)}_\a)^\dagger = \frac{1}{\sqrt{2M}} \Qb^{(i)}_\ad$ with condition $(a^{(i)}_\a)^\dagger\vac = 0$. Then the states are
+		\begin{equation}
+		\vac\ ,\quad a^{(i)}_\a\vac\ ,\ \ldots\ldots\ ,\quad (a^{(1)}_\a a^{(1)\a} \ldots a^{(\mathcal N)}_\a a^{(\mathcal N) \a})\vac
+		\end{equation}
+	As an example consider $\vac$ to be of spin $0$. Then, for this case the states are
+		\begin{equation}
+			\begin{aligned}
+			& \vac\ ,\ a^{(i)}_\a a^{\a(j)}\vac\ ,\ a^{(i)}_\a a^{\a(j)}a^{(k)}_\b a^{\b(l)}\vac\ ,\ \ldots & (\text{spin}\ 0) \\
+			& a^{(i)}_\a\vac\ ,\ a^{(i)}_\a a^{(j)}_\b a^{\b(k)}\vac\ ,\ \ldots & (\text{spin}\ 1/2) \\
+			& \qquad\qquad \vdots & \\
+			& a^{(1)}_{\a_1}\ldots a^{(\mathcal N)}_{\a_{\mathcal N}}\vac & (\text{spin}\ \mathcal N/2)
+			\end{aligned}
+		\end{equation}
+	\item[2)] $P_m P^m = 0$. Choose $-P_0 = P_3 = E$, and the algebra becomes
+		\begin{equation}
+		\{Q^{(i)}_1, \Qb^{(j)}_1 \} = 4E \d^{ij}
+		\end{equation}
+	Define $a^{(i)} = \frac{1}{2\sqrt E} Q^{(i)}_1$, $(a^{(i)})^\dagger = \frac{1}{2\sqrt E}\Qb^{(i)}_1$ with conditions $(a^{(i)})^\dagger\vac = 0$. Then the states are
+		\begin{equation}
+			\begin{aligned}
+			& \vac\ ,\quad a^{(i)}\vac\ ,\quad\ldots\ ,\quad (a^{(1)}\ldots a^{(\mathcal N)})\vac \\
+			& \left|\Omega^*\right>\ ,\quad (a^{(i)})^\dagger\left|\Omega^*\right>\ ,\quad\ldots\ ,\quad (a^{(1)}\ldots a^{(\mathcal N)})^\dagger \left|\Omega^*\right>
+			\end{aligned}
+		\end{equation}
+	If $\vac$ has helicity $h$, then
+		\begin{equation}
+			\begin{array}{ccccccc}
+			\text{Helicity} & (h) & (h + \frac12) & (h+1) & \ldots & (h+ \frac{\mathcal N-1}{2}) & (h+\frac{\mathcal N}{2}) \\
+			\# & 1 & \mathcal N & \frac{\mathcal N(\mathcal N-1)}{2} & \ldots & \mathcal N & 1
+			\end{array}
+		\end{equation}
+	also appear
+		\begin{equation}
+			\begin{array}{ccccc}
+			\text{Helicity} & (-h) & (-h - \frac12) & \ldots & (-h-\frac{\mathcal N}{2}) \\
+			\# & 1 & \mathcal N & \ldots & 1
+			\end{array}
+		\end{equation}
+	Normally we have $2(2^{\mathcal N})$ states, but when $h=\mathcal N/4$, we can identify $\left|\Omega^*\right> $ to $(a^{(1)}\ldots a^{(\mathcal N)}\vac$ because they would have the same helicity. Then, we would only have $2^{\mathcal N}$ states.
+	\end{enumerate}
+
+Finally, we present some multiplets that are of common use. We should notice that there are no physical interacting massless theories for helicities greater than 2 ($h>2$), this implies that we have the bound $\mathcal N\leq 8$.
+	\begin{equation}
+	\begin{aligned}
+	(\text{SUGRA}\ \mathcal N=8)&\quad
+		\begin{array}{cccccccccc}
+		\text{Helicity} & 2 & \frac32 & 1 & \frac12 & 0 & -\frac12 & -1 & -\frac32 & -2  \\
+		\# & 1 & 8 & 28 & 56 & 70 & 56 & 28 & 8 & 1
+		\end{array} \\
+	(\text{SYM}\ \mathcal N=4)&\quad
+		\begin{array}{cccccc}
+		\text{Helicity} & 1 & \frac12 & 0 & -\frac12 & -1 \\
+		\# & 1 & 4 & 6 & 4 & 1
+		\end{array} \\
+	(\text{SYM}\ \mathcal N=2)&\quad
+		\begin{array}{cccccc}
+		\text{Helicity} & 1 & \frac12 & 0 & -\frac12 & -1 \\
+		\# & 1 & 2 & 2 & 2 & 1
+		\end{array}
+	\left(
+		\begin{array}{ccc}
+		1 & \frac12 & 0 \\
+		1 & 2 & 1
+		\end{array}
+	\oplus
+		\begin{array}{ccc}
+		0 & -\frac12 & -1 \\
+		1 & 2 & 1
+		\end{array}
+	\right) \\
+	(\text{Hypermult.}\ \mathcal N=2)&\quad
+		\begin{array}{cccc}
+		\text{Helicity} & \frac12 & 0 & -\frac12 \\
+		\# & 2 & 4 & 2
+		\end{array}
+	\left(
+		\begin{array}{ccc}
+		\frac12 & 0 & -\frac12 \\
+		1 & 2 & 1
+		\end{array}
+	\oplus 
+		\begin{array}{ccc}
+		-\frac12 & 0 & \frac12 \\
+		1 & 2 & 1
+		\end{array}
+	\right)
+	\end{aligned}
+	\end{equation}
+
+\subsection{Dimensional reduction}
+
+As was shown at the begining of this lecture, we obtained an $\mathcal N=2$ $D=2$ theory by compactifying $D=4$ $\mathcal N=1$ SUSY of one chiral supermultiplet. This process of getting extended supersymmetric theories from higher dimensional ones with only $\mathcal N=1$ SUSY is called {\it Kaluza-Klein method}, and here we apply it to obtain actions with $\mathcal N=2,4,8$ SUSY in $D=4$.
+
+	\begin{itemize}
+	\item {\it $\mathcal N =2$ $D=4$ Super-Maxwell}
+	
+	Start with the $D=6$ $\mathcal N=1$ super-Maxwell theory with field content $(A_m, \psi^\a)$ with $m=0,1,\ldots,5$ and $\a =1,\ldots, 8$ and action
+	\begin{equation}
+	S = \int d^6x (F_{mn} F^{mn} -i\psi^\a \s^m_{\a\b} \p_m \psi^\b)
+	\end{equation}
+	and after compactification of the last two coordinates, we have fields four-dimensional fields $(A_m, \vphi,\vphib, \psi^\a_{(i)},\psib^\ad_{(i)})$ plus
+	\begin{equation}
+	S = \int d^4x (-\frac14 F_{mn}F^{mn} + \vphi\square \vphib - i \psi^\a_{(i)}\s^m_{\a\bd} \p_m \psib^\ad_{(i)})
+	\end{equation}
+	\begin{equation}\label{extsusy}
+		\begin{aligned}
+		\d A_m & = i\xi_{(1)} \s^m \psib_{(2)} + i\xib_{(1)}\sb^m \psi_{(2)} - i\xi_{(2)}\s^m \psib_{(1)} - i\xib_{(2)}\sb^m\psi_{(1)} \\
+		\d\vphi & = \sqrt 2 (\xi_{(1)} \psi_{(1)} + \xi_{(2)} \psi_{(2)}) \\
+		\d \psi_{(1)} & = \sqrt 2 \xib_{(1)} \s^m \p_m\vphi - F_{mn} (\s^{mn} \xi_{(2)}) \\
+		\d \psi_{(2)} & = i \sqrt{2} \xib_{(2)}\s^m \p_m\vphi + F_{mn} (\s^{mn} \xi_{(1)})
+		\end{aligned}
+	\end{equation}
+	In the action we can recognize $\mathcal N=1$ vector and chiral multiplets, and by introducing auxiliary fields we obtain a manifest $\mathcal N =1$ action
+	\begin{align}
+	S & = \int d^4x \Big(-\frac14 F_{mn}F^{mn} - i\psi^\a_{(2)} \s^m_{\a\bd}\p_m \psib^\ad_{(2)} + \frac12 d^2 \nonumber \\
+	& \qquad\qquad + \vphi\square\vphib - i\psi^\a_{(1)}\s^m_{\a\bd}\p_m\psib^\bd_{(1)} + f\bar f \Big) \nonumber \\
+	& = \int d^4x\left[ \int d^2\t\left(\frac12 W^\a W_\a\right) + \int d^4\t\ \Phi\Phib \right]
+	\end{align}
+
+	\item {\it $\mathcal N=2$ Super-Yang-Mills with gauge group $SU(n)$}
+	
+	The generalization to a non-abelian theory is straightforward once we know the action of the abelian case
+	\begin{equation}
+	S = \frac{1}{g^2} \int d^4x \left[ \int d^2\t\left(\frac12 (W^\a)_A^{\ B}(W_\a)_B^{\ A}\right) + \int d^4\t\ (e^V)_A^{\ B}\Phi_B^{\ C}(e^{-V})_C^{\ D}\Phib_D^{\ A} \right]
+	\end{equation}
+where the gauge transformations are
+	\begin{equation}
+		\begin{aligned}
+		W^\a \rightarrow e^{i\L}W^\a e^{-i\L}\ &,\quad e^V \rightarrow e^{i\Lb} e^V e^{-i\L}\ ,\\
+		\Phi\rightarrow e^{i\L}\Phi e^{-i\L}\ &,\quad \Phib \rightarrow e^{i\L}\Phib e^{-i\Lb}
+		\end{aligned}
+	\end{equation}
+	The action in component fields is
+	\begin{align}
+	S & = \frac{1}{g^2} \int d^4x  \Big[ -\frac14 (F_{mn})_A^{\ B} (F^{mn})_B^{\ A} - i(\psi^\a_{(i)})_A^{\ B}\s^m_{\a\bd}(\Dc_m\psib_{(i)}^\ad)_B^{\ A} + d_A^{\ B} d_B^{\ A} \nonumber \\
+	&  + f_A^{\ B} \bar f_B^{\ A} + \vphi_A^{\ B} (\Dc_m\Dc^m\vphi)_B^{\ A} + d_A^{\ B} (\vphi_B^{\ C}\vphib_C^{\ A} - \vphib_B^{\ C} \vphi_C^{\ A}) \nonumber \\
+	& + {\psi^\a_{(2)}}_A^{\ B} ({\psi_{(1)\a}}_B^{\ C}\vphib_C^{\ A} - \vphib_B^{\ C} {\psi_{(1)\a}}_C^{\ A}) +  (\psib_{(2)\ad})_A^{\ B} ((\psib^\ad_{(1)})_B^{\ C}\vphib_C^{\ A} - \vphib_B^{\ C} (\psib^\ad_{(1)})_C^{\ A}) \Big]
+	\end{align}
+	
+	\item {\it $\mathcal N=4$ $D=4$ Super-Yang-Mills Theory with gauge group $SU(N)$}
+	
+	We begin with the $D=10$ SYM which has fields $(A^I_M, \psi^{IA})$ with indices $M=0,\ldots, 9$, spinorial $A=1,\ldots,16$ and gauge $I=1,\ldots, N^2-1$. The action is
+	\begin{equation}
+	S = Tr\int d^{10}x (F_{MN}F^{MN} + \psi^A\s^M_{AB} \nabla_M\psi^B)
+	\end{equation}
+	After compactification in the last six coordinates, the $D=4$ Lorentz group is given by $SO(1,3)\subset SO(1,9)$ that transforms the new fields as
+	\begin{equation}
+		\begin{aligned}
+		A_M \rightarrow \left\{
+			\begin{array}{ll}
+			A_m & m=0,1,2,3\quad \text{vector} \\
+			\phi_j & j=1,\ldots,6\quad \text{scalars}
+			\end{array}
+		\right.
+		\end{aligned}
+	\end{equation}
+	and
+	\begin{equation}
+		\begin{aligned}
+		\psi^A\rightarrow \left\{
+			\begin{array}{ll}
+			\psi^{\a a} & \a=1,2\quad a=1,\ldots, 4\quad\text{spinor}\\
+			\psib^{\ad}_a & \ad=1,2\quad \bar a=1,\ldots, 4\quad\text{spinor}
+			\end{array}
+		\right.
+		\end{aligned}
+	\end{equation}
+	(Here we omitted the label $I$ of the gauge algebra). Finally, the action becomes
+	\begin{align}
+	S = Tr \int d^4x & \Big( F^{mn} F_{mn} + \psi^{\a a}\s^m_{\a\ad} \nabla_n \psib^\ad_a + \nabla_m\phi^j \nabla^m\phi_j \nonumber \\
+	& + [\phi_j,\phi_k][\phi^j,\phi^k] + \phi^j(\s^j_{ab}\psi^{\a a}\psi^b_\a + \s^{j ab}\psib_{\a a} \psib^{\ad}_b) \Big)
+	\end{align}
+	where $\s^j$ are $SO(6)$ Pauli matrices.
+	
+	\item {\it $\mathcal N=8$ $D=4$ Supergravity}
+	
+	In four space-time dimensions this is the theory with a maximum number of supersymmetry charges, and it can be obtained by dimensionally reducing $\mathcal N=1$ $D=11$ SUGRA (which is also a maximally supersymmetric theory in eleven dimensions). The field content of the latter is $(G_{MN}, A_{MNP}, \psi^\a_M)$ respectively the metric tensor, a three-form and a Majorana gravitino ($\a=1,\ldots,32$). Plus, the action is
+	\begin{align}
+	S_{11} = \int d^{11}x & \Big[\sqrt{G} (R+F_{MNPQ}F^{MNPQ}) + \e_{M_1\ldots M_{11}}F^{M_1\ldots M_4} F^{M_5\ldots M_8} A^{M_9 M_{10} M_{11}} \nonumber  \\
+	& + \text{terms with fermions}\Big]
+	\end{align}
+	Compactification of the last seven coordinates $x^4,\ldots,x^{10}$ gives the field content
+	\begin{equation}
+	G_{MN}\rightarrow \left\{
+		\begin{array}{ll}
+		G_{mn} & \text{metric tensor} \\
+		G_{mi} & 7\ \text{vectors} \\
+		G_{ij} & 28\ \text{scalars}
+		\end{array}
+	\right.\qquad A_{MNP}\rightarrow \left\{
+		\begin{array}{ll}
+		A_{mij} & 21\ \text{vectors} \\
+		A_{mni} & 7\ \text{scalars} \\
+		A_{ijk} & 35\ \text{scalars}
+		\end{array}
+	\right.
+	\end{equation}
+	for $m,n=0,1,2,3$ and $i,j,k=1,\ldots, 7$. It should be noted that although the fields $A_{mni}$ may look like describing $7$ two-forms in the theory, they actually will only contribute $7$ scalar degrees of freedom when put on-shell. Furthermore, the fermionic fields become
+	\begin{equation}
+	\psi_M^{\underline\a} \rightarrow \left\{
+		\begin{array}{ll}
+		\psi_m^{\a a} & 8\ \text{Majorana gravitini} \\
+		\psi_i^{\a a} & 56\ \text{Majorana spinors}
+		\end{array}
+	\right.
+	\end{equation}
+	for $\a=1,2,3,4$ and $a=1,\ldots,8$ and $i=1,\ldots,7$.
+	
+	\end{itemize}
+For SUGRA $\mathcal N=8$ and SYM $\mathcal N=4$, there are no known descriptions where all of the SUSY algebra closes off the mass-shell.
+
+\subsection{Exercises}
+
+	\begin{exe}
+	Show that the transformations (\ref{extsusy}) close (up to equations of motion and gauge transformations) and give the $\mathcal N = 2$ $D=4$ SUSY algebra.
+	\end{exe}
+
+	\begin{exe}
+	For the Maxwell action in $D=10$,
+		\begin{equation}
+		S = \int d^{10} x\ F_{mn} F^{mn},
+		\end{equation}
+	compactify to $D=4$ and write the resulting action.
+	\end{exe}
+
+	\begin{exe}
+	For the Yang-Mills action in $D=10$ with gauge group $SU(n)$,
+		\begin{equation}
+		S = \frac{-1}{4g^2} \int d^{10} x\ (F_{mn})_A^{\ B} (F^{mn})_B^{\ A},
+		\end{equation}
+	compactify to $D=4$ and write the resulting action.
+	\end{exe}
+
+\newpage
+
+
+
+\section{$\mathcal N=2$ Super-Yang-Mills}
+
+\subsection{Super-Maxwell $\mathcal N=2$}
+Although it is not obvious, the following action has $\mathcal N=2$ SUSY.
+	\begin{equation}\label{n2theory}
+	S = \int d^4x \left( \int d^2\t\ \frac12 W^\a W_\a + \int d^4\t\ \Phi\Phib \right)
+	\end{equation}
+To see this, let's define the following superfields in extended superspace
+	\begin{equation}
+	W(y^m, \t^\a_{(1)}, \t^\b_{(2)}) = \Phi(y^m, \t^\a_{(1)}) + \sqrt 2\t^\b_{(2)} W_\b(y^m, \t^\a_{(1)}) + \t^\b_{(2)}\t_{(2)\b} G(y^m, \t^\a_{(1)})
+	\end{equation}
+	\begin{equation}
+	\bar W(\bar y^m, \bar\t^{\dot\a}_{(1)}, \bar\t^{\dot\b}_{(2)}) = \bar\Phi(\bar y^m, \bar\t^{\dot\a}_{(2)}) + \sqrt 2\bar\t_{{\dot\b}\,{(1)}} \bar W^{\dot\b} 
+	(\bar y^m, \bar\t^{\dot\a}_{(2)}) + \bar\t_{{\dot\b}\,{(1)}}\bar\t_{(1)}^{\dot\b} \bar G(\bar y^m, \bar\t^{\dot\a}_{(2)})
+	\end{equation}
+where $y^m = x^m + i\t^\a_{(1)}\s^m_{\a\ad}\tb^\ad_{(1)} + i\t^\a_{(2)} \s^m_{\a\ad}\tb^\ad_{(2)}$ and $(\t^\a_{(1))})^*=
+\bar\t^{\dot\a}_{(2)}$. In this superspace, the $\mathcal N=2$ SUSY transformations will be
+	\begin{equation}
+		\begin{aligned}
+		\d x^m & = -i \e_{(1)} \s^m\tb_{(1)} -i\e_{(2)}\s^m\tb_{(2)} -i\eb_{(1)}\sb^m\t_{(1)}-i\eb_{(2)}\sb^m\t_{(2)} \\
+		\d\t_{(1)} & =\e_{(1)}\qquad \d\t_{(2)}=\e_{(2)} \\
+		\d\tb_{(1)} & =\eb_{(1)}\qquad \d\tb_{(2)}=\eb_{(2)}
+		\end{aligned}
+	\end{equation}
+and, as before it is useful to define fermionic derivatives
+	\begin{equation}
+		\begin{aligned}
+		D_{(1)\a} & = \frac{\p}{\p\t^{\a \,(1)}} + i\s^m_{\a\ad}\tb^\ad_{(1)}\p_m\ ,\quad D_{(2)\a} = \frac{\p}{\p\t^{\a\,(2)}} + i\s^m_{\a\ad} \tb^\ad_{(2)}\p_m \ , \\
+		\Db^\ad_{(1)} & = \frac{\p}{\p\tb^{(1)}_\ad} + i\sb^{m\ad\a} \t_{(1)\a}\p_m\ ,\quad \Db^\ad_{(2)} = \frac{\p}{\p\tb^{(2)}_\ad} + i\sb^{m\ad\a} \t_{(2)\a}\p_m
+		\end{aligned}
+	\end{equation}
+	where $\t^{\a\,{(i)}} = \epsilon^{ij}\t^\a_{(j)}$ and $\bar\t^{\dot\a\,{(i)}} = \epsilon^{ij}\bar\t^{\dot\a}_{(j)}$.
+In terms of coordinates $(y^m, \t^\a_{(1)}, \t^\a_{(2)}, \tb^\ad_{(1)}$, $\tb^\ad_{(2)})$, these derivative will take the form
+	\begin{equation}
+	\Db^\ad_{(j)} = \frac{\p}{\p\tb^{(j)}_\ad}\ ,\quad D_{(j)\a} = \frac{\p}{\p\t^{\a\,(j)}} + 2i\s^m_{\a\ad} \tb^\ad_{(j)} \frac{\p}{\p y^m}
+	\end{equation}
+which then implies $\Db^\ad_{(1)} W = \Db^\ad_{(2)} W= 0$ and $D^\a_{(1)} \Wb = D^\a_{(2)} \Wb = 0$.
+
+To be able to obtain the action (\ref{n2theory}), we need to relate $G$ and $\Phi$, and we will do so in a supersymmetric way. Thus, we set the conditions
+	\begin{equation}
+		\begin{aligned}
+		D^\b_{(1)} D_{(1)\b} W & = \Db_{(1)\bd} \Db^\bd_{(1)} \Wb\ ,\quad D^\b_{(1)}D_{(2)\b} W = \Db_{(1)\bd}\Db^\bd_{(2)}\Wb\ , \\
+		D^\b_{(2)} D_{(2)\b} W & = \Db_{(2)\bd} \Db_{(2)}^\bd \Wb
+		\end{aligned}
+	\end{equation}
+or equivalently $D^\b_{(j)} D_{(k)\b} W = \Db_{\bd (j)} \Db^\bd_{(k)} \Wb$. These are the defining constraints of superfield $W$. Now, we solve these constraints in terms of component superfields, thus
+	\begin{equation}
+		\begin{aligned}
+		D^\b_{(1)} D_{(1)\b} W & = -4 G(y,\t_{(1)}) + \ldots \\
+		\Db_{(1)\bd} \Db_{(1)}^\bd \Wb & = \Db_{(1)\bd}\Db^\bd_{(1)} \Phib + \ldots
+		\end{aligned}
+	\end{equation}
+where the dots in both cases are terms depending on $\t_{(2)}$ and $\tb_{(1)}$. This implies
+	\begin{equation}
+		\begin{aligned}
+		G(y, \t_{(1)}) & = -\frac14\Db^2_{(1)} \Phib \\
+		\bar G(\yb, \tb_{(2)}) & = -\frac14 D^2_{(2)}\Phi
+		\end{aligned}
+	\end{equation}
+likewise for
+	\begin{equation}
+		\begin{aligned}
+		D^\b_{(1)} D_{(2)\b} W & = D^\b_{(2)} W_\b(y,\t_{(1)}) + \ldots \\
+		\Db_{(1)\bd} \Db_{(2)}^\bd \Wb & = \Db_{(1)\bd} \Wb^\bd(\yb, \tb_{(2)}) + \ldots
+		\end{aligned}
+	\end{equation}
+which implies the {\it Bianchi identities} $D^\b_{(2)} W_\b = \Db_{(1)\bd} \Wb^\bd$.
+
+Finally, an expansion of the following explicit $\mathcal N=2$ supersymmetric integral shows that it reproduces the original action (\ref{n2theory})
+	\begin{align}
+	S & = \frac12 \int d^4x \int d^2\t_{(1)} d^2\t_{(2)} W^2 \nonumber \\
+	& = \frac12 \int d^4x \int d^2\t_{(1)} \left[ 2\Phi G + W^\a W_\a \right] \nonumber \\
+	& = \int d^4x \int d^2\t_{(1)} \left(\frac12 W^\a W_\a + \Phi\Db^2_{(1)} \Phib\right) \nonumber \\
+	& = \int d^4x \left[ \int d^2\t_{(1)} \frac12 W^\a W_\a + \int d^4\t_{(1)} \Phi\Phib \right]
+	\end{align}
+This can be generalized to consider {\it effective actions} (which may be non-renorma\-li\-za\-ble)
+	\begin{equation}
+	S = \int d^4x \int d^2\t_{(1)} d^2\t_{(2)} \left[ \frac12 W^2 + f(W) \right]
+	\end{equation}
+where $f$ is a holomorphic function.
+
+\subsection{Non-abelian case}
+The non-abelian $\mathcal N=2$ SYM is treated in a similar fashion. So we have the superfields
+	\begin{equation}
+	W_B^{\ A}(y,\t_{(1)}, \t_{(2)}) = \Phi_B^{\ A}(y,\t_{(1)}) + \t^\a_{(2)} {W_\a}_B^{\ A}(y,\t_{(1)}) + \t^\a_{(2)} \t_{(2)\a} G_B^{\ A}(y,\t_{(1)})
+	\end{equation}
+and derivatives $\Dc_{(1)} = e^{-V} D_{(1)} e^V$, $ \Dcb_{(1)} = \bar D_{(1)}$. Then we have
+	\begin{equation}
+	\Dc^\b_{(1)} W_\b = \Dcb_{(1)\bd} \Wb^\bd\ ,\quad \Dc^\a_{(1)} \Phib = 0\ ,\quad \Dcb^\ad_{(1)}\Phi =0
+	\end{equation}
+which implies $\Phib = e^{-V} \bar\Omega e^V$, $\Phi = \Omega $, $\Db^\ad\Omega = D^\a \bar\Omega = 0$. And finally the action
+	\begin{align}
+	S & = Tr \int d^4x \int d^2\t_{(1)} d^2\t_{(2)} \left(W^2 + f(W)\right) \nonumber \\
+	& = Tr \int d^4x \left[ \int d^2\t_{(1)} \frac12 W^\a W_\a + \int d^4\t_{(1)} \Omega e^{-V} \bar\Omega e^V + \ldots \right]
+	\end{align}
+
+
+
+\newpage
+
+\appendix
+
+\section{Spinors in arbitrary dimensions}
+
+\subsection{The Clifford algebra}
+
+The idea of using the Clifford algebra is as follows. The aim is to construct representations (matrices) of the $SO(D-1,1)$ for the Lorentzian case, or $SO(D)$ for the Euclidean sector, that satisfy $\{\G^A,\G^B\}=2\eta^{AB}I$ (with the suitable signature of the metric in each case).\footnote{Here $D$ refers to the dimensionality of the space possessing SUSY - whether it's spacetime or worldsheet is irrelevant here.} But first, imagine that we had already found a set of $D$ matrices $\G^A$ that satisfy the \textit{Clifford algebra},
+	\begin{align}\label{cliff}
+	\{ \G^A , \G^B \}&=2I\delta^{AB}
+	\end{align}
+where $\{A,B\}=AB+BA$. If we managed to find them, then the commutator of these matrices, namely
+	\begin{align}\label{}
+	\Sigma^{AB}\equiv \frac{1}{4}[\G^A,\G^B]
+	\end{align}
+automatically satisfies the Lorentz algebra.
+
+\underline{Proof:} 
+We must express the commutator purely in terms of $\eta'$s and $\Sigma'$s, but no $\G'$s. The only identity we use is $\S_{mn}=\frac{1}{4}[\G_m,\G_n]=\frac{1}{4}\left( \G_m \G_n -\G_n \G_m \right)=\frac{1}{2}\left( \G_m \G_n - \delta_{mn} \right)$ or $\G_m\G_n=2\S_{mn}+\d_{mn}$. We have,
+	\begin{align}\label{}
+	[\S_{mn},\S_{pq}]&=\frac{1}{4}[\G_m \G_n -\delta_{mn},\G_p \G_q -\delta_{pq}] \nonumber \\
+	%&=\frac{1}{4} [\G_m \G_n,\G_p \G_q]\nonumber \\
+	&=\frac{1}{4} \left( \G_m \G_n\G_p \G_q - \G_p \G_q \G_m \G_n \right)
+	\end{align}
+Now use the Clifford algebra,
+	\begin{align}\label{}
+	& = \frac14 \Big[ \G_m \left( -\G_p\G_n+2\d_{pn} \right) \G_q - \G_p \left( -\G_m \G_q +2\d_{mq} \right) \G_n \Big] \nonumber \\
+	%& = \frac14 \left( \left( -\G_m\G_p\G_n \G_q+2\d_{pn} \G_m \G_q \right) + \left( +\G_p\G_m \G_q \G_n -2\d_{mq} \G_p\G_n \right)  \right) \nonumber \\
+	& = \frac14 \Big( \left( -\left( -\G_p\G_m + 2\d_{pm} \right)\G_n \G_q+2\d_{pn} \G_m \G_q \right) \nonumber \\
+	& \quad + \left( +\G_p\G_m \left( -\G_n \G_q +2\d_{nq} \right) -2\d_{mq} \G_p \G_n \right) \Big) \nonumber \\
+	& = \frac14 \left( \left( -\left(  2\d_{pm} \right)\G_n \G_q+2\d_{pn} \G_m \G_q \right) + \left( +\G_p\G_m \left( +2\d_{nq} \right) -2\d_{mq} \G_p \G_n \right) \right)
+	\end{align}
+and finally use the identity again, in order to get rid of the $\G'$s:
+	\begin{align}\label{}
+	%&=\frac{1}{4} \left(   -  2\delta_{pm} \G_n \G_q+2\delta_{pn} \G_m \G_q + 2\delta_{nq} \G_p\G_m  -2\delta_{mq} \G_p \G_n   \right) \nonumber \\
+	&=\frac{1}{4} \Big(   -  2\delta_{pm} \left( 2\Sigma_{nq}+\delta_{nq} \right)+2\delta_{pn} \left( 2\Sigma_{mq}+\delta_{mq} \right) + 2\delta_{nq} \left( 2\Sigma_{pm}+\delta_{pm} \right) \nonumber \\
+	& \quad -2\delta_{mq} \left( 2\Sigma_{pn}+\delta_{pn} \right)   \Big) \nonumber \\
+	%
+	%&=\frac{1}{4} \left(   -  2\delta_{pm} \left( 2\Sigma_{nq} \right)+2\delta_{pn} \left( 2\Sigma_{mq} \right) + 2\delta_{nq} \left( 2\Sigma_{pm} \right)  -2\delta_{mq} \left( 2\Sigma_{pn} \right)   \right) \nonumber \\
+	&=   -  \delta_{pm}  \Sigma_{nq} +\delta_{pn}  \Sigma_{mq}  + \delta_{nq}  \Sigma_{pm}   -\delta_{mq}  \Sigma_{pn}  
+	\end{align}
+
+Now that we already have in hand a representation of the algebra, we can construct the elements $g$ of a representation of the Lorentz group by exponentiating the generators:
+	\begin{align}\label{}
+	g=\exp\left( \frac{1}{2}\theta_{AB}\Sigma^{AB} \right)
+	\end{align}
+where $\theta_{AB}$ correspond to the infinitesimal parameters that define the Lorentz transformation, just as $e^{i \vec{\theta} \cdot \vec{J}}$ corresponds to a rotation in an angle $\vec{\theta}$ and $\vec{J}$ are the generators of rotations.  It always suffices to consider $\theta_{AB}=-\theta_{BA}$, because any symmetric contribution will always vanish upon contraction with $\Sigma^{AB}$.
+
+It turns out that one can always choose a representation in which all the $\G'$s are unitary, so they are either hermitian $\G_A^\dag=\G_A$ or antihermitian $\G_A^\dag=-\G_A$. So we see that everything really boils down to finding a representation of the Clifford algebra. This is what we do in the rest of this section.
+
+\subsection{Euclidean signature}
+
+\subsubsection{Euclidean even dimensions: $SO(2n)$}\label{euceven}
+
+We begin our discussion by considering $D=2n$ Euclidean space.  
+
+\paragraph{Construction of $\G$'s through ladder operators.} In the previous section, we saw that once we have the $\G'$s satisfying \eqref{cliff}, the Lorentz algebra follows straightforwardly. So now let's turn to the issue of constructing those $\G'$s in the first place.
+
+Let's split the $D=2n$ matrices in two sets $b_i^+$ and $b_i^-$ for $i=1,\hdots,n$ by defining
+	\begin{align}\label{bi}
+	b_i^+ &=\frac{1}{2} \left( \G_i + i \G_{i+n} \right)  \\
+	b_i^- &=  \frac{1}{2} \left( \G_i - i \G_{i+n}  \right)
+	\end{align}
+If the $\G_i$ satisfy the Clifford algebra \eqref{cliff}, then the $b_i$ satisfy the anti commutation rules 
+	\begin{align}\label{bb}
+	\{ b_i^+,b_j^- \}&=\delta_{ij}
+	\end{align}
+
+\underline{Proof:} by direct calculation
+	\begin{align}\label{}
+	\{ b_i^+ , b^-_j \} &= \frac{1}{4}\{ \G_i + i \G_{i+n} , \G_j -i \G_{j+n} \} \nonumber  \\
+	&=\frac{1}{4}  \left( \{ \G_i, \G_j \} - i\{ \G_i, \G_{j+n} \}+i\{ \G_{i+n},\G_j \}+ \{ \G_{i+n},\G_{j+n} \} \right) \nonumber \\
+	&=\delta_{ij} 
+	\end{align}
+where $\{ \G_i, \G_{j+n} \}=\{ \G_{i+n},\G_j \}=0$ since $i,j\leq n$.
+
+Because the $b_i$ satisfy the algebra \eqref{bb}, they act as creation and annihilation operators over the states. A very useful notation for this is to represent a state by a set of $n$ $+$ or $-$ signs, e.g. $\ket{\underbrace{+--+\hdots +}_{n}}$ so that $b_i^\pm$ act as:
+	\begin{align}\label{}
+	b_i^+ \ket{\hdots \underset{i}{-} \hdots}=\ket{\hdots + \hdots} \hspace{1cm},\hspace{1cm} b_i^+ \ket{\hdots \underset{i}{+} \hdots}=0\\
+	b_i^- \ket{\hdots \underset{i}{+} \hdots}=\ket{\hdots - \hdots} \hspace{1cm},\hspace{1cm} b_i^- \ket{\hdots \underset{i}{-} \hdots}=0
+	\end{align}
+so we have one $b_i^+$ and one $b_i^-$ for each sign in the state.
+
+Let's start by denoting a ``ground state"
+	\begin{align}\label{}
+	\ket{\underbrace{--\hdots -}_{n}}
+	\end{align}
+defined as the state that is annihilated by all the $b_i^-$ matrices:
+	\begin{align}\label{}
+	b_i^- \ket{--\hdots -} =0 \hspace{1cm} i=1,\hdots,n
+	\end{align}
+Then, the all the other states can be obtained by successive application of the creation operators, e.g.   
+	\begin{align}\label{}
+	b_1^+\ket{ - - \hdots - } &=\ket{+ - \hdots -}\\
+	&\vdots\\
+	b_n^+\ket{ - - \hdots - } &=\ket{- - \hdots +}\\
+	&\vdots
+	\end{align}
+
+Since the complete set of states is $\ket{\underbrace{\pm \pm\hdots \pm}_{n}}$, there are $2^n=2^{D/2}$ states in total, so the $\G$'s are $2^{D/2}\times 2^{D/2}$ matrices. We'll see next that, for even dimensions, i.e. $SO(2n)$, the complete set decomposes in a pair of sets of $2^{n-1}$ states where the sets don't mix under Lorentz transformations: these are the chiral and anti chiral representations.
+
+Now we wish to construct an explicit representation of the $\G_i$ matrices. But instead of directly seeking for the $\G$ matrices that satisfy the Clifford algebra \eqref{cliff}, we can construct them by taking advantage of their relation to the creation/annihilation operators $b_i^\pm$ defined above. Inverting \eqref{bi}, we have  
+	\begin{align}
+	\G_i &=  b_i^+ + b_i^- \nonumber  \\
+	\G_{i+n} &= -i\left( b_i^+ - b_i^- \right)   \hspace{2cm}i=1,\hdots, n \label{ladder}
+	\end{align}
+Therefore, since we know how the $b_i^\pm$ act on the states, we know how the $\G_i$ act too! In the examples below se do some explicit low dimensional cases.
+
+\paragraph{Chirality.} \label{chirality}
+We have seen that the states in the set $\ket{\pm\hdots \pm}$ transform under the Lorentz group. But a natural question arises: does the Lorentz group mix \textit{all} of these states amongst them? Or does it mix them by subsets? Put another way: is this representation \textbf{reducible} or \textbf{irreducible}? This leads to the notion of \textit{chirality}.
+
+Recall that an element of the Lorentz group is 
+	\begin{align}\label{g2}
+	g=\exp \left( \frac{1}{2}\theta_{AB} \G^A\G^B \right)
+	\end{align}
+
+A crucial observation here is that \eqref{g2} involves \textit{two} Gamma matrices, and therefore the expansion of the exponential, which is also a matrix, contains only terms with \textbf{even} number of $\G'$s, so each term must flip an even number of signs (because each $\G_i$ flips one sign because of the $b_i$). Therefore, the action of $\exp \left( \theta \G \G \right)$ will never modify the \textit{parity} of the $+$ signs in a state: a state with even number of $+'s$ will remain that way (the transformed state will be a sum over many states that have flipped $2,4,8,\hdots$ signs with respect to the original state), and we call these states \textbf{chiral states}. On the other hand, a state with an odd number of $+'$s will remain like this; we call them \textbf{anti-chiral states}. 
+	\begin{align}\label{}
+	\bullet\ \ \mbox{Even}\ &\#\ + \mbox{signs} \rightarrow 2^{n-1}\ \mbox{states}\ \ \mbox{``chiral" or ``Weyl"}\\
+	\bullet\ \ \ \mbox{Odd}\ &\#\ + \mbox{signs} \rightarrow 2^{n-1}\ \mbox{states}\ \ \mbox{``anti-chiral" or ``anti-Weyl"}
+	\end{align}
+
+\paragraph{The chirality matrix $\G_{2n+1}$} The chirality property explained above can be understood from a different point of view. One defines the \textit{chirality matrix}, and then one shows that the chiral and antichiral states, which are eigenstates of this operator, are split by their eigenvalue of this matrix. 
+
+The chirality matrix is defined by $\G_{2n+1}=i^\alpha \G_1 \G_2\hdots \G_{2n}$, i.e. just the product of all the $\G$'s, with a suitable constant prefactor to be determined. This is just the analogue of the $\G_5=i\G_0\G_1\G_2\G_3$ matrix in usual $d=4$ QFT. We wish to adjust the prefactor $i^\alpha$ in order that 
+	\begin{align}\label{id}
+	\G_{2n+1}^2=1
+	\end{align}
+It suffices to choose $\alpha=\frac{D}{2}\left( D-1 \right)=n(2n-1)$, so
+	\begin{align}\label{g2n+1}
+	\boxed{ \G_{2n+1}=i^{n(2n-1)} \G_1\hdots \G_{2n} } 
+	\end{align}
+
+\underline{Proof}: just compute $\G_{2n+1}^2$, by anticommuting the $\G$'s as many times as needed to take them all to unity
+	\begin{align*}\label{}
+	\G_{2n+1}^2&=i^{2\alpha} \G_1\hdots \G_{2n} \G_1\hdots \G_{2n}\\
+	&=i^{2\alpha} (-1)^{2n-1}(-1)^{2n-2}\hdots(-1)^{2n-2n}\\
+	&=(-1)^{\alpha} (-1)^{1+2+\hdots +2n} = (-1)^\alpha (-1)^{n(2n-1)}
+	\end{align*}
+so choosing $\alpha=n(2n-1)$ the exponent is always even.
+
+At first sight, one could suspect that \eqref{id} implied that $\G_{2n+1}$ is the identity matrix. This cannot be, however, since we can show that $\G_{2n+1}$ \textit{anticommutes} with all the other $\G_A$:
+	\begin{align}\label{anticomm}
+	\{ \G_{2n+1} , \G_A \}=0\hspace{2cm}A=1,\hdots,2n
+	\end{align}
+which is certainly a property that the identity matrix cannot have!
+
+\underline{Proof:} this is very simple. Let $\G_A$ be any of the other $2n$ $\G$'s, then
+	\begin{align}\label{}
+	\G_{2n+1}\G_A &\sim \G_1\hdots \G_{2n} \G_A \nonumber \\
+	&= (-1)^{2n-1} \G_A \G_1\hdots \G_{2n}  \nonumber \\
+	&= -\G_A \G_{2n+1}
+	\end{align}
+because when $\G_A$ crosses to the left side, it must anticommute with all the $2n$ matrices except with itself (with whom it commutes). The explicit form that we can choose for the $\G'$s will depend on the way we chose to order the states: we organized them such that the first $n$ states are chiral and the last $n$ states are antichiral, and since the action of a matrix takes an chiral state into an antichiral state and viceversa, we see that the $\G_A$ must be off-diagonal. This is called the \textbf{Weyl representation}. In this representation one can choose the $\G'$s such that
+	\begin{align}\label{}
+	\G_A&=\left( \begin{array}{cc}  0 & \sigma_A \\ -\sigma_A & 0 \end{array}    \right) \hspace{2cm} \G_{2n+1}=\left( \begin{array}{cc}  1 & 0 \\ 0 & -1 \end{array}    \right) 
+	\end{align}
+where each block is a $2^{n-1}$ square matrix. We see explicitly that $\G_{2n+1}$ is not the identity.
+
+\paragraph{Reality conditions: real and pseudo-real representations.} We already know that for even dimensions $D=2n$, irreducible representations of $SO(2n)$ come in two types: \textit{chiral} sets of $2^{n-1}$ states, and \textit{antichiral} sets of $2^{n-1}$ states. This tells us how many states are in the representation. But the actual number of degrees of freedom depends on whether the states are real, complex, or pseudo-real. It turns out that the $n=0+\mbox{mod}\ 4=0,4,8,\hdots$ cases will behave differently than the $n=2+\mbox{mod}\ 4=2,6,10,\hdots$.
+
+We denote the conjugation operator by a star $()^*$, and it means that we just conjugate the imaginary units $i\rightarrow -i$, but we don't transpose any matrix. In particular this means from \eqref{bi}
+	\begin{align}\label{}
+	\left( b_i^+ \right)^*=b_i^-
+	\end{align}
+A requirement that the states must obey is that the conjugate operator acted twice should give the identity:
+	\begin{align}\label{}
+	\left( \ket{\mbox{state}} \right)^{**} = \ket{\mbox{state}}
+	\end{align}
+This equality will tell us if the states are real, pseudoreal or complex.
+
+Let's proceed with specific examples. 
+Consider first $SO(4)$, were $D=4, n=2$ case.  Assume that $\left( \ket{--} \right)^*=\ket{++}$ for a moment. By definition, $\ket{++}=b_1^+ b_2^+\ket{--}$. Then, we have
+	\begin{align}\label{}
+	\left( \ket{--} \right)^{**}&=\left( \ket{++} \right)^* \nonumber \\
+	&=\left( b_1^+ b_2^+\ket{--} \right)^* \nonumber \\
+	&=\left( b_1^+ b_2^+ \right)^* \left(\ket{--} \right)^* \nonumber \\
+	&=b_1^-b_2^- \ket{++} \nonumber \\
+	&=b_1^-b_2^- b_1^+ b_2^+ \ket{--}  \hspace{2cm} b_2^-b_1^+=-b_1^+b_2^- \nonumber  \\
+	&=- \ket{--}\hspace{1cm} \Rightarrow \Leftarrow \label{cont}
+	\end{align}
+and we get a contradiction, so in for $SO(4)$ it cannot happen that $\left( \ket{--} \right)^*=\ket{++}$. It's easy to check that in order to have consistency, we need $\left( \ket{--} \right)^*=i\ket{++}  $ which implies $\ket{--}^{**}=\ket{--}$. Representations satisfying this condition are called \textit{pseudo-real}.
+
+For $SO(8)$ instead, the same calculation shows that the analogous condition $\left( \ket{----} \right)^*=\ket{++++}$ is consistent: 
+	\begin{align}\label{}
+	\left( \ket{----} \right)^{**}&=\left( \ket{++++} \right)^* \nonumber \\
+	&=\left( b_1^+ b_2^+ b_3^+ b_4^+\ket{----} \right)^* \nonumber \\
+	&= b_1^- b_2^- b_3^- b_4^- \ket{++++}\nonumber \\
+	&= b_1^- b_2^- b_3^- b_4^- b_1^+b_2^+ b_3^+ b_4^+\ket{----} \nonumber \\
+	&=\ket{----} 
+	\end{align}
+So for this case we see that $\left( \ket{----} \right)^*=\ket{++++}$ holds, and we call these representations \textit{real}.
+
+
+\paragraph{Explicit example: SO(2).} We must construct two matrices $\G_1,\G_2$ of dimension $2^1=2$, so we have two states. To do the calculation explicitly, we need to \textit{fix} the basis, i.e. to choose an order for the states, say $\left( \ket{+},\ket{-} \right)$. Of course this ordering has no physical significance, and amounts merely to a change of basis. We'll use the ladder operator representation \eqref{ladder}. The matrix elements are obtained by simply bracketing between the states:
+	\begin{align}\label{}
+	\G_1^{++}&=\bra{+}  \G_1 \ket{+}=\bra{+}  \left( b_1^++b_1^- \right) \ket{+}=0\\
+	\G_1^{+-}&=\bra{+}  \G_1 \ket{-}=\bra{+}  \left( b_1^++b_1^- \right) \ket{-}=1 = \G_1^{-+} \\
+	\G_1^{--}&=\bra{-}  \G_1 \ket{-}=\bra{-} \left( b_1^++b_1^- \right) \ket{-}=0
+	\end{align}
+Thus we have:
+	\begin{align}\label{}
+	\G_1&=\left( \begin{array}{cc}  0 & 1 \\ 1 & 0 \end{array} \right) = \sigma_1
+	\end{align}
+which coincides with the Pauli matrix $\sigma_1$. Doing the same for $\G_2$:
+	\begin{align}\label{}
+	\G_2^{++} & = \bra + \G_2 \ket + = -i\bra + \left( b_1^+ - b_1^- \right) \ket + =0 = \G_2^{--}\\
+	\G_2^{+-} & = \bra + \G _2 \ket - = -i \bra + \left( b_1^+-b_1^- \right) \ket - = -i = - \G_2^{-+}
+	\end{align}
+so we have
+	\begin{align}\label{}
+	\G_2&=\left( \begin{array}{cc}  0 & -i \\ i & 0 \end{array} \right) = \sigma_2
+	\end{align}
+where $\sigma_2$ is the second Pauli matrix. But it is well known that the Pauli matrices satisfy indeed the euclidean Clifford algebra
+	\begin{align}\label{}
+	\{ \sigma_i,\sigma_j \}=2\delta_{ij}
+	\end{align}
+so we're done with that. Now what about chirality? According to \eqref{g2n+1}, the chirality matrix is
+	\begin{align}\label{}
+	\G_3=i^{1(2-1)}\sigma_1\sigma_2 = \left( \begin{array}{cc}  -1 & 0 \\ 0 & 1 \end{array} \right)  = - \sigma_3
+	\end{align}
+which indeed squares to unity, $\sigma_3^2=1$. $\G_3$ is block diagonal (as it should be in any even dimension) so we have Weyl and anti-Weyl states. Moreover, since the chirality matrix turned out to be real, the vector states can also be chosen to be real. This reduces the d.o.f. to a single real parameter. Therefore in $SO(2)$, the representation can be chosen simultaneously \textbf{Majorana-Weyl}. 
+
+
+\subsubsection{Euclidean odd dimensions: $SO(2n+1)$}
+
+To construct the Clifford algebra in $D=2n+1$ dimensions, we should in principle redo the same analysis as above for odd dimensions. The nice thing is that we've done all the hard work already in the previous section for the even dimensional case: we can just take the same $\G_i$ with $i=1,\hdots, 2n$, and we need to add one extra matrix. Well, it happens that we already know what this matrix is! From \eqref{anticomm} we see that $\G_{2n+1}$ satisfies the properties of the Clifford algebra: $\{ \G_{2n+1},\G_i \}=0$ and $\G_{2n+1}^2=1$. Therefore, in $D=2n+1$ we take the set $\G_i$ with $i=1,\hdots, 2n+1$, where $\G_{2n+1}=i^{n(2n-1)} \G_1\hdots \G_n$ as defined in \eqref{g2n+1}.
+
+But the inclusion of $\G_{2n+1}$ has a crucial effect which distinguishes from its even dimensional counterpart: due to \eqref{anticomm}, the Lorentz group element
+	\begin{align}\label{}
+	g=\exp\left( \frac{1}{2}\theta_{AB}\Sigma^{AB} \right)
+	\end{align}
+now also contains in its Taylor expansion terms of the form ($i=1,\hdots, 2n$)
+	\begin{align}\label{}
+	\Sigma^{i\ 2n+1}&=\frac{1}{4}[\G^i,\G^{2n+1}]=\frac{1}{4}\left( \G^i\G^{2n+1} - \G^{2n+1} \G^i  \right) = \frac{1}{2} \G^i \G^{2n+1} \label{120}
+	\end{align}
+But these terms are different of those discussed below \eqref{g2}: in that case, we had $\G^A \G^B$, both of which flipped one sign; \eqref{120} in contrast flips only one sign because $\G^i$ flips once (i.e. changes parity of number of $+$ signs), but $\G^{2n+1}$ doesn't because it's the product of an \textit{even} number of $\G_i$ so it doesn't modify the parity of $+$ signs. Therefore, terms of the form $\G^i\G^{2n+1}$ do change the parity of the number of $+$ signs, so the Lorentz group has no invariant subgroups like the chiral and antichiral states of the even dimensional case. In a single phrase: \textbf{in odd dimensions, there is no chirality}. Moreover, we see that in this case we must use \textit{all} of the $2^n$ states (in contrast to the even dimensional case, in which we could use $2^{n-1}$ (real or pseudo-real) chiral spinors ).
+
+Put another way, from the point of view of the Clifford algebra, this means that in odd dimensions or in even dimensions $D=2n$ when $n$ is odd, we cannot construct \textbf{real} $2^{n-1}\times 2^{n-1}$ matrices that satisfy the Clifford algebra. We must either use $2^{n-1}$ \textbf{complex} matrices or $2^n$ real matrices. For instance in five dimensions, the (real)Gamma matrices must be $8\times 8$ matrices.
+
+\subsubsection{Summary of Euclidean spinors}
+
+%\begin{tcolorbox}
+
+	\begin{itemize}
+	\item Even dimension $D=2n$, $SO(2n)$
+	
+	The Gamma matrices are of dimension $2^n=2^{D/2}$ and split in $2^{n-1}$ chiral and $2^{n-1}$ antichiral blocks
+		\subitem If $n$ odd $\rightarrow\ \ 2^{n-1}$ complex components \hspace{1cm} $D=2,6,10,\hdots$
+		\subitem If $n$ even, then
+			\subsubitem If $n=0+\mbox{mod}4\ \rightarrow 2^{n-1}\ $ real components \hspace{1cm} $D=4,12,20,\hdots$
+			\subsubitem If $n=2+\mbox{mod}4\ \rightarrow 2^{n-1}\ $ pseudoreal components \hspace{1cm} $D=8,12,24,\hdots$
+	\item Odd dimension $D=2n+1, SO(2n+1)$
+	
+	There's no chirality
+		\subitem $2^n$ real or $2^{n-1}$ complex states 
+	\end{itemize}
+
+%\end{tcolorbox}
+
+\subsection{Lorentzian signature}
+
+\subsubsection{Lorentzian even dimensions: $SO(2n-1,1)$}
+
+The Lorentzian case is very similar to the Euclidean one. All the procedures are essentially analogous, and the only thing we must be careful of is the signs differences due to the metric. The Clifford algebra uses the Minkowski metric:
+	\begin{align}\label{}
+	\{ \G_A,\G_B \} &= 2\eta_{AB}
+	\end{align}
+Let's take the signature as $\eta_{AB}=\mbox{diag}(1,1,\hdots,1,-1)$, so the time direction will be the $x_{2n}$ coordinate. Thus in the Lorentzian case 
+	\begin{align}\label{}
+	\left( \G_{2n} \right)^2=-1
+	\end{align}
+This can be achieved easily starting from the Euclidean version: just take the Euclidean matrix, and multiply it by $i$. So $\G_{2n}$ can't be hermitian, but rather it must be antihermitian $\G_{2n}^\dag=-\G_{2n}$. 
+
+\bigskip
+
+We start with the even dimensional case, $SO(2n-1,1)$. Again we'll make use of the ladder operators $b_i^\pm$. We reorganise the $2n$ Gamma matrices as
+	\begin{align}\label{bi2}
+	b_i^+ &=\frac{1}{2} \left( \G_i + i \G_{i+n} \right)\\
+	b_i^- &=\frac{1}{2} \left( \G_i - i \G_{i+n} \right)\hspace{1cm}i=1,\hdots,n-1\\
+	b_n^+&=\frac{1}{2} \left( \G_n+\G_{2n} \right)\\
+	b_n^-&=\frac{1}{2} \left( \G_n-\G_{2n} \right)
+	\end{align}
+Note there's no $i$ factor in the last two $\G_{2n}$. Why? That's because we want to maintain $\{ b_i^+,b_j^- \}=\delta_{ij}$ for $i,j=1,\hdots,2n$ \textit{including} $\{ b_{2n}^+,b_{2n}^- \}=\frac{1}{4}\{ \G_n+\G_{2n} , \G_n - \G_{2n} \}= \frac{1}{4} \left( \{ \G_n,\G_n \} - \{ \G_{2n},\G_{2n} \} \right)=1$. Had there been an $i$ in the $b_n^\pm$, this would give zero instead.
+
+This has the effect that, although the definition of ground state in the Lorentzian is the same as in the Euclidean case, namely
+	\begin{align}\label{}
+	b_i^-\ket{--\hdots -}=0 \hspace{1cm} i=1,\hdots,2n ,
+	\end{align}
+since the last matrix $b_n^\pm$ doesn't contain any $i$, it's not affected by conjugation, so the last sign doesn't flip,
+	\begin{align}\label{reL}
+	\ket{--\hdots-}^*&=\ket{++\hdots +-}
+	\end{align}
+
+The chirality properties in Lorentzian signature are the same as those of the Euclidean - the representation still splits into a chiral and an antichiral one, that's true in any even dimension, regardless of the signature. The only difference appears in the reality conditions. In particular, in \eqref{reL} we see that the left side has zero $+$'s, while the right side has $n-1$ $+$'s. Thus we see that if $n$ is even, parities don't match and the reality condition \eqref{reL} can't possibly hold, so we need all the chiral or antichiral $2^{n-1}$ \textbf{complex} states. The analysis for odd $n$ goes exactly as in the Euclidean case, and one finds that for $n=1+\mbox{mod } 4$, the representation is real, while if $n=3+\mbox{mod }4$ it is pseudoreal. Hence the result is opposite to what occurs in the Euclidean case, where for odd $n$ the representation must be complex, while for even $n$ it could be real or pseudoreal.  
+
+\subsubsection{Lorentzian odd dimensions: $SO(2n,1)$}
+
+To go from Lorentzian even dimensions to odd dimensions, we use the same trick as in the Euclidean case: to the set of $\G_1,\hdots,\G_{2n}$ we add $\G_{2n+1}\equiv i^{\alpha} \G_1\hdots\G_{2n}$. For the same reasons as in the odd dimensional Euclidean case, there exists no chirality here, so we have $2^{n-1}$ complex components.
+
+\subsubsection{Summary of Lorentzian spinors} \label{sumLor}
+
+%\begin{tcolorbox}
+
+	\begin{itemize}
+	\item Even dimension $SO(2n-1,1)$
+		\subitem If $n$ even $\rightarrow\ \ 2^{n-1}$ complex components 
+		\subitem If $n$ odd, then
+			\subsubitem If $n=1+\mbox{mod}\ 4\ \rightarrow 2^{n-1}\ $ real components
+			\subsubitem If $n=3+\mbox{mod}\ 4\ \rightarrow 2^{n-1}\ $ pseudoreal components
+	\item Odd dimension $d=2n+1, SO(2n,1)$
+	
+	There's no chirality
+		\subitem $2^n$ real or $2^{n-1}$ complex components
+	\end{itemize}
+
+%\end{tcolorbox}
+
+\subsection{Examples}\label{examples}
+
+Let's consider some very simple cases in which we can easily construct the matrices explicitly. 
+
+	\begin{itemize}
+	\item $SO(1,1)$ : the $\G$'s are two dimensional. Explicitly, we can choose $\G_1=\sigma_1,\G_2=i\sigma_2$, which satisfies $\{ \sigma_i,\sigma_j \}=2\eta_{ij}$. Since the dimension is even, there exists chirality, which reduces the minimum components to 1 complex d.o.f. Furthermore, it turns out that the chirality operator is real: $\G_3=\sigma_1 i\sigma_2=-\sigma_3$ which satisfies $\left( \G_3 \right)^2=1$, and therefore we can impose the Majorana condition, which further reduces the states to a single real d.o.f. Thus for $SO(1,1)$ we can construct Majorana-Weyl spinors.  
+	\item $SO(2,0)$: here of course we have chirality and we can choose real matrices $\sigma_1,\sigma_3$, but the chirality operator satisfying $\left( \G_3 \right)^2=+1$ is $\G_3=i\sigma_1\sigma_3$ which is not real, so we can't impose both Majorana and Weyl conditions simultaneously.
+	\item $SO(3,0)\simeq SU(2)$ : this of course is the group that defines the Pauli matrices $\sigma_i$. Since the dimension is odd, we don't have Weyl spinors. Nevertheless there exist Majorana spinors: one can find a representation where all the $\G$'s have imaginary entries (which in the Dirac equation means that we can take the spinor to be real). The price we pay, of course, is that instead of $2\times 2$ matrices we need to use $4\times 4$ matrices. One choice is the following
+		\begin{align}\label{}
+		\G_1= \left(
+			\begin{array}{cc} 0 & -i\sigma_1 \\
+			i\sigma_1 & 0  \end{array}
+		\right)\hspace{.2cm},\hspace{.2cm} \G_2= \left(
+			\begin{array}{cc} 0 & -\sigma_2 \\
+			\sigma_2 & 0  \end{array}
+		\right) \hspace{.2cm},\hspace{.2cm} \G_3= \left(
+			\begin{array}{cc} 0 & -i\sigma_3 \\
+			i\sigma_3 & 0  \end{array}
+		\right)
+		\end{align}
+It's not hard to check that indeed they satisfy $\{ \G_j,\G_k \}=2\delta_{jk}$. So Majorana spinors of $SO(3)$ have $4$ real components.
+	\item $SO(3,1)$: this is the usual Lorentz group. On the one hand, since the dimension is even, spinors can be chiral or anti-chiral, with $2^{2-1}=2$ complex components each one, so we can construct Weyl spinors. On the other hand, we could alternatively choose to use the Majorana basis: one can find a set of four $4\times 4$ matrices that satisfy the Clifford algebra; one choice for the Majorana basis is
+		\begin{align}\label{}
+		\G_0 = \left(
+			\begin{array}{cc}
+			0 & \s_2 \\
+			\s_2 &  0
+			\end{array}
+		\right)\ ,\quad \G_1= \left(
+			\begin{array}{cc}
+			i\s_3 & 0 \\
+			0 & i\s_3
+			\end{array}
+		\right)\ ,\\
+		\G_2 = \left(
+			\begin{array}{cc}
+			0 & -\s_2 \\
+			\s_2 & 0
+			\end{array}
+		\right)\ ,\quad \G_3= \left(
+			\begin{array}{cc}
+			-i\s_1 & 0 \\
+			0 &  -i\s_1
+			\end{array}
+		\right)
+		\end{align}
+	The big problem is that the chirality matrix $\G_5\sim \G_0\G_1\G_2\G_3$ that satisfies $\G_5^2=1$ turns out to be
+		\begin{align}\label{}
+		\G_5= \left( \begin{array}{cc} \sigma_2 & 0 \\
+		0 & -\sigma_2  \end{array} \right) 
+		\end{align}
+which happens to be complex. But this means that, starting from real vectors, if projected into their chiral components, they would become complex. Therefore in $d=3+1$ there's a clash between Weyl and Majorana properties: one can chose either, but not both simultaneously. 
+	\item $SO(5,1)$: in principle we have $2^3$ complex components. But we have a chirality structure, which reduces this to $4$ complex components, say
+	$$\{ \ket{+++},\ket{--+},\ket{+--},\ket{-+-} \}$$
+	associated to right chirality (an odd number of $+$ signs), and
+	$$\{ \ket{++-},\ket{+-+},\ket{-++},\ket{---}  \}$$
+	of left chirality (even number of $+$'s). 
+	\item $SO(9,1)$: in principle, this has $2^5$ complex components. Chirality reduces it to $16$. But it turns out that they can be chosen to be simultaneously Majorana, which further reduces it to $8$ complex components. 
+	\item As a useful tip, Majorana-Weyl spinors only exist in Lorentz signature in $SO(1+8p,1)$, that is $SO(1,1),SO(9,1),SO(17,1),\hdots$ 
+
+\end{itemize}
+
+\end{document}
