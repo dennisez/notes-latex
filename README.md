@@ -4,5 +4,6 @@ This is a repository for the `LaTeX` code of some of my personal notes. Currentl
 
 * *Some geometric aspects of non-linear sigma models* (my Master's thesis as presented August 2016)
 * *Introduction to Supersymmetry* (still in preparation together with N. Berkovits and I. Reyes)
+* BibTeX style **minimal-unsrt.bst** (reduced version of the unsrt.bst style)
 
 Hopefully, compiled files will be available at [my homepage](https://sites.google.com/view/dennisez).
