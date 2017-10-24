@@ -1,6 +1,7 @@
 % BibTeX bibliography style `minimal-unsrt'
    % Modified version of the `unsrt' style.
    % The purpose was to reduce the code to only accept types @article and @book.
+   % Added arXiv link support for the @article entry. Package 'hyperref' is needed.
    %
    % Copy the file 'minimal-unsrt.bst' to the corresponding BibTeX directory. For TeXLive 2017,
    % /usr/local/texlive/2017/texmf-dist/bibtex/bst/base/
@@ -10,6 +11,7 @@
 ENTRY
   { address
     author
+	arxivId
     booktitle
     chapter
     edition
@@ -133,8 +135,6 @@ FUNCTION {or}
   if$
 }
 
-% FUNCTIONs new.block.checka, new.block.checkb, new.sentence.checka, new.sentence.checkb
-
 FUNCTION {field.or.null}
 { duplicate$ empty$
     { pop$ "" }
@@ -233,18 +233,8 @@ FUNCTION {n.dashify}
 
 FUNCTION {format.date}
 { year empty$
-    { month empty$
-        { "" }
-        { "there's a month but no year in " cite$ * warning$
-          month
-        }
-      if$
-    }
-    { month empty$
-        'year
-        { month " " * year * }
-      if$
-    }
+    { "there's no year in " cite$ * warning$ }
+    { "(" year * ")" * }
   if$
 }
 
@@ -344,46 +334,29 @@ FUNCTION {format.pages}
   if$
 }
 
-FUNCTION {format.vol.num.pages}
-{ volume field.or.null
-  number empty$
-    'skip$
-    { "(" number * ")" * *
-      volume empty$
-        { "there's a number but no volume in " cite$ * warning$ }
-        'skip$
-      if$
+FUNCTION {format.vol.pages}
+{ volume empty$
+    { ""
+      "there's no volume in " cite$ * warning$
     }
+    { "{\bf " volume * "}" * }
   if$
   pages empty$
     'skip$
     { duplicate$ empty$
         { pop$ format.pages }
-        { ":" * pages n.dashify * }
+        { " " * pages n.dashify * }
       if$
     }
   if$
 }
 
-% FUNCTION format.charpter.pages was erased
-
-% FUNCTION format.in.ed.booktitle was erased
-
-% FUNCTION empty.misc.check was erased
-
-% FUNCTION format.thesis.type was erased
-
-% FUNCTION format.tr.number was erased
-
-% FUNCTION format.article.crossref was erased
-
-% FUNCTION format.crossref.editor was erased
-
-% FUNCTION format.book.crossref was erased
-
-% FUNCTION format.incoll.inproc.crossref
-
-% FUNCTION article was simplified to avoid use of the crossref entry
+FUNCTION {format.arxiv}
+{ arxivId empty$
+  	{ "" }
+	{ "[\href{https://arxiv.org/abs/" arxivId * "}" * "{{\tt " * arxivId * "}}]" * }
+  if$
+}
 
 FUNCTION {article}
 { output.bibitem
@@ -391,15 +364,17 @@ FUNCTION {article}
   new.block
   format.title "title" output.check
   new.block
-  journal emphasize "journal" output.check
-  format.vol.num.pages output
-  format.date "year" output.check
-  new.block
-  note output
+  journal missing$
+    { skip$ }
+    { journal emphasize output
+      format.vol.pages output
+      " " * format.date *
+      new.block
+    }
+  if$
+  format.arxiv output
   fin.entry
 }
-
-% FUNCTION book was simplified to avoid use of the crossref entry
 
 FUNCTION {book}
 { output.bibitem
@@ -424,15 +399,6 @@ FUNCTION {book}
   fin.entry
 }
 
-% FUNCTIONs booklet, inbook, inprocedings, incollection, manual, masterthersis, procedings, techreport, misc, phdthesis, unpublished were erased
-
-% FUNCTION default.type was erased
-
-% MACROs for months were erased
-
-% MACROs for some journals were erased
-
-% In the following BibTeX starts reading .bib file
 
 READ
 
@@ -460,8 +426,6 @@ FUNCTION {longest.label.pass}
 EXECUTE {initialize.longest.label}
 
 ITERATE {longest.label.pass}
-
-% FUNCTION 'begin.bib' was simplified
 
 FUNCTION {begin.bib}
 { "\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
