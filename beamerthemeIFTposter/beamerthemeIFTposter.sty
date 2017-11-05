@@ -1,0 +1,121 @@
+% Beamer theme for making posters with the IFT logo
+%
+% This theme should be used with the 'beamerposter' package, and it is a modification of
+% 'beamerthemeDreuw.sty' theme created by P. Dreuw and T. Deselaers.
+%
+% Works without issues with preamble
+%   \documentclass{beamer}
+%   \usepackage[orientation=<portrait or landscape>, size=a1, scale=1.4]{beamerposter}
+%   \title{<title of poster>}
+%   \author{<author of poster>}
+%   \institute{<name of institute>}
+% To include a website url and email, uncomment the corresponding lines in the last block of code of
+% this file.
+%
+% To make this theme available system-wide, copy the 'beamerthemeIFTposter' to directory
+% /usr/local/texlive/texmf-local/tex/latex/
+% a final 'sudo texhash' is needed to be recognized
+
+\ProvidesPackage{beamerthemeIFTposter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectcolormodel{cmyk}
+\mode<presentation>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor{headline}{fg=black,bg=blue}
+\setbeamercolor{footline}{fg=black, bg=white}
+\setbeamerfont{footline}{size=\large,series=\tt}
+\setbeamercolor{separation line}{bg=black}
+\setbeamercolor{title in headline}{fg=white}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
+
+\setbeamercolor{framesubtitle}{fg=white, bg=blue}
+\setbeamercolor{author in head/foot}{fg=white, bg=blue}
+\setbeamercolor{title in head/foot}{fg=orange, bg=black}
+
+\setbeamercolor*{normal text}{fg=black, bg=white}
+\setbeamercolor*{block body}{bg=lightgray,fg=black}
+\setbeamercolor*{block title}{fg=white,bg=blue}
+\setbeamerfont{block title}{size=\large,series=\bf}
+\setbeamercolor{upper separation line head}{fg=black}
+
+\setbeamercolor*{example body}{fg=blue,bg=black}
+\setbeamercolor*{example text}{fg=blue,bg=black}
+\setbeamercolor*{example title}{bg=orange,fg=gray}
+
+\setbeamercolor{alerted text}{fg=gray}
+
+%\setbeamercolor{example text}{fg=orange}
+\setbeamercolor{structure}{fg=blue}
+
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[rounded=false,shadow=true,leftskip=0cm,colsep*=0.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+
+  { \ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip0pt} }%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=false,shadow=true,colsep*=0.75ex,sep=0ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[c]%
+      \begin{column}{.675\paperwidth}
+        \raggedleft
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
+        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+        \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[0ex]}
+      \end{column}
+      \begin{column}{.25\paperwidth}
+        \vskip1cm
+        \begin{center}
+          \includegraphics[width=.7\linewidth]{/usr/local/texlive/texmf-local/tex/latex/beamerthemeIFTposter/logo.pdf}
+        \end{center}
+        \vskip0cm
+      \end{column}
+      \begin{column}{.03\paperwidth}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+
+  \leavevmode%
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
+%    \texttt{<include a website url>}
+    \hfill
+%    \texttt{<include email>}
+    \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt%
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+\rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+\mode<all>

@@ -8,3 +8,4 @@
 *.blg
 *~
 to-do
+!beamerthemeIFTposter/logo.pdf
